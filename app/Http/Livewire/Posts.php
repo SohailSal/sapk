@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-
 use App\Models\Post;
 
 class Posts extends Component
@@ -11,23 +10,11 @@ class Posts extends Component
     public $posts, $title, $body, $post_id;
     public $isOpen = 0;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-
     public function render()
     {
         $this->posts = Post::all();
         return view('livewire.posts');
     }
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
 
     public function create()
     {
@@ -35,43 +22,21 @@ class Posts extends Component
         $this->openModal();
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     public function openModal()
     {
         $this->isOpen = true;
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     public function closeModal()
     {
         $this->isOpen = false;
     }
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
 
     private function resetInputFields(){
         $this->title = '';
         $this->body = '';
         $this->post_id = '';
     }
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
 
     public function store()
     {
@@ -92,12 +57,6 @@ class Posts extends Component
         $this->resetInputFields();
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-
     public function edit($id)
     {
         $post = Post::findOrFail($id);
@@ -106,12 +65,6 @@ class Posts extends Component
         $this->body = $post->body;
         $this->openModal();
     }
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
 
     public function delete($id)
     {
