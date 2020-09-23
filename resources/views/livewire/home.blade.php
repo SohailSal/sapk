@@ -17,7 +17,7 @@
         <div class="row mt-5 justify-content-center">
             <div class="mt-5 col-md-8">
                 <div class="card">
-                    <div class="card-header bg-success text-white"><h5 style="font-size: 19px;">Laravel Livewire - Dynamically Add or Remove input fields</h5></div>
+                    <div class="card-header bg-success text-white"><h5 style="font-size: 19px;">Livewire - Dynamically Add or Remove input fields</h5></div>
 
                     <div class="card-body">
                         @if (session()->has('message'))
