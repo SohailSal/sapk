@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="p-5 shadow-lg border-2">Hello Tailwind's CSS</div>
-                    @livewire('search-users')
+                    <livewire:search-users/>
                 </div>
             </div>
         </div>
