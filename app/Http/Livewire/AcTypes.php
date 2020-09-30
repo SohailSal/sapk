@@ -5,15 +5,16 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\AccountType;
 
-class AccountTypes extends Component
+class AcTypes extends Component
 {
     public $types, $name, $at_id;
+    public $ite=0;
     public $isOpen = 0;
 
     public function render()
     {
         $this->types = AccountType::all();
-        return view('livewire.account-types');
+        return view('livewire.asaccounting.actypes');
     }
 
     public function create()

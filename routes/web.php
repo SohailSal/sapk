@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Posts;
-use App\Http\Livewire\AccountTypes;
+use App\Http\Livewire\AcTypes;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,4 +24,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('post', Posts::class);
 Route::view('customers','livewire.home');
-Route::get('type', AccountTypes::class);
+Route::get('type', AcTypes::class);
