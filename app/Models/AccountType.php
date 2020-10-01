@@ -12,4 +12,10 @@ class AccountType extends Model
     protected $fillable = [
         'name','enabled'
     ];
+
+    public function accountGroups()
+    {
+        return $this->hasMany('App\Models\AccountGroup');
+    }
+
 }

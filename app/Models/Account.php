@@ -13,4 +13,13 @@ class Account extends Model
         'number','name','group_id','enabled'
     ];
 
+    public function accountGroup(){
+        return $this->belongsTo('App\Models\AccountGroup');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany('App\Models\Transaction');
+    }
+
 }

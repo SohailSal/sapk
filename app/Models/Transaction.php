@@ -11,4 +11,12 @@ class Transaction extends Model
     protected $fillable = [
         'document_id', 'account_id','debit','credit'
     ];
+
+    public function document(){
+        return $this->belongsTo('App\Models\Document');
+    }
+
+    public function account(){
+        return $this->belongsTo('App\Models\Account');
+    }
 }

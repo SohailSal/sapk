@@ -34,7 +34,7 @@
                         <td class="border px-4 py-2">{{ $type->name }}</td>
                         <td class="border px-4 py-2">
                         <button wire:click="edit({{ $type->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
-                            <button wire:click="delete({{ $type->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                        <button wire:click="delete({{ $type->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
                         </td>
                     </tr>
                     @endforeach

@@ -10,5 +10,10 @@ class DocumentType extends Model
     use HasFactory;
     protected $fillable = [
         'name', 'prefix','enabled'
-    ];    
+    ];
+
+    public function documents()
+    {
+        return $this->hasMany('App\Models\Document');
+    }
 }
