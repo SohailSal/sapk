@@ -15,26 +15,31 @@
                   </div>
                 </div>
             @endif
-            <button wire:click="create()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Create New Type</button>
+            <button wire:click="create()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Create New Group</button>
             @if($isOpen)
-                @include('livewire.asaccounting.typecreate')
+                @include('livewire.asaccounting.groupcreate')
             @endif
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
                         <th class="px-4 py-2 w-20">No.</th>
+                        <th class="px-4 py-2">DB ID</th>
+                        <th class="px-4 py-2">Type</th>
                         <th class="px-4 py-2">Name</th>
                         <th class="px-4 py-2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($types as $type)
+                    @foreach($groups as $group)
                     <tr>
                         <td class="border px-4 py-2">{{ ++$ite }}</td>
-                        <td class="border px-4 py-2">{{ $type->name }}</td>
+                        <td class="border px-4 py-2">{{ $group->id }}</td>
+                        <td class="border px-4 py-2">{{ $group->type_id }}</td>
+                        <td class="border px-4 py-2">{{ $group->name }}</td>
                         <td class="border px-4 py-2">
                         <button wire:click="edit({{ $type->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
                         <button wire:click="delete({{ $type->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                        <x-jet-button>Hello</x-jet-button>
                         </td>
                     </tr>
                     @endforeach

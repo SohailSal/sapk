@@ -25,3 +25,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('post', Posts::class);
 Route::view('customers','livewire.home');
 Route::get('type', AcTypes::class);
+Route::get('group', AcGroups::class);
