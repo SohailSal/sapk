@@ -34,7 +34,7 @@
                         <td class="border px-4 py-2">{{ ++$ite }}</td>
                         <td class="border px-4 py-2">{{ $type->id }}</td>
                         <td class="border px-4 py-2">{{ $type->name }}
-                        {{$type->accountGroups?"yes":"no"}}
+                        {{$type->accountGroups->isEmpty()?"yes":"no"}}
                         </td>
                         <td class="border px-4 py-2">
                         <button wire:click="edit({{ $type->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>

@@ -20,7 +20,7 @@ class AccountGroup extends Model
 
     public function accounts()
     {
-        return $this->hasMany('App\Models\Account');
+        return $this->hasMany('App\Models\Account', 'group_id');
     }
 
 }
