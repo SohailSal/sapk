@@ -15,7 +15,7 @@ class AccountType extends Model
 
     public function accountGroups()
     {
-        return $this->hasMany('App\Models\AccountGroup');
+        return $this->hasMany('App\Models\AccountGroup','type_id');
     }
 
 }

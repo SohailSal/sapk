@@ -13,10 +13,10 @@ class Transaction extends Model
     ];
 
     public function document(){
-        return $this->belongsTo('App\Models\Document');
+        return $this->belongsTo('App\Models\Document','document_id');
     }
 
     public function account(){
-        return $this->belongsTo('App\Models\Account');
+        return $this->belongsTo('App\Models\Account', 'account_id');
     }
 }

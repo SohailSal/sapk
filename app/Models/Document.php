@@ -13,7 +13,7 @@ class Document extends Model
     ];
 
     public function documentType(){
-        return $this->belongsTo('App\Models\DocumentType');
+        return $this->belongsTo('App\Models\DocumentType','type_id');
     }
 
     public function transactions()

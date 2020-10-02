@@ -13,8 +13,9 @@ class AccountGroup extends Model
         'name','type_id','enabled'
     ];
 
-    public function accountType(){
-        return $this->belongsTo('App\Models\AccountType');
+    public function accountType()
+    {
+        return $this->belongsTo('App\Models\AccountType','type_id');
     }
 
     public function accounts()

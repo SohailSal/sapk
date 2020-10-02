@@ -34,11 +34,11 @@
                     <tr>
                         <td class="border px-4 py-2">{{ ++$ite }}</td>
                         <td class="border px-4 py-2">{{ $group->id }}</td>
-                        <td class="border px-4 py-2">{{ $group->type_id }}</td>
+                        <td class="border px-4 py-2">{{ $group->accountType->name }}</td>
                         <td class="border px-4 py-2">{{ $group->name }}</td>
                         <td class="border px-4 py-2">
-                        <button wire:click="edit({{ $type->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
-                        <button wire:click="delete({{ $type->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                        <button wire:click="edit({{ $group->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
+                        <button wire:click="delete({{ $group->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
                         <x-jet-button>Hello</x-jet-button>
                         </td>
                     </tr>

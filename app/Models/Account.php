@@ -14,7 +14,7 @@ class Account extends Model
     ];
 
     public function accountGroup(){
-        return $this->belongsTo('App\Models\AccountGroup');
+        return $this->belongsTo('App\Models\AccountGroup', 'group_id');
     }
 
     public function transactions()
