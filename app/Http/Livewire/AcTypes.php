@@ -14,7 +14,7 @@ class AcTypes extends Component
     public function render()
     {
         $this->types = AccountType::all();
-        return view('livewire.asaccounting.ac-types');
+        return view('livewire.sa.ac-types');
     }
 
     public function create()

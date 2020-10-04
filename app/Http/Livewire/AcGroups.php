@@ -4,22 +4,24 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\AccountGroup;
+use App\Models\AccountType;
 
 class AcGroups extends Component
 {
-    public $groups, $name, $type_id, $ag_id;
+    public $groups, $name, $type_id, $ag_id, $types;
     public $ite=0;
     public $isOpen = 0;
 
     public function render()
     {
         $this->groups = AccountGroup::all();
-        return view('livewire.asaccounting.ac-groups');
+        return view('livewire.sa.ac-groups');
     }
 
     public function create()
     {
         $this->resetInputFields();
+        $this->types = AccountType::all();
         $this->openModal();
     }
 
@@ -63,6 +65,7 @@ class AcGroups extends Component
         $group = AccountGroup::findOrFail($id);
         $this->ag_id = $id;
         $this->name = $group->name;
+        $this->types = AccountType::all();
         $this->type_id = $group->type_id;
         $this->openModal();
     }

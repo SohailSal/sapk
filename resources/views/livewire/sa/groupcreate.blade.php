@@ -11,7 +11,7 @@
         <div class="">
               <div class="mb-4">
                   <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-                  <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput1" placeholder="Enter Name" wire:model="name">
+                  <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" wire:model="name">
                   @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
               </div>
         </div>
@@ -20,7 +20,13 @@
         <div class="">
               <div class="mb-4">
                   <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Type:</label>
-                  <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput1" placeholder="Enter Name" wire:model="type_id">
+                  <select wire:model="type_id" class="border shadow p-2 bg-white">
+                      <option value=''>Choose a Type:</option>
+                      @foreach($types as $type)
+                          <option value={{ $type->id }}>{{ $type->name }}</option>
+                      @endforeach
+                  </select>
+
                   @error('type_id') <span class="text-red-500">{{ $message }}</span>@enderror
               </div>
         </div>

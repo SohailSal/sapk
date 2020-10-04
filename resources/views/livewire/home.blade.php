@@ -15,7 +15,7 @@
     <div class="container">
             @livewire('navigation-dropdown')
         <div class="row mt-5 justify-content-center">
-            <div class="mt-5 col-md-8">
+            <div class="mt-5 col-md-8            mx-auto flex items-center">
                 <div class="card">
                     <div class="card-header bg-success text-white"><h5 style="font-size: 19px;">Livewire - Dynamically Add or Remove input fields</h5></div>
 
@@ -32,6 +32,14 @@
                     <div class="p-5 shadow-lg border-2">Hello Tailwind's CSS</div>
                     <livewire:search-users/>
                 </div>
+
+                <div class="card">
+                    <div class="card-header bg-success text-white"><h5 style="font-size: 19px;">Select Multi-level</h5></div>
+                    <div class="card-body">
+                        <livewire:drops/>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
