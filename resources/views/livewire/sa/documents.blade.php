@@ -3,9 +3,9 @@
         Journal Voucher
     </h2>
 </x-slot>
-<div class="py-6 bg-gray-200">
+<div class="py-6 bg-gray-600">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="overflow-hidden shadow-xl sm:rounded-lg px-4 py-4  bg-gray-400">
+        <div class="overflow-hidden sm:rounded-lg px-4 py-4  bg-gray-800">
             @if (session()->has('message'))
                 <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
                   <div class="flex">
@@ -33,7 +33,7 @@
                 </thead>
                 <tbody>
                     @foreach($docs as $doc)
-                    <tr>
+                    <tr class="text-white">
                         <td class="border px-4 py-1">{{ ++$ite }}</td>
                         <td class="border px-4 py-1">{{ $doc->id }}</td>
                         <td class="border px-4 py-1">{{ $doc->ref }}</td>
