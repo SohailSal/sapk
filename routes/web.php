@@ -6,6 +6,9 @@ use App\Http\Livewire\AcTypes;
 use App\Http\Livewire\AcGroups;
 use App\Http\Livewire\Accounts;
 use App\Http\Livewire\DocTypes;
+use App\Http\Livewire\Documents;
+use App\Http\Livewire\Transactions;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +34,5 @@ Route::get('type', AcTypes::class);
 Route::get('group', AcGroups::class);
 Route::get('account', Accounts::class);
 Route::get('doctype', DocTypes::class);
+Route::get('doc', Documents::class);
+Route::get('entry', Transactions::class);
