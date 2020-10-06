@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Posts;
 use App\Http\Livewire\AcTypes;
 use App\Http\Livewire\AcGroups;
+use App\Http\Livewire\Accounts;
+use App\Http\Livewire\DocTypes;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,3 +29,5 @@ Route::get('post', Posts::class);
 Route::view('customers','livewire.home');
 Route::get('type', AcTypes::class);
 Route::get('group', AcGroups::class);
+Route::get('account', Accounts::class);
+Route::get('doctype', DocTypes::class);
