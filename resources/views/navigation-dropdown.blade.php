@@ -1,6 +1,6 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-gray-800 border-b border-gray-200">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-600">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -12,14 +12,17 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
                     <x-jet-nav-link href="/post" :active="request()->routeIs('post')">
                         {{ __('Posts') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/customers" :active="request()->routeIs('customers')">
                         {{ __('Customers') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="/doc" :active="request()->routeIs('doc')">
+                        {{ __('Doc') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="/account" :active="request()->routeIs('account')">
+                        {{ __('Account') }}
                     </x-jet-nav-link>
                 </div>
             </div>
