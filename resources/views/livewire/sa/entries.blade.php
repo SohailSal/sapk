@@ -3,9 +3,9 @@
         Entries
     </h2>
 </x-slot>
-<div class="py-6 bg-gray-200">
+<div class="py-6 bg-gray-600">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="overflow-hidden shadow-xl sm:rounded-lg px-4 py-4  bg-gray-400">
+        <div class="overflow-hidden sm:rounded-lg bg-gray-800 shadow-lg px-4 py-4">
             @if (session()->has('message'))
                 <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
                   <div class="flex">
@@ -15,9 +15,9 @@
                   </div>
                 </div>
             @endif
-            <x-jet-button class="mb-2" wire:click="create()">Create New Entry</x-jet-button>
+            <x-jet-button class="mb-2 border" wire:click="create()">Create New Entry</x-jet-button>
             @if($isOpen)
-                @include('livewire.sa.trancreate')
+                @include('livewire.sa.entrycreate')
             @endif
             <table class="table-fixed w-full">
                 <thead>
@@ -33,7 +33,7 @@
                 </thead>
                 <tbody>
                     @foreach($entries as $entry)
-                    <tr>
+                    <tr class="text-white">
                         <td class="border px-4 py-1">{{ ++$ite }}</td>
                         <td class="border px-4 py-1">{{ $entry->id }}</td>
                         <td class="border px-4 py-1">{{ $entry->document->ref }}</td>

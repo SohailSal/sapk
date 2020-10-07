@@ -3,9 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Transaction;
+use App\Models\Entry;
 
-class Transactions extends Component
+class Entries extends Component
 {
     public $entries, $document_id, $account_id, $debit, $credit, $at_id;
     public $ite=0;
@@ -13,8 +13,8 @@ class Transactions extends Component
 
     public function render()
     {
-        $this->entries = Transaction::all();
-        return view('livewire.sa.transactions');
+        $this->entries = Entry::all();
+        return view('livewire.sa.entries');
     }
 
     public function create()
@@ -50,7 +50,7 @@ class Transactions extends Component
             'credit' => 'required',
         ]);
 
-        Transaction::updateOrCreate(['id' => $this->at_id], [
+        Entry::updateOrCreate(['id' => $this->at_id], [
             'document_id' => $this->document_id,
             'account_id' => $this->account_id,
             'debit' => $this->debit,
@@ -66,7 +66,7 @@ class Transactions extends Component
 
     public function edit($id)
     {
-        $entry = Transaction::findOrFail($id);
+        $entry = Entry::findOrFail($id);
         $this->at_id = $id;
         $this->document_id = $entry->document_id;
         $this->account_id = $entry->account_id;
@@ -77,7 +77,7 @@ class Transactions extends Component
 
     public function delete($id)
     {
-        Transaction::find($id)->delete();
+        Entry::find($id)->delete();
         session()->flash('message', 'Record Deleted Successfully.');
     }
 }
