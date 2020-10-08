@@ -1,16 +1,15 @@
-<div class="fixed z-10 inset-0 overflow-y-auto ease-out duration-400" wire:keydown.escape="closeModal()">
+<div class="fixed z-10 inset-0 ease-out overflow-y-auto duration-400" wire:keydown.escape="closeModal()">
   <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
     <div class="fixed inset-0 transition-opacity">
       <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
     </div>
     <!-- This element is to trick the browser into centering the modal contents. -->
     <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
-    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+    <div class="inline-block w-auto md:max-w-6xl lg:max-w-6xl align-bottom bg-white rounded-lg text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
       <form>
       @csrf
-
-        <div class="row flex mx-auto justify-center">
-          <div class="flex-1 bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-col sm:flex-col">
+          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
                       <label class="block text-white text-sm font-bold mb-2">Reference:</label>
@@ -19,7 +18,7 @@
                   </div>
             </div>
           </div>
-          <div class="flex-1 bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
                       <label class="block text-white text-sm font-bold mb-2">Date:</label>
@@ -28,7 +27,7 @@
                   </div>
             </div>
           </div>
-          <div class="flex-1 bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
                       <label class="block text-white text-sm font-bold mb-2">Description:</label>
@@ -37,7 +36,7 @@
                   </div>
             </div>
           </div>
-          <div class="flex-1 bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
                       <label class="block text-white text-sm font-bold mb-2">Type:</label>
@@ -48,7 +47,7 @@
           </div>
         </div>
 
-        <div class="row flex mx-auto justify-items-center">
+        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-col sm:flex-col">
 
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
