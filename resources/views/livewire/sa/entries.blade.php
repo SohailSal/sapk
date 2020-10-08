@@ -41,7 +41,7 @@
                         <td class="border px-4 py-1">{{ $entry->debit }}</td>
                         <td class="border px-4 py-1">{{ $entry->credit }}</td>
                         <td class="border px-4 py-1">
-                        <x-jet-secondary-button wire:click="edit({{ $entry->id }})" >Edit</x-jet-secondary-button>
+                        <x-jet-button wire:click="edit({{ $entry->id }})" >Edit</x-jet-button>
                         <x-jet-danger-button wire:click="delete({{ $entry->id }})" >Delete</x-jet-danger-button>
                         </td>
                     </tr>
