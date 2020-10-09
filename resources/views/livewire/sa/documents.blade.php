@@ -17,7 +17,7 @@
             @endif
             <x-jet-button class="mb-2 border" wire:click="create()">Create New Document</x-jet-button>
             @if($isOpen)
-                @include('livewire.sa.doccreate')
+                @include('livewire.sa.try')
             @endif
             <table class="table-fixed w-full">
                 <thead>
