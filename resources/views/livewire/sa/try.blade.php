@@ -7,7 +7,7 @@
             <div class="">
                   <div class="mb-4">
                       <label class="block text-white text-sm font-bold mb-2">Reference:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Ref" wire:model="ref">
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="ref">
                       @error('ref') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
@@ -15,58 +15,44 @@
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Date:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Date" wire:model="date">
+                      <label class="block text-white text-sm font-bold mb-2">Date (YYYY-MM-DD):</label>
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="date">
                       @error('date') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Description:</label>
-                      <input type="text"  class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Description" wire:model="description" x-ref="desc">
-                      @error('description') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
           </div>
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4 rounded-tr-lg">
             <div class="">
                   <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Type:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Type" wire:model="type_id">
-                      @error('type_id') <span class="text-red-500">{{ $message }}</span>@enderror
+                      <label class="block text-white text-sm font-bold mb-2">Description:</label>
+                      <input type="text"  class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="description" x-ref="desc">
+                      @error('description') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
           </div>
         </div>
 
         <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col">
-
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Document ID:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter doc" wire:model="document_id">
-                      @error('document_id') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Account:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Account" wire:model="account_id">
-                      @error('account_id') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
+                <div class="mb-4">
+                    <label class="block text-white text-sm font-bold mb-2">Account:</label>
+                    <select wire:model="account_id.0" class="shadow w-full py-2 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                        <option value=''>Choose an Account:</option>
+                        @foreach($accounts as $account)
+                            <option value={{ $account->id }}>{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('account_id.0') <span class="text-red-500">{{ $message }}</span>@enderror
+                </div>
             </div>
           </div>
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
                       <label class="block text-white text-sm font-bold mb-2">Debit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Debit" wire:model="debit">
-                      @error('debit') <span class="text-red-500">{{ $message }}</span>@enderror
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="debit.0">
+                      @error('debit.0') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
           </div>
@@ -74,233 +60,84 @@
             <div class="">
                   <div class="mb-4">
                       <label class="block text-white text-sm font-bold mb-2">Credit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Credit" wire:model="credit">
-                      @error('credit') <span class="text-red-500">{{ $message }}</span>@enderror
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="credit.0">
+                      @error('credit.0') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
           </div>
-
         </div>
-
-
-
-
 
         <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col">
-
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Document ID:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter doc" wire:model="document_id">
-                      @error('document_id') <span class="text-red-500">{{ $message }}</span>@enderror
+                    <select wire:model="account_id.1" class="shadow w-full py-2 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                        <option value=''>Choose an Account:</option>
+                        @foreach($accounts as $account)
+                            <option value={{ $account->id }}>{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('account_id.1') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
           </div>
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Account:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Account" wire:model="account_id">
-                      @error('account_id') <span class="text-red-500">{{ $message }}</span>@enderror
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="debit.1">
+                      @error('debit.1') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
           </div>
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Debit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Debit" wire:model="debit">
-                      @error('debit') <span class="text-red-500">{{ $message }}</span>@enderror
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="credit.1">
+                      @error('credit.1') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
           </div>
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Credit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Credit" wire:model="credit">
-                      @error('credit') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
+            <x-jet-button class="" wire:click.prevent="add({{$i}})">Add</x-jet-button>
           </div>
-
         </div>
+
+        @foreach($inputs as $key => $value)
         <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col">
-
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Document ID:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter doc" wire:model="document_id">
-                      @error('document_id') <span class="text-red-500">{{ $message }}</span>@enderror
+                    <select wire:model="account_id.{{$value}}" class="shadow w-full py-2 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                        <option value=''>Choose an Account:</option>
+                        @foreach($accounts as $account)
+                            <option value={{ $account->id }}>{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('account_id.'.$value) <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
           </div>
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Account:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Account" wire:model="account_id">
-                      @error('account_id') <span class="text-red-500">{{ $message }}</span>@enderror
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="debit.{{$value}}">
+                      @error('debit.'.$value) <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
           </div>
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Debit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Debit" wire:model="debit">
-                      @error('debit') <span class="text-red-500">{{ $message }}</span>@enderror
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="credit.{{$value}}">
+                      @error('credit.'.$value) <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
           </div>
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Credit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Credit" wire:model="credit">
-                      @error('credit') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
+              <x-jet-button class="" wire:click.prevent="remove({{$key}})">remove</x-jet-button>
           </div>
-
         </div>
-        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col">
-
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Document ID:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter doc" wire:model="document_id">
-                      @error('document_id') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Account:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Account" wire:model="account_id">
-                      @error('account_id') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Debit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Debit" wire:model="debit">
-                      @error('debit') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Credit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Credit" wire:model="credit">
-                      @error('credit') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col">
-
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Document ID:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter doc" wire:model="document_id">
-                      @error('document_id') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Account:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Account" wire:model="account_id">
-                      @error('account_id') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Debit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Debit" wire:model="debit">
-                      @error('debit') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Credit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Credit" wire:model="credit">
-                      @error('credit') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col">
-
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Document ID:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter doc" wire:model="document_id">
-                      @error('document_id') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Account:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Account" wire:model="account_id">
-                      @error('account_id') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Debit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Debit" wire:model="debit">
-                      @error('debit') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="">
-                  <div class="mb-4">
-                      <label class="block text-white text-sm font-bold mb-2">Credit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Credit" wire:model="credit">
-                      @error('credit') <span class="text-red-500">{{ $message }}</span>@enderror
-                  </div>
-            </div>
-          </div>
-
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        @endforeach
 
         <div class=" bg-gray-400 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse rounded-b-lg">
           <div class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">

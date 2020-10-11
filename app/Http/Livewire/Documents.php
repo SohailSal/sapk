@@ -4,16 +4,52 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Document;
+use App\Models\DocumentType;
+use App\Models\Account;
+use App\Models\Entry;
+use Illuminate\Support\Carbon;
 
 class Documents extends Component
 {
-    public $docs, $ref, $date, $description, $type_id, $at_id;
+    public $docs, $accounts, $ref, $date, $description, $type_id, $at_id;
     public $ite=0;
     public $isOpen = 0;
+    public $account_id = [];
+    public $debit = [];
+    public $credit = [];
+    public $inputs = [];
+    public $i = 1;
+    public $latest;
+
+    public function add($i)
+    {
+        $i = $i + 1;
+        $this->i = $i;
+        array_push($this->inputs ,$i);
+    }
+
+    public function remove($i)
+    {
+        unset($this->inputs[$i]);
+    }
 
     public function render()
     {
         $this->docs = Document::all();
+        $this->latest = Document::latest()->first()->id;
+        ++$this->latest;
+
+        for($j=0;$j<count($this->debit);$j++){
+            if($this->debit[$j] > 0){
+                $this->credit[$j] = 0;
+            }
+        }
+        for($j=0;$j<count($this->credit);$j++){
+            if($this->credit[$j] > 0){
+                $this->debit[$j] = 0;
+            }
+        }
+
         return view('livewire.sa.documents');
     }
 
@@ -25,6 +61,11 @@ class Documents extends Component
 
     public function openModal()
     {
+        $this->type_id = 1;
+        $this->accounts = Account::all();
+        $type=DocumentType::find($this->type_id);
+        $this->date = Carbon::today()->toDateString();
+        $this->ref = $type->prefix . '/' . $this->latest;
         $this->isOpen = true;
     }
 
@@ -50,12 +91,18 @@ class Documents extends Component
             'type_id' => 'required',
         ]);
 
-        Document::updateOrCreate(['id' => $this->at_id], [
+        Document::create([
             'ref' => $this->ref,
             'date' => $this->date,
             'description' => $this->description,
             'type_id' => $this->type_id,
         ]);
+
+        foreach ($this->account_id as $key => $value) {
+            Entry::create(['document_id' => $this->latest, 'account_id' => $this->account_id[$key], 'debit' => $this->debit[$key], 'credit' => $this->credit[$key]]);
+        }
+
+        $this->inputs = [];
 
         session()->flash('message', 
             $this->at_id ? 'Record Updated Successfully.' : 'Record Created Successfully.');
