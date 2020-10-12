@@ -14,9 +14,9 @@ class Documents extends Component
     public $docs, $accounts, $ref, $date, $description, $type_id, $at_id;
     public $ite=0;
     public $isOpen = 0;
-    public $account_id = [];
-    public $debit = [];
-    public $credit = [];
+    public $account_id= [];
+    public $debit=[];
+    public $credit=[];
     public $inputs = [];
     public $i = 1;
     public $latest;
@@ -30,14 +30,20 @@ class Documents extends Component
 
     public function remove($i)
     {
+        $j = $i+2;
         unset($this->inputs[$i]);
+        unset($this->account_id[$j]);
     }
 
     public function render()
     {
         $this->docs = Document::all();
+        if(count($this->docs)){
         $this->latest = Document::latest()->first()->id;
         ++$this->latest;
+        } else {
+            $this->latest = 1;      // for first voucher. only works on fresh database starting from id=1 or else error in entries
+        }
 
         for($j=0;$j<count($this->debit);$j++){
             if($this->debit[$j] > 0){
@@ -103,6 +109,9 @@ class Documents extends Component
         }
 
         $this->inputs = [];
+        $this->account_id = [];
+        $this->debit = [];
+        $this->credit = [];
 
         session()->flash('message', 
             $this->at_id ? 'Record Updated Successfully.' : 'Record Created Successfully.');
