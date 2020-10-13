@@ -36,9 +36,6 @@ class Documents extends Component
         unset($this->account_id[$j]);
         $this->debit[$j]=0;
         $this->credit[$j]=0;
-    //    dd(count($this->account_id));
-    //    dd(count($this->debit));
-    //    dd(count($this->credit));
     }
 
     public function render()

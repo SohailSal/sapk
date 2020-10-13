@@ -8,6 +8,7 @@ use App\Http\Livewire\Accounts;
 use App\Http\Livewire\DocTypes;
 use App\Http\Livewire\Documents;
 use App\Http\Livewire\Entries;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,5 @@ Route::get('account', Accounts::class);
 Route::get('doctype', DocTypes::class);
 Route::get('doc', Documents::class);
 Route::get('entry', Entries::class);
+
+Route::get('create-pdf-file', [PDFController::class, 'index']);
