@@ -2,7 +2,7 @@
     <div class="flex mx-auto max-w-7xl items-start mt-10 mb-10 overflow-y-auto" wire:keydown.escape="closeModal()">
       <form>
       @csrf
-        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row">
+        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row w-full bg-white rounded-t-lg">
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4 rounded-tl-lg">
             <div class="">
                   <div class="mb-4">
@@ -12,7 +12,7 @@
                   </div>
             </div>
           </div>
-          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4 ">
             <div class="">
                   <div class="mb-4">
                       <label class="block text-white text-sm font-bold mb-2">Date (YYYY-MM-DD):</label>
@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col">
+        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col w-full bg-white">
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                 <div class="mb-4">
@@ -67,7 +67,7 @@
           </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col">
+        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col w-full bg-white">
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
@@ -103,7 +103,7 @@
         </div>
 
         @foreach($inputs as $key => $value)
-        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col">
+        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col w-full bg-white">
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
@@ -120,6 +120,7 @@
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
+                      <label>{{$key}}{{$value}}</label>
                       <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="debit.{{$value}}">
                       @error('debit.'.$value) <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
@@ -138,6 +139,36 @@
           </div>
         </div>
         @endforeach
+
+        <div class="flex flex-col lg:flex-row xl:flex-row md:flex-row sm:flex-col w-full bg-white">
+          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="">
+                  <div class="mb-4">
+                      <label class="block text-white text-sm font-bold mb-2">Difference:</label>
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="diff">
+                      @error('diff') <span class="text-red-500">{{ $message }}</span>@enderror
+                  </div>
+            </div>
+          </div>
+          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="">
+                  <div class="mb-4">
+                      <label class="block text-white text-sm font-bold mb-2">Debit Total:</label>
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="dtotal">
+                      @error('dtotal') <span class="text-red-500">{{ $message }}</span>@enderror
+                  </div>
+            </div>
+          </div>
+          <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="">
+                  <div class="mb-4">
+                      <label class="block text-white text-sm font-bold mb-2">Credit Total:</label>
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="ctotal">
+                      @error('ctotal') <span class="text-red-500">{{ $message }}</span>@enderror
+                  </div>
+            </div>
+          </div>
+        </div>
 
         <div class=" bg-gray-400 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse rounded-b-lg">
           <div class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">

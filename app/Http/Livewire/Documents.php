@@ -20,6 +20,7 @@ class Documents extends Component
     public $inputs = [];
     public $i = 1;
     public $latest;
+    public $diff, $dtotal, $ctotal;
 
     public function add($i)
     {
@@ -32,7 +33,12 @@ class Documents extends Component
     {
         $j = $i+2;
         unset($this->inputs[$i]);
-        unset($this->account_id[$j]);
+  //      unset($this->account_id[$j]);
+  //      unset($this->debit[$j]);
+  //      unset($this->credit[$j]);
+    //    dd(count($this->account_id));
+    //    dd(count($this->debit));
+    //    dd(count($this->credit));
     }
 
     public function render()
@@ -55,7 +61,7 @@ class Documents extends Component
                 $this->debit[$j] = 0;
             }
         }
-
+        $this->total();
         return view('livewire.sa.documents');
     }
 
@@ -135,5 +141,19 @@ class Documents extends Component
     {
         Document::find($id)->delete();
         session()->flash('message', 'Record Deleted Successfully.');
+    }
+
+    function total(){
+        $dtotal=0;
+        $ctotal=0;
+        for($j=0;$j<count($this->debit);$j++){
+            $dtotal = $dtotal + $this->debit[$j];
+        }
+        for($j=0;$j<count($this->credit);$j++){
+            $ctotal = $ctotal + $this->credit[$j];
+        }
+        $this->dtotal = $dtotal;
+        $this->ctotal = $ctotal;
+        $this->diff = $this->dtotal - $this->ctotal;
     }
 }
