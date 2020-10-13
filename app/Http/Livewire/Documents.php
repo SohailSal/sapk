@@ -34,8 +34,8 @@ class Documents extends Component
         $j = $i+2;
         unset($this->inputs[$i]);
         unset($this->account_id[$j]);
-        unset($this->debit[$j]);
-        unset($this->credit[$j]);
+        $this->debit[$j]=0;
+        $this->credit[$j]=0;
     //    dd(count($this->account_id));
     //    dd(count($this->debit));
     //    dd(count($this->credit));
@@ -62,7 +62,7 @@ class Documents extends Component
             }
         }
 
- //       $this->total();
+        $this->total();
         return view('livewire.sa.documents');
     }
 
@@ -151,12 +151,12 @@ class Documents extends Component
         $dtotal=0;
         $ctotal=0;
         for($j=0;$j<count($this->debit);$j++){
-            if($this->debit){
+            if($this->debit[$j]){
                 $dtotal = $dtotal + $this->debit[$j];
             }
         }
         for($j=0;$j<count($this->credit);$j++){
-            if($this->credit){
+            if($this->credit[$j]){
                 $ctotal = $ctotal + $this->credit[$j];
             }
         }
