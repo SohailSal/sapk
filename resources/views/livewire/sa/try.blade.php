@@ -120,7 +120,7 @@
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
-                      <label>{{$key}}{{$value}}</label>
+                      <label>{{$key}}{{$value}}<br><?php print_r($debit); ?></label>
                       <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="debit.{{$value}}">
                       @error('debit.'.$value) <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
@@ -129,6 +129,7 @@
           <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="">
                   <div class="mb-4">
+                      <label>{{$key}}{{$value}}<br><?php print_r($credit); ?></label>
                       <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="credit.{{$value}}">
                       @error('credit.'.$value) <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>

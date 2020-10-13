@@ -41,7 +41,6 @@
                         <td class="border px-4 py-1">{{ $doc->description }}</td>
                         <td class="border px-4 py-1">{{ $doc->documentType->name }}</td>
                         <td class="border px-4 py-1">
-                        <x-jet-button wire:click="edit({{ $doc->id }})" >Edit</x-jet-button>
                         <x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>
                         </td>
                     </tr>

@@ -33,9 +33,9 @@ class Documents extends Component
     {
         $j = $i+2;
         unset($this->inputs[$i]);
-  //      unset($this->account_id[$j]);
-  //      unset($this->debit[$j]);
-  //      unset($this->credit[$j]);
+        unset($this->account_id[$j]);
+        unset($this->debit[$j]);
+        unset($this->credit[$j]);
     //    dd(count($this->account_id));
     //    dd(count($this->debit));
     //    dd(count($this->credit));
@@ -61,7 +61,8 @@ class Documents extends Component
                 $this->debit[$j] = 0;
             }
         }
-        $this->total();
+
+ //       $this->total();
         return view('livewire.sa.documents');
     }
 
@@ -92,6 +93,10 @@ class Documents extends Component
         $this->description = '';
         $this->type_id='';
         $this->at_id = '';
+        $this->inputs = [];
+        $this->account_id = [];
+        $this->debit = [];
+        $this->credit = [];
     }
 
     public function store()
@@ -114,11 +119,6 @@ class Documents extends Component
             Entry::create(['document_id' => $this->latest, 'account_id' => $this->account_id[$key], 'debit' => $this->debit[$key], 'credit' => $this->credit[$key]]);
         }
 
-        $this->inputs = [];
-        $this->account_id = [];
-        $this->debit = [];
-        $this->credit = [];
-
         session()->flash('message', 
             $this->at_id ? 'Record Updated Successfully.' : 'Record Created Successfully.');
 
@@ -139,6 +139,10 @@ class Documents extends Component
 
     public function delete($id)
     {
+        $entries = Entry::where('document_id',$id)->get();
+        foreach($entries as $entry){
+            $entry->delete();
+        }
         Document::find($id)->delete();
         session()->flash('message', 'Record Deleted Successfully.');
     }
@@ -147,10 +151,14 @@ class Documents extends Component
         $dtotal=0;
         $ctotal=0;
         for($j=0;$j<count($this->debit);$j++){
-            $dtotal = $dtotal + $this->debit[$j];
+            if($this->debit){
+                $dtotal = $dtotal + $this->debit[$j];
+            }
         }
         for($j=0;$j<count($this->credit);$j++){
-            $ctotal = $ctotal + $this->credit[$j];
+            if($this->credit){
+                $ctotal = $ctotal + $this->credit[$j];
+            }
         }
         $this->dtotal = $dtotal;
         $this->ctotal = $ctotal;
