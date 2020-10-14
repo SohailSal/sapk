@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Entry;
 use PDF;
 
 class PDFController extends Controller
@@ -20,8 +21,8 @@ class PDFController extends Controller
 
     public function ledger($id)
     {
-        $entries = Entry::where('account_id',$id)->get;
-        $pdf = PDF::loadView('led', $entries);
+        $entries = Entry::where('account_id',$id)->get();
+        $pdf = PDF::loadView('led', compact('entries'));
         return $pdf->stream('ledger.pdf');
     }        
 }

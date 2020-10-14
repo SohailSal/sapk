@@ -32,13 +32,6 @@
             $debits = 0;
             $credits = 0;
 
-            if ($previous->count()) { 
-                foreach ($previous as $value) {
-                $prebal= $lastbalance + floatval($value->debit) - floatval($value->credit);
-                $lastbalance = $prebal;
-                $ite++;
-                }
-            }
 
             $balance = [];
             $ite = 0;
@@ -56,12 +49,12 @@
     <table width="100%">
         <tr>
             <td align="left" style="width: 40%;">
-                <h3>{{$acc->head_of_account}}</h3>
+                <h3></h3>
             </td>
             <td align="center">
             </td>
             <td align="right" style="width: 40%;">
-                <h5>{{$period}}<br>
+                <h5><br>
                     Generated on: {{ $dt}}
                 </h5>
             </td>
@@ -100,35 +93,19 @@
             </thead>
             <tbody>
 
-        <tr>
-            <td style="width: 15%;">
-            </td>
-            <td style="width: 15%;">
-            </td>
-            <td style="width: 40%; border-right: 1pt solid black;">
-                <strong>Opening Balance</strong>
-            </td>
-            <td style="width: 10%; border-right: 1pt solid black;" align="right">
-            </td>
-            <td style="width: 10%; border-right: 1pt solid black;" align="right">
-            </td>
-            <td style="width: 10%" align="right">
-            <strong> {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($prebal,'Rs.'))}} </strong>
-            </td>
-        </tr>
 
 
         @foreach ($entries as $entry)
 
         <tr>
             <td style="width: 15%;">
-                {{$entry->transaction->ref}}
+                {{$entry->document->ref}}
             </td>
             <td style="width: 15%;">
-                {{$entry->transaction->date_of_transaction}}
+                {{$entry->document->date}}
             </td>
             <td style="width: 40%; border-right: 1pt solid black;">
-                {{$entry->transaction->description}}
+                {{$entry->document->description}}
 
             </td>
             <td style="width: 10%; border-right: 1pt solid black;" align="right">

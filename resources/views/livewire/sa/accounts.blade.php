@@ -37,7 +37,7 @@
                         <td class="border px-4 py-1">{{ $account->accountGroup->name }}</td>
                         <td class="border px-4 py-1">{{ $account->name }}</td>
                         <td class="border px-4 py-1">
-                        <x-jet-button @click="get-ledger({{ $account->id }})" >Edit</x-jet-button>
+                        <a href="{{('ledger/'.$account->id)}}">Ledger in PDF</a>
                         <x-jet-button wire:click="edit({{ $account->id }})" >Edit</x-jet-button>
                         <x-jet-danger-button wire:click="delete({{ $account->id }})" >Delete</x-jet-danger-button>
                         </td>
