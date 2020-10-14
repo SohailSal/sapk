@@ -39,3 +39,4 @@ Route::get('doc', Documents::class);
 Route::get('entry', Entries::class);
 
 Route::get('create-pdf-file', [PDFController::class, 'index']);
+Route::get('get-ledger/{id}', [PDFController::class, 'ledger']);

@@ -17,7 +17,7 @@ class Documents extends Component
     public $account_id= [];
     public $debit=[];
     public $credit=[];
-    public $inputs = [];
+    public $inputs=[];
     public $i = 1;
     public $latest;
     public $diff, $dtotal, $ctotal;
@@ -34,8 +34,17 @@ class Documents extends Component
         $j = $i+2;
         unset($this->inputs[$i]);
         unset($this->account_id[$j]);
-        $this->debit[$j]=0;
-        $this->credit[$j]=0;
+ //       unset($this->debit[$j]);
+  //      unset($this->credit[$j]);
+//        $this->inputs = array_values($this->inputs);
+ //       $this->account_id = array_values($this->account_id);
+ //       $this->debit = array_values($this->debit);
+ //       $this->credit = array_values($this->credit);
+ //       $this->i = $this->i - 1;
+
+
+//        $this->debit[$j]=0;
+//        $this->credit[$j]=0;
     }
 
     public function render()
