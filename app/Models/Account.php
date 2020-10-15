@@ -17,9 +17,8 @@ class Account extends Model
         return $this->belongsTo('App\Models\AccountGroup', 'group_id');
     }
 
-    public function transactions()
+    public function entries()
     {
-        return $this->hasMany('App\Models\Transaction', 'account_id');
+        return $this->hasMany('App\Models\Entry', 'account_id');
     }
-
 }

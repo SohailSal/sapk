@@ -19,6 +19,7 @@
             @if($isOpen)
                 @include('livewire.sa.try')
             @endif
+            <x-jet-button class="mb-2 border" onclick="{{url('tb')}}">Trial Balance</x-jet-button>
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
