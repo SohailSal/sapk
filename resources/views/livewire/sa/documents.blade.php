@@ -17,7 +17,7 @@
             @endif
             <x-jet-button x-ref="go" class="mb-2 border" wire:click="create()">Create New Document</x-jet-button>
             @if($isOpen)
-                @include('livewire.sa.try')
+                @include('livewire.sa.try2')
             @endif
             <a class="border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('tb')}}">Trial Balance</a>
             <table class="table-fixed w-full">

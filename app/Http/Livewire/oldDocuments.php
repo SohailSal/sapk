@@ -57,6 +57,16 @@ class Documents extends Component
             $this->latest = 1;      // for first voucher. only works on fresh database starting from id=1 or else error in entries
         }
 
+        for($j=0;$j<count($this->debit);$j++){
+            if($this->debit[$j] > 0){
+                $this->credit[$j] = 0;
+            }
+        }
+        for($j=0;$j<count($this->credit);$j++){
+            if($this->credit[$j] > 0){
+                $this->debit[$j] = 0;
+            }
+        }
 
         $this->total();
         return view('livewire.sa.documents');

@@ -10,6 +10,7 @@ use App\Http\Livewire\Documents;
 use App\Http\Livewire\Entries;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\ExcelController;
 
 
 /*
@@ -44,3 +45,4 @@ Route::get('create-pdf-file', [PDFController::class, 'index']);
 Route::get('ledger/{id}', [PDFController::class, 'ledger']);
 Route::get('tb', [PDFController::class, 'tb']);
 Route::get('first-chart', [ChartController::class, 'index']);
+Route::get('excel', [ExcelController::class, 'export']);
