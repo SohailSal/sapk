@@ -146,7 +146,7 @@
             <div class="">
                   <div class="mb-4">
                       <label class="block text-white text-sm font-bold mb-2">Difference:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="diff">
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="diff" disabled>
                       @error('diff') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
@@ -155,7 +155,7 @@
             <div class="">
                   <div class="mb-4">
                       <label class="block text-white text-sm font-bold mb-2">Debit Total:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="dtotal">
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="dtotal" disabled>
                       @error('dtotal') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
@@ -164,7 +164,7 @@
             <div class="">
                   <div class="mb-4">
                       <label class="block text-white text-sm font-bold mb-2">Credit Total:</label>
-                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="ctotal">
+                      <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="ctotal" disabled>
                       @error('ctotal') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>

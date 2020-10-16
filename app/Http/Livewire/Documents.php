@@ -22,11 +22,16 @@ class Documents extends Component
     public $latest;
     public $diff, $dtotal, $ctotal;
 
+    public function mount(){
+    }
+
     public function add($i)
     {
         $i = $i + 1;
         $this->i = $i;
         array_push($this->inputs ,$i);
+        array_push($this->debit ,'0');
+        array_push($this->credit ,'0');
     }
 
     public function remove($i)
@@ -34,6 +39,8 @@ class Documents extends Component
         $j = $i+2;
         unset($this->inputs[$i]);
         unset($this->account_id[$j]);
+        $this->debit[$j]=0;
+        $this->credit[$j]=0;
  //       unset($this->debit[$j]);
   //      unset($this->credit[$j]);
 //        $this->inputs = array_values($this->inputs);
@@ -57,7 +64,6 @@ class Documents extends Component
             $this->latest = 1;      // for first voucher. only works on fresh database starting from id=1 or else error in entries
         }
 
-
         $this->total();
         return view('livewire.sa.documents');
     }
@@ -65,16 +71,20 @@ class Documents extends Component
     public function create()
     {
         $this->resetInputFields();
-        $this->openModal();
-    }
-
-    public function openModal()
-    {
+        $this->debit[0]='0';
+        $this->debit[1]='0';
+        $this->credit[0]='0';
+        $this->credit[1]='0';
         $this->type_id = 1;
         $this->accounts = Account::all();
         $type=DocumentType::find($this->type_id);
         $this->date = Carbon::today()->toDateString();
         $this->ref = $type->prefix . '/' . $this->latest;
+        $this->openModal();
+    }
+
+    public function openModal()
+    {
         $this->isOpen = true;
     }
 
@@ -93,6 +103,10 @@ class Documents extends Component
         $this->account_id = [];
         $this->debit = [];
         $this->credit = [];
+        $this->i=1;
+        $diff=0;
+        $dtotal=0;
+        $ctotal=0;
     }
 
     public function store()

@@ -12,14 +12,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="/post" :active="request()->routeIs('post')">
-                        {{ __('Posts') }}
+                    <x-jet-nav-link href="/doctype" :active="request()->routeIs('doctype')">
+                        {{ __('Vouchers') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="/customers" :active="request()->routeIs('customers')">
-                        {{ __('Customers') }}
+                    <x-jet-nav-link href="/group" :active="request()->routeIs('group')">
+                        {{ __('Groups') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/doc" :active="request()->routeIs('doc')">
-                        {{ __('Doc') }}
+                        {{ __('Transactions') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/account" :active="request()->routeIs('account')">
                         {{ __('Account') }}

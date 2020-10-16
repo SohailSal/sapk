@@ -20,6 +20,8 @@
                 @include('livewire.sa.try2')
             @endif
             <a class="border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('tb')}}">Trial Balance</a>
+            <a class="border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('first-chart')}}">Chart</a>
+            <a class="border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('excel')}}">Excel</a>
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
