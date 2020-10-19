@@ -65,7 +65,7 @@ class Documents extends Component
         }
 
         $this->total();
-        return view('livewire.sa.documents');
+        return view('livewire.sa.documents',['docss'=>Document::paginate(10)]);
     }
 
     public function create()

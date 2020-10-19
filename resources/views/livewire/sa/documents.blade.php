@@ -22,6 +22,7 @@
             <a class="border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('tb')}}">Trial Balance</a>
             <a class="border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('first-chart')}}">Chart</a>
             <a class="border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('excel')}}">Excel</a>
+            {{$docss->links()}}
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
@@ -35,7 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($docs as $doc)
+                    @foreach($docss as $doc)
                     <tr class="text-white">
                         <td class="border px-4 py-1">{{ ++$ite }}</td>
                         <td class="border px-4 py-1">{{ $doc->id }}</td>
