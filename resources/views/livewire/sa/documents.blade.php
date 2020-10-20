@@ -32,7 +32,7 @@
                         <th class="px-4 py-1">Date</th>
                         <th class="px-4 py-1">Description</th>
                         <th class="px-4 py-1">Type</th>
-                        <th class="px-4 py-1">Action</th>
+                        @can('isAdmin')<th class="px-4 py-1">Action</th>@endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -44,9 +44,11 @@
                         <td class="border px-4 py-1">{{ $doc->date }}</td>
                         <td class="border px-4 py-1">{{ $doc->description }}</td>
                         <td class="border px-4 py-1">{{ $doc->documentType->name }}</td>
+                        @can('isAdmin')
                         <td class="border px-4 py-1">
                         <x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>
                         </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>
