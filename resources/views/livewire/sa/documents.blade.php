@@ -5,7 +5,7 @@
 </x-slot>
 <div class="py-6 bg-gray-600" x-data x-init="$refs.go.focus()">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="overflow-hidden sm:rounded-lg  bg-gray-800 shadow-lg px-4 py-4 ">
+        <div class="overflow-auto sm:rounded-lg  bg-gray-800 shadow-lg px-4 py-4 ">
             @if (session()->has('message'))
                 <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
                   <div class="flex">
@@ -15,15 +15,17 @@
                   </div>
                 </div>
             @endif
-            <x-jet-button x-ref="go" class="mb-2 border" wire:click="create()">Create New Document</x-jet-button>
+            <div class="flex items-center justify-between">
+            <x-jet-button x-ref="go" class="flex-wrap mb-2 border" wire:click="create()">Create New Document</x-jet-button>
             @if($isOpen)
                 @include('livewire.sa.try2')
             @endif
-            <a class="border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('tb')}}">Trial Balance</a>
-            <a class="border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('first-chart')}}">Chart</a>
-            <a class="border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('excel')}}">Excel</a>
-            {{$docss->links()}}
-            <table class="table-fixed w-full">
+            <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('tb')}}">Trial Balance</a>
+            <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('first-chart')}}">Chart</a>
+            <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('excel')}}">Excel</a>
+            <span class="flex-wrap ml-5">{{$docss->links()}}</span>
+            </div>
+            <table class="table-auto w-full">
                 <thead>
                     <tr class="bg-gray-100">
                         <th class="px-4 py-1 w-20">No.</th>

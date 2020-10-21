@@ -24,7 +24,7 @@
 
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
-                <p class="text-sm text-gray-200 leading-5">
+                <p class="text-sm text-gray-200 leading-5 mr-3">
                     {!! __('Showing') !!}
                     <span class="font-medium">{{ $paginator->firstItem() }}</span>
                     {!! __('to') !!}
