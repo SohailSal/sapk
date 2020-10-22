@@ -8,6 +8,7 @@ use App\Http\Livewire\Accounts;
 use App\Http\Livewire\DocTypes;
 use App\Http\Livewire\Documents;
 use App\Http\Livewire\Entries;
+use App\Http\Livewire\Companies;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ExcelController;
@@ -40,6 +41,7 @@ Route::get('account', Accounts::class);
 Route::get('doctype', DocTypes::class);
 Route::get('doc', Documents::class);
 Route::get('entry', Entries::class);
+Route::get('company', Companies::class);
 
 Route::get('create-pdf-file', [PDFController::class, 'index']);
 Route::get('ledger/{id}', [PDFController::class, 'ledger']);
