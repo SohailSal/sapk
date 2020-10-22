@@ -12,6 +12,9 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="/company" :active="request()->routeIs('company')">
+                        {{ __('Companies') }}
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="/doctype" :active="request()->routeIs('doctype')">
                         {{ __('Vouchers') }}
                     </x-jet-nav-link>

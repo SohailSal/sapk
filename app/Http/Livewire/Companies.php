@@ -44,9 +44,13 @@ class Companies extends Component
             'name' => 'required',
         ]);
 
-        Company::updateOrCreate(['id' => $this->co_id], [
+        $company = Company::updateOrCreate(['id' => $this->co_id], [
             'name' => $this->name,
         ]);
+        
+        if(!$this->co_id){
+            $company->users()->attach(auth()->user()->id);
+        }
 
         session()->flash('message', 
             $this->co_id ? 'Company Updated Successfully.' : 'Company Created Successfully.');

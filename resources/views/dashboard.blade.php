@@ -30,4 +30,20 @@
             </div>
         </div>
     </div>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            {{\Auth::user()->id}}
+            <br>
+            {{\Auth::user()->name}}
+            <table>
+            @foreach(\Auth::user()->companies as $company)
+                <tr>
+                    <td>{{$company->name}}</td>
+                </tr>
+            @endforeach
+            </table>
+            </div>
+        </div>
+    </div>
 </x-app-layout>
