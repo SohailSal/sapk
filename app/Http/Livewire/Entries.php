@@ -13,7 +13,7 @@ class Entries extends Component
 
     public function render()
     {
-        $this->entries = Entry::all();
+        $this->entries = Entry::where('company_id',session('company_id'))->get();
         return view('livewire.sa.entries');
     }
 

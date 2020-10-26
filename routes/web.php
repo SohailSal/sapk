@@ -48,3 +48,7 @@ Route::get('ledger/{id}', [PDFController::class, 'ledger']);
 Route::get('tb', [PDFController::class, 'tb']);
 Route::get('first-chart', [ChartController::class, 'index']);
 Route::get('excel', [ExcelController::class, 'export']);
+
+Route::get('choose', function () {
+    return view('choose');
+});

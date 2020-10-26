@@ -56,7 +56,7 @@ class Documents extends Component
 
     public function render()
     {
-        $this->docs = Document::all();
+        $this->docs = Document::where('company_id',session('company_id'))->get();
         if(count($this->docs)){
         $this->latest = Document::latest()->first()->id;
         ++$this->latest;
@@ -65,7 +65,7 @@ class Documents extends Component
         }
 
         $this->total();
-        return view('livewire.sa.documents',['docss'=>Document::paginate(10)]);
+        return view('livewire.sa.documents',['docss'=>Document::where('company_id',session('company_id'))->paginate(10)]);
     }
 
     public function create()
@@ -76,7 +76,7 @@ class Documents extends Component
         $this->credit[0]='0';
         $this->credit[1]='0';
         $this->type_id = 1;
-        $this->accounts = Account::all();
+        $this->accounts = Account::where('company_id',session('company_id'))->get();
         $type=DocumentType::find($this->type_id);
         $this->date = Carbon::today()->toDateString();
         $this->ref = $type->prefix . '/' . $this->latest;

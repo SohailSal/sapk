@@ -13,7 +13,7 @@ class DocTypes extends Component
 
     public function render()
     {
-        $this->types = DocumentType::all();
+        $this->types = DocumentType::where('company_id',session('company_id'))->get();
         return view('livewire.sa.doc-types');
     }
 

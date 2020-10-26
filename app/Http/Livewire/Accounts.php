@@ -14,14 +14,14 @@ class Accounts extends Component
 
     public function render()
     {
-        $this->accounts = Account::all();
+        $this->accounts = Account::where('company_id',session('company_id'))->get();
         return view('livewire.sa.accounts');
     }
 
     public function create()
     {
         $this->resetInputFields();
-        $this->groups = AccountGroup::all();
+        $this->groups = AccountGroup::where('company_id',session('company_id'))->get();
         $this->openModal();
     }
 
@@ -66,7 +66,7 @@ class Accounts extends Component
         $account = Account::findOrFail($id);
         $this->ag_id = $id;
         $this->name = $account->name;
-        $this->groups = AccountGroup::all();
+        $this->groups = AccountGroup::where('company_id',session('company_id'))->get();
         $this->group_id = $account->group_id;
         $this->openModal();
     }

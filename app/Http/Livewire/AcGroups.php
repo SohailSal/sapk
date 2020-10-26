@@ -14,7 +14,7 @@ class AcGroups extends Component
 
     public function render()
     {
-        $this->groups = AccountGroup::all();
+        $this->groups = AccountGroup::where('company_id',session('company_id'))->get();
         return view('livewire.sa.ac-groups');
     }
 
