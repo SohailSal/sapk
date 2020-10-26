@@ -9,7 +9,7 @@ class Entry extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'document_id', 'account_id','debit','credit'
+        'document_id', 'account_id','debit','credit','enabled','company_id'
     ];
 
     public function document(){
@@ -18,5 +18,9 @@ class Entry extends Model
 
     public function account(){
         return $this->belongsTo('App\Models\Account', 'account_id');
+    }
+
+    public function company(){
+        return $this->belongsTo('App\Models\Company', 'company_id');
     }
 }

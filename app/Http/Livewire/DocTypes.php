@@ -49,6 +49,7 @@ class DocTypes extends Component
         DocumentType::updateOrCreate(['id' => $this->at_id], [
             'name' => $this->name,
             'prefix' => $this->prefix,
+            'company_id' => session('company_id'),
         ]);
 
         session()->flash('message', 

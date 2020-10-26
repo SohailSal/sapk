@@ -51,6 +51,7 @@ class Accounts extends Component
         Account::updateOrCreate(['id' => $this->ag_id], [
             'name' => $this->name,
             'group_id' => $this->group_id,
+            'company_id' => session('company_id'),
         ]);
 
         session()->flash('message', 

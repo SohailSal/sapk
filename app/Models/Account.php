@@ -10,11 +10,15 @@ class Account extends Model
     use HasFactory;
 
     protected $fillable = [
-        'number','name','group_id','enabled'
+        'number','name','group_id','enabled','company_id'
     ];
 
     public function accountGroup(){
         return $this->belongsTo('App\Models\AccountGroup', 'group_id');
+    }
+
+    public function company(){
+        return $this->belongsTo('App\Models\Company', 'company_id');
     }
 
     public function entries()

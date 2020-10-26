@@ -51,6 +51,7 @@ class AcGroups extends Component
         AccountGroup::updateOrCreate(['id' => $this->ag_id], [
             'name' => $this->name,
             'type_id' => $this->type_id,
+            'company_id' => session('company_id'),
         ]);
 
         session()->flash('message', 

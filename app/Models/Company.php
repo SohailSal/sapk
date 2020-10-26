@@ -17,4 +17,29 @@ class Company extends Model
     {
         return $this->belongsToMany('App\Models\User', 'companies_users');
     }
+
+    public function accounts()
+    {
+        return $this->hasMany('App\Models\Account', 'company_id');
+    }
+
+    public function accountGroups()
+    {
+        return $this->hasMany('App\Models\AccountGroup', 'company_id');
+    }
+
+    public function documents()
+    {
+        return $this->hasMany('App\Models\Document', 'company_id');
+    }
+
+    public function documentTypes()
+    {
+        return $this->hasMany('App\Models\DocumentType', 'company_id');
+    }
+
+    public function entries()
+    {
+        return $this->hasMany('App\Models\Entry', 'company_id');
+    }
 }

@@ -55,6 +55,7 @@ class Entries extends Component
             'account_id' => $this->account_id,
             'debit' => $this->debit,
             'credit' => $this->credit,
+            'company_id' => session('company_id'),
         ]);
 
         session()->flash('message', 

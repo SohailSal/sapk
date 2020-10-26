@@ -9,8 +9,12 @@ class DocumentType extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name', 'prefix','enabled'
+        'name', 'prefix','enabled','company_id'
     ];
+
+    public function company(){
+        return $this->belongsTo('App\Models\Company', 'company_id');
+    }
 
     public function documents()
     {

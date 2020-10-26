@@ -123,10 +123,11 @@ class Documents extends Component
             'date' => $this->date,
             'description' => $this->description,
             'type_id' => $this->type_id,
+            'company_id' => session('company_id'),
         ]);
 
         foreach ($this->account_id as $key => $value) {
-            Entry::create(['document_id' => $this->latest, 'account_id' => $this->account_id[$key], 'debit' => $this->debit[$key], 'credit' => $this->credit[$key]]);
+            Entry::create(['document_id' => $this->latest, 'account_id' => $this->account_id[$key], 'debit' => $this->debit[$key], 'credit' => $this->credit[$key], 'company_id' => session('company_id')]);
         }
 
         session()->flash('message', 
