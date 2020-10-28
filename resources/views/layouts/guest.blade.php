@@ -17,11 +17,13 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.2.1/dist/alpine.js" defer></script>
     </head>
     <body>
-        <div>
-        <img src="{{asset('/img/ledger2.jpg')}}" class="inset-0">
+    <div class="flex">
+        <div class="">
+        <img src="{{asset('/img/ledger2.jpg')}}" class="w-full h-screen">
         </div>
-        <div class="z-10 font-sans text-gray-900 antialiased">
+        <div class="absolute z-10 inset-y-2/12 inset-x-2/12 font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
+    </div>
     </body>
 </html>

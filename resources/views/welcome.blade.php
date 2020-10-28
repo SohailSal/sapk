@@ -14,7 +14,7 @@
             @if (Route::has('login'))
                 <div class="flex flex-row items-center justify-between fixed px-6 py-1">
                     <div class="">
-                    <a href="{{ url('/') }}" class="text-sm text-white ml-5 hover:text-blue-300">SA Accounting</a>
+                    <a href="{{ url('/') }}" class="text-sm text-white ml-5 hover:text-blue-300 font-bold">SA Accounting</a>
                     </div>
                     <div class="fixed inset-y-0 right-0 mr-12 py-1">
                     @auth

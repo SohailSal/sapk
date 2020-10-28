@@ -16,7 +16,7 @@
             @csrf
 
             <div class="mb-1 mt-4">
-                <label class="block text-white text-sm font-bold mb-2">Select Company:</label>
+                <label class="block text-black text-sm font-bold mb-2">Select Company:</label>
                 <select name="company" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
                     <option value=''>Choose a Company:</option>
                     @foreach(\Auth::user()->companies as $company)
@@ -25,10 +25,8 @@
                 </select>
             </div>
 
-
-
-            <div class="flex items-center justify-end mt-4">
-                <x-jet-button type="submit" class="ml-4">
+            <div class="flex mt-4">
+                <x-jet-button type="submit" class="">
                     Choose
                 </x-jet-button>
             </div>
