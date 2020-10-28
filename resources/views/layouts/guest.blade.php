@@ -17,7 +17,10 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.2.1/dist/alpine.js" defer></script>
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
+        <div>
+        <img src="{{asset('/img/ledger2.jpg')}}" class="inset-0">
+        </div>
+        <div class="z-10 font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
     </body>

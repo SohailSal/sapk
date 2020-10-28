@@ -9,15 +9,14 @@
 
     </head>
     <body>
-        <div class="fixed flex items-top bg-gray-700 dark:bg-gray-900 pt-0">
+        <div class="fixed flex items-top bg-gray-700 dark:bg-gray-900 pt-0 inset-0">
 
             @if (Route::has('login'))
-                <div class="grid grid-cols-3 items-top fixed px-6 py-1">
+                <div class="flex flex-row items-center justify-between fixed px-6 py-1">
                     <div class="">
                     <a href="{{ url('/') }}" class="text-sm text-white ml-5 hover:text-blue-300">SA Accounting</a>
                     </div>
-                    <div></div>
-                    <div class="">
+                    <div class="fixed inset-y-0 right-0 mr-12 py-1">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-white ml-5 hover:text-blue-300">Dashboard</a>
                     @else
@@ -31,12 +30,12 @@
                 </div>
             @endif
 
-            <div class="mx-auto">
-                <div class="flex justify-center pt-8">
-                   <img src="{{asset('/img/ledger.jpg')}}" class="max-w-full px-4 ">
+            <div class="">
+                <div class="flex pt-8 h-11/12">
+                   <img src="{{asset('/img/ledger.jpg')}}" class="px-2 w-full object-cover flex-wrap">
                 </div>
 
-                <div class="ml-4 text-center text-xs text-white sm:text-right sm:ml-0">
+                <div class="mt-3 text-center text-xs text-white">
                     Copyright 2020, SA Accounting
                 </div>
             </div>
