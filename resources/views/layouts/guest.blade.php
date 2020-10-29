@@ -19,7 +19,7 @@
     <body>
     <div class="flex">
         <div class="">
-        <img src="{{asset('/img/ledger2.jpg')}}" class="w-full h-screen">
+        <img src="{{asset('/img/ledger2.jpg')}}" class="w-screen h-screen">
         </div>
         <div class="absolute z-10 inset-y-2/12 inset-x-2/12 font-sans text-gray-900 antialiased">
             {{ $slot }}

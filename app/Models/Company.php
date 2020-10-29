@@ -42,4 +42,9 @@ class Company extends Model
     {
         return $this->hasMany('App\Models\Entry', 'company_id');
     }
+
+    public function settings()
+    {
+        return $this->hasMany('App\Models\Setting', 'company_id');
+    }
 }
