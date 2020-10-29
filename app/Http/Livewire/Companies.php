@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Company;
+use App\Models\Setting;
 
 class Companies extends Component
 {
@@ -50,6 +51,13 @@ class Companies extends Component
         
         if(!$this->co_id){
             $company->users()->attach(auth()->user()->id);
+            if($actives=Setting::where('key','active')->get()){
+                foreach ($actives as $active){
+                    $active->update(['value' => '']);
+                }
+            }
+            $setting = Setting::create(['company_id' => $company->id, 'key' => 'active' , 'value' => 'yes']);
+ 
         }
 
         session()->flash('message', 

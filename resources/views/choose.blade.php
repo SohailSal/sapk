@@ -18,9 +18,9 @@
             <div class="mb-1 mt-4">
                 <label class="block text-black text-sm font-bold mb-2">Select Company:</label>
                 <select name="company" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
-                    <option value="{{ session('company_id') ? session('company_id') : '' }}"> {{ session('company_id') ? session('company_id') : 'Choose a Company:' }}</option>
+                    <option value="">Choose a Company</option>
                     @foreach(\Auth::user()->companies as $company)
-                        <option value='{{ $company->id }}'>{{ $company->name }}</option>
+                        <option value='{{ $company->id }}' {{ ($company->id == session('company_id')) ? 'selected':''}}>{{ $company->name }}</option>
                     @endforeach
                 </select>
             </div>
