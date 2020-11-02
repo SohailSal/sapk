@@ -11,7 +11,7 @@ use Illuminate\Support\Carbon;
 
 class Documents extends Component
 {
-    public $docs, $accounts, $ref, $date, $description, $type_id, $at_id;
+    public $docs, $accounts, $ref, $date, $description, $type_id, $type, $types, $at_id;
     public $ite=0;
     public $isOpen = 0;
     public $account_id= [];
@@ -21,8 +21,13 @@ class Documents extends Component
     public $i = 1;
     public $latest;
     public $diff, $dtotal, $ctotal;
+    public $month, $year;
 
     public function mount(){
+        $this->docs = Document::where('company_id',session('company_id'))->get();
+        $this->types = DocumentType::where('company_id',session('company_id'))->get();
+        $this->type_id = DocumentType::where('company_id',session('company_id'))->first()->id;
+        $this->type = $this->types->where('id',$this->type_id)->first();
     }
 
     public function add($i)
@@ -56,14 +61,14 @@ class Documents extends Component
 
     public function render()
     {
-        $this->docs = Document::where('company_id',session('company_id'))->get();
-        if(count($this->docs)){
-        $this->latest = Document::latest()->first()->id;
+        $this->type = $this->types->where('id',$this->type_id)->first();
+        if(count($this->docs->where('type_id',$this->type_id))){
+        $this->latest = $this->docs->where('type_id',$this->type_id)->last()->id;
         ++$this->latest;
         } else {
             $this->latest = 1;      // for first voucher. only works on fresh database starting from id=1 or else error in entries
         }
-
+        $this->ref = $this->type->prefix . '/' . Carbon::today()->year . '/' . Carbon::today()->month . '/' .$this->latest;
         $this->total();
         return view('livewire.sa.documents',['docss'=>Document::where('company_id',session('company_id'))->paginate(10)]);
     }
@@ -75,11 +80,10 @@ class Documents extends Component
         $this->debit[1]='0';
         $this->credit[0]='0';
         $this->credit[1]='0';
-        $this->type_id = 1;
         $this->accounts = Account::where('company_id',session('company_id'))->get();
-        $type=DocumentType::find($this->type_id);
+//        $this->type_id = $this->type->id;
+//        $type=DocumentType::find($this->type_id);
         $this->date = Carbon::today()->toDateString();
-        $this->ref = $type->prefix . '/' . $this->latest;
         $this->openModal();
     }
 
@@ -97,7 +101,7 @@ class Documents extends Component
         $this->ref = '';
         $this->date = '';
         $this->description = '';
-        $this->type_id='';
+//        $this->type='';
         $this->at_id = '';
         $this->inputs = [];
         $this->account_id = [];

@@ -13,7 +13,6 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ExcelController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,7 +30,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+})->name('dashboard')->middleware('ch');
 
 Route::get('post', Posts::class);
 Route::view('customers','livewire.home');
@@ -39,7 +38,7 @@ Route::get('type', AcTypes::class);
 Route::get('group', AcGroups::class);
 Route::get('account', Accounts::class);
 Route::get('doctype', DocTypes::class);
-Route::get('doc', Documents::class);
+Route::get('doc', Documents::class)->middleware('ck');
 Route::get('entry', Entries::class);
 Route::get('company', Companies::class);
 
@@ -51,4 +50,4 @@ Route::get('excel', [ExcelController::class, 'export']);
 
 Route::get('choose', function () {
     return view('choose');
-});
+})->middleware('co');

@@ -18,9 +18,6 @@
                         </div>
                     @endcan
                     <br>
-        @if ($message2 = request()->company)
-        <?php session(['company_id' => $message2 ]); ?>
-        @endif
         @if ($message = session('company_id'))
         <div class="alert alert-success bg-white">
             <p>{{ $message }}</p>

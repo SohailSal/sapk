@@ -8,14 +8,14 @@ use App\Models\Setting;
 
 class Companies extends Component
 {
-    public $companies, $name, $co_id;
+    public $companies, $name, $address, $email, $web, $phone, $fiscal, $incorp, $co_id;
     public $ite=0;
     public $isOpen = 0;
 
     public function render()
     {
-        $this->companies = Company::all();
-        return view('livewire.sa.companies',['docss' => Company::paginate(10)]);
+//        $this->companies = Company::all();
+        return view('livewire.sa.companies',['docss' => auth()->user()->companies()->paginate(10)]);
     }
 
     public function create()
@@ -43,10 +43,22 @@ class Companies extends Component
     {
         $this->validate([
             'name' => 'required',
+            'address' => 'nullable',
+            'email' => 'nullable|email:rfc,dns',
+            'web' => 'nullable|active_url',
+            'phone' => 'nullable|numeric',
+            'fiscal' => 'required',
+            'incorp' =>  'nullable|date',
         ]);
 
         $company = Company::updateOrCreate(['id' => $this->co_id], [
             'name' => $this->name,
+            'address' => $this->address,
+            'email' => $this->email,
+            'web' => $this->web,
+            'phone' => $this->phone,
+            'fiscal' => $this->fiscal,
+            'incorp' => $this->incorp,
         ]);
         
         if(!$this->co_id){
@@ -57,7 +69,7 @@ class Companies extends Component
                 }
             }
             $setting = Setting::create(['company_id' => $company->id, 'key' => 'active' , 'value' => 'yes']);
- 
+            session(['company_id' => $company->id ]);
         }
 
         session()->flash('message', 

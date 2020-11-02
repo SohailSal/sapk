@@ -7,12 +7,72 @@
     <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
     <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
       <form>
-        <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="bg-gray-800 px-4 pt-1 pb-1">
           <div class="">
-                <div class="mb-4">
-                    <label class="block text-white text-sm font-bold mb-2">Name:</label>
-                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput1" placeholder="Enter Name" wire:model="name">
+                <div class="mb-1">
+                    <label class="block text-white text-sm font-bold mb-1">Name:</label>
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="name">
                     @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
+                </div>
+          </div>
+        </div>
+        <div class="bg-gray-800 px-4 pt-1 pb-1">
+          <div class="">
+                <div class="mb-1">
+                    <label class="block text-white text-sm font-bold mb-1">Address:</label>
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="address">
+                    @error('address') <span class="text-red-500">{{ $message }}</span>@enderror
+                </div>
+          </div>
+        </div>
+        <div class="bg-gray-800 px-4 pt-1 pb-1">
+          <div class="">
+                <div class="mb-1">
+                    <label class="block text-white text-sm font-bold mb-1">Email:</label>
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="email">
+                    @error('email') <span class="text-red-500">{{ $message }}</span>@enderror
+                </div>
+          </div>
+        </div>
+        <div class="bg-gray-800 px-4 pt-1 pb-1">
+          <div class="">
+                <div class="mb-1">
+                    <label class="block text-white text-sm font-bold mb-1">Web address:</label>
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="web">
+                    @error('web') <span class="text-red-500">{{ $message }}</span>@enderror
+                </div>
+          </div>
+        </div>
+        <div class="bg-gray-800 px-4 pt-1 pb-1">
+          <div class="">
+                <div class="mb-1">
+                    <label class="block text-white text-sm font-bold mb-1">Phone:</label>
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="phone">
+                    @error('phone') <span class="text-red-500">{{ $message }}</span>@enderror
+                </div>
+          </div>
+        </div>
+        <div class="bg-gray-800 px-4 pt-1 pb-1">
+          <div class="">
+                <div class="mb-1">
+                    <label class="block text-white text-sm font-bold mb-1">Year-end month:</label>
+                    <select wire:model="fiscal" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                        <option value=''>Select month:</option>
+                        <option value='June'>June</option>
+                        <option value='December'>December</option>
+                        <option value='September'>September</option>
+                        <option value='March'>March</option>
+                      </select>
+                    @error('fiscal') <span class="text-red-500">{{ $message }}</span>@enderror
+                </div>
+          </div>
+        </div>
+        <div class="bg-gray-800 px-4 pt-1 pb-1">
+          <div class="">
+                <div class="mb-1">
+                    <label class="block text-white text-sm font-bold mb-1">Date of Incorporation:</label>
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 mb-4 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="incorp">
+                    @error('incorp') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
         </div>

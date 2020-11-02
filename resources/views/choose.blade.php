@@ -8,7 +8,7 @@
 
         @if (session('company_id'))
             <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('company_id') }}
+                 {{ session('company_id') }}
             </div>
         @endif
 

@@ -4,9 +4,18 @@
       @csrf
         <div class="flex flex-col md:flex-row bg-gray-800 rounded-t-lg">
           <div class="bg-gray-800 px-4 pt-1 pb-1 rounded-tl-lg">
-            <div class="">
+            <div class="flex-row">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Reference:</label>
+                      <select wire:model="type_id" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                          <option value=''>Choose type:</option>
+                          @foreach($types as $type)
+                              <option value={{ $type->id }}>{{ $type->name }}</option>
+                          @endforeach
+                      </select>
+                      @error('type_id') <span class="text-red-500">{{ $message }}</span>@enderror
+                  </div>
+                  <div class="mb-1">
                       <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="ref" disabled>
                       @error('ref') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
