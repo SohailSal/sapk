@@ -36,7 +36,7 @@ Route::get('post', Posts::class);
 Route::view('customers','livewire.home');
 Route::get('type', AcTypes::class);
 Route::get('group', AcGroups::class);
-Route::get('account', Accounts::class);
+Route::get('account', Accounts::class)->middleware('gr');
 Route::get('doctype', DocTypes::class);
 Route::get('doc', Documents::class)->middleware('ck');
 Route::get('entry', Entries::class);

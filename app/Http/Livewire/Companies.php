@@ -37,6 +37,12 @@ class Companies extends Component
     private function resetInputFields(){
         $this->name = '';
         $this->co_id = '';
+        $this->address = ''; 
+        $this->email = '';
+        $this->web = '';
+        $this->phone = '';
+        $this->fiscal = '';
+        $this->incorp = '';
     }
 
     public function store()
@@ -86,6 +92,11 @@ class Companies extends Component
         $company = Company::findOrFail($id);
         $this->co_id = $id;
         $this->name = $company->name;
+        $this->address = $company->address;
+        $this->email = $company->email;
+        $this->phone = $company->phone;
+        $this->fiscal = $company->fiscal;
+        $this->incorp = $company->incorp;
         $this->openModal();
     }
 

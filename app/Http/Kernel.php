@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'co' => \App\Http\Middleware\CompanyActive::class,
         'ch' => \App\Http\Middleware\CompanyChange::class,
         'ck' => \App\Http\Middleware\DoctypeCheck::class,
+        'gr' => \App\Http\Middleware\AcGroupCheck::class,
     ];
 }
