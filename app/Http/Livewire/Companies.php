@@ -63,9 +63,11 @@ class Companies extends Component
         
         if(!$this->co_id){
             $company->users()->attach(auth()->user()->id);
-            if($actives=Setting::where('key','active')->get()){
-                foreach ($actives as $active){
-                    $active->update(['value' => '']);
+            $cos = auth()->user()->companies;
+            foreach($cos as $co){
+                foreach($co->settings as $setting){
+                    if(($setting->key =='active')&&($setting->value == 'yes'))
+                    $setting->update(['value' => '']);
                 }
             }
             $setting = Setting::create(['company_id' => $company->id, 'key' => 'active' , 'value' => 'yes']);
