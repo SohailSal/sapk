@@ -23,6 +23,10 @@ class Documents extends Component
     public $diff, $dtotal, $ctotal;
     public $month, $year;
 
+    protected $rules = [
+        'diff' => 'gte:0|lte:0',
+    ];
+
     public function mount(){
         $this->docs = Document::where('company_id',session('company_id'))->get();
         $this->types = DocumentType::where('company_id',session('company_id'))->get();
@@ -63,7 +67,9 @@ class Documents extends Component
     {
         $this->type = $this->types->where('id',$this->type_id)->first();
         if(count($this->docs->where('type_id',$this->type_id))){
-        $this->latest = $this->docs->where('type_id',$this->type_id)->last()->id;
+        $lastref = Document::where('type_id',$this->type_id)->latest()->first()->ref;
+        $expNum=explode('/', $lastref);
+        $this->latest = $expNum[3];
         ++$this->latest;
         } else {
             $this->latest = 1;      // for first voucher. only works on fresh database starting from id=1 or else error in entries
@@ -108,9 +114,6 @@ class Documents extends Component
         $this->debit = [];
         $this->credit = [];
         $this->i=1;
-        $diff=0;
-        $dtotal=0;
-        $ctotal=0;
     }
 
     public function store()
@@ -120,7 +123,12 @@ class Documents extends Component
             'date' => 'required',
             'description' => 'required',
             'type_id' => 'required',
+            'account_id.*' => 'required',
+            'debit.*' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'credit.*' => 'required|regex:/^\d+(\.\d{1,2})?$/',
         ]);
+
+        $this->validate();
 
         Document::create([
             'ref' => $this->ref,
@@ -143,7 +151,7 @@ class Documents extends Component
 
     public function edit($id)
     {
-        $doc = Document::findOrFail($id);
+        $doc = Document::findOrFail($id)->where('company_id',session('company_id'));
         $this->at_id = $id;
         $this->ref = $doc->ref;
         $this->date = $doc->date;
@@ -154,11 +162,11 @@ class Documents extends Component
 
     public function delete($id)
     {
-        $entries = Entry::where('document_id',$id)->get();
+        $entries = Entry::where('document_id',$id)->where('company_id',session('company_id'))->get();
         foreach($entries as $entry){
             $entry->delete();
         }
-        Document::find($id)->delete();
+        Document::find($id)->where('company_id',session('company_id'))->delete();
         session()->flash('message', 'Record Deleted Successfully.');
     }
 

@@ -8,7 +8,6 @@
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Reference:</label>
                       <select wire:model="type_id" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
-                          <option value=''>Choose type:</option>
                           @foreach($types as $type)
                               <option value={{ $type->id }}>{{ $type->name }}</option>
                           @endforeach
@@ -26,7 +25,7 @@
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Date (YYYY-MM-DD):</label>
                       <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="date">
-                      @error('date') <span class="text-red-500">{{ $message }}</span>@enderror
+
                   </div>
             </div>
           </div>
@@ -35,7 +34,7 @@
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Description:</label>
                       <textarea row='2' class="shadow resize-none appearance-none rounded w-80 py-2 px-4 mr-1 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="description" x-ref="desc"></textarea>
-                      @error('description') <span class="text-red-500">{{ $message }}</span>@enderror
+
                   </div>
             </div>
           </div>
@@ -52,7 +51,7 @@
                             <option value={{ $account->id }}>{{ $account->name }}</option>
                         @endforeach
                     </select>
-                    @error('account_id.0') <span class="text-red-500">{{ $message }}</span>@enderror
+
                 </div>
             </div>
           </div>
@@ -61,7 +60,7 @@
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Debit:</label>
                       <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="debit.0">
-                      @error('debit.0') <span class="text-red-500">{{ $message }}</span>@enderror
+
                   </div>
             </div>
           </div>
@@ -70,7 +69,7 @@
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Credit:</label>
                       <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="credit.0">
-                      @error('credit.0') <span class="text-red-500">{{ $message }}</span>@enderror
+
                   </div>
             </div>
           </div>
@@ -86,7 +85,7 @@
                             <option value={{ $account->id }}>{{ $account->name }}</option>
                         @endforeach
                     </select>
-                    @error('account_id.1') <span class="text-red-500">{{ $message }}</span>@enderror
+
                   </div>
             </div>
           </div>
@@ -94,7 +93,7 @@
             <div class="">
                   <div class="mb-1">
                       <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="debit.1">
-                      @error('debit.1') <span class="text-red-500">{{ $message }}</span>@enderror
+
                   </div>
             </div>
           </div>
@@ -102,7 +101,7 @@
             <div class="">
                   <div class="mb-1">
                       <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="credit.1">
-                      @error('credit.1') <span class="text-red-500">{{ $message }}</span>@enderror
+
                   </div>
             </div>
           </div>
@@ -119,7 +118,7 @@
                             <option value={{ $account->id }}>{{ $account->name }}</option>
                         @endforeach
                     </select>
-                    @error('account_id.'.$value) <span class="text-red-500">{{ $message }}</span>@enderror
+
                   </div>
             </div>
           </div>
@@ -128,7 +127,7 @@
                   <div class="mb-1">
 <!--                      <label>{{$key}}{{$value}}<br><?php print_r($debit); ?></label> -->
                       <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="debit.{{$value}}">
-                      @error('debit.'.$value) <span class="text-red-500">{{ $message }}</span>@enderror
+
                   </div>
             </div>
           </div>
@@ -137,7 +136,7 @@
                   <div class="mb-1">
 <!--                      <label>{{$key}}{{$value}}<br><?php print_r($credit); ?></label> -->
                       <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="credit.{{$value}}">
-                      @error('credit.'.$value) <span class="text-red-500">{{ $message }}</span>@enderror
+
                   </div>
             </div>
           </div>
@@ -153,7 +152,7 @@
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Difference:</label>
                       <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="diff" disabled>
-                      @error('diff') <span class="text-red-500">{{ $message }}</span>@enderror
+
                   </div>
             </div>
           </div>
@@ -177,7 +176,7 @@
           </div>
         </div>
 
-        <div class="bg-gray-400 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse rounded-b-lg">
+        <div class="bg-gray-400 px-4 py-3 sm:px-6 sm:flex sm:flex-row rounded-b-lg">
           <div class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
             <button wire:click.prevent="store()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-green-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
               Save
@@ -193,6 +192,12 @@
               Add row
             </button>
           </div>
+              @error('date') <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $message }}</span>@enderror
+              @error('description') <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $message }}</span>@enderror
+              @error('diff') <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $message }}</span>@enderror
+                    @error('account_id.*') <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $message }}</span>@enderror
+                      @error('debit.*') <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $message }}</span>@enderror
+                      @error('credit.*') <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $message }}</span>@enderror
         </div>
       </form>
     </div>
