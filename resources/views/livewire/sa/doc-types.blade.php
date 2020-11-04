@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-white leading-tight">
-        SA Accounting
+        Voucher Types
     </h2>
 </x-slot>
 <div class="py-6 bg-gray-600">
@@ -15,7 +15,8 @@
                   </div>
                 </div>
             @endif
-            <x-jet-button class="mb-2 border" wire:click="create()">Create New Type</x-jet-button>
+            <x-jet-button class="mb-2 border" wire:click="create()">Create Voucher Type</x-jet-button> 
+            
             @if($isOpen)
                 @include('livewire.sa.doctypecreate')
             @endif

@@ -21,7 +21,7 @@ class DoctypeCheck
         return $next($request);
       } 
       else {
-          return redirect('doctype')->with('message','Create Document Type First!');
+          return redirect('doctype')->with('message','Create Voucher Type First!');
       }
     }
 }
