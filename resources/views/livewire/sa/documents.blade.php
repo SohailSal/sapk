@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-white leading-tight">
-        Journal Voucher
+        Vouchers
     </h2>
 </x-slot>
 <div class="py-6 bg-gray-600" x-data x-init="$refs.go.focus()">
@@ -16,7 +16,7 @@
                 </div>
             @endif
             <div class="flex items-center justify-between">
-            <x-jet-button x-ref="go" class="flex-wrap mb-2 border" wire:click="create()">Create New Document</x-jet-button>
+            <x-jet-button x-ref="go" class="flex-wrap mb-2 border" wire:click="create()">Create New Voucher</x-jet-button>
             @if($isOpen)
                 @include('livewire.sa.try2')
             @endif

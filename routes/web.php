@@ -51,3 +51,7 @@ Route::get('excel', [ExcelController::class, 'export']);
 Route::get('choose', function () {
     return view('choose');
 })->middleware('co');
+
+Route::get('report', function () {
+    return view('report');
+});

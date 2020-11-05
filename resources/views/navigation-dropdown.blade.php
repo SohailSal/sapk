@@ -32,6 +32,9 @@
                     <x-jet-nav-link href="/company" :active="request()->routeIs('company')">
                         {{ __('Companies') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="/report" :active="request()->routeIs('report')">
+                        {{ __('Reports') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 

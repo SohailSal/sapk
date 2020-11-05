@@ -4,6 +4,9 @@
         {{ __('Dashboard') }}
         </h2>
     </x-slot>
+            <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('tb')}}">Trial Balance</a>
+            <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('first-chart')}}">Chart</a>
+            <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('excel')}}">Excel</a>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

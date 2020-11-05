@@ -130,7 +130,7 @@ class Documents extends Component
 
         $this->validate();
 
-        Document::create([
+        $current = Document::create([
             'ref' => $this->ref,
             'date' => $this->date,
             'description' => $this->description,
@@ -139,7 +139,7 @@ class Documents extends Component
         ]);
 
         foreach ($this->account_id as $key => $value) {
-            Entry::create(['document_id' => $this->latest, 'account_id' => $this->account_id[$key], 'debit' => $this->debit[$key], 'credit' => $this->credit[$key], 'company_id' => session('company_id')]);
+            Entry::create(['document_id' => $current->id, 'account_id' => $this->account_id[$key], 'debit' => $this->debit[$key], 'credit' => $this->credit[$key], 'company_id' => session('company_id')]);
         }
 
         session()->flash('message', 
