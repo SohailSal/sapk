@@ -28,24 +28,20 @@
             <table class="table-auto w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-1 w-20">No.</th>
-                        <th class="px-4 py-1">DB ID</th>
                         <th class="px-4 py-1">Reference</th>
+                        <th class="px-4 py-1">Type</th>
                         <th class="px-4 py-1">Date</th>
                         <th class="px-4 py-1">Description</th>
-                        <th class="px-4 py-1">Type</th>
                         @can('isAdmin')<th class="px-4 py-1">Action</th>@endcan
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($docss as $doc)
                     <tr class="text-white">
-                        <td class="border px-4 py-1">{{ ++$ite }}</td>
-                        <td class="border px-4 py-1">{{ $doc->id }}</td>
                         <td class="border px-4 py-1">{{ $doc->ref }}</td>
+                        <td class="border px-4 py-1">{{ $doc->documentType->name }}</td>
                         <td class="border px-4 py-1">{{ $doc->date }}</td>
                         <td class="border px-4 py-1">{{ $doc->description }}</td>
-                        <td class="border px-4 py-1">{{ $doc->documentType->name }}</td>
                         @can('isAdmin')
                         <td class="border px-4 py-1">
                         <x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>

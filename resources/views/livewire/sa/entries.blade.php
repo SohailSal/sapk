@@ -22,8 +22,7 @@
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-1 w-20">No.</th>
-                        <th class="px-4 py-1">DB ID</th>
+                        <th class="px-4 py-1">No.</th>
                         <th class="px-4 py-1">Voucher</th>
                         <th class="px-4 py-1">Account</th>
                         <th class="px-4 py-1">Debit</th>
@@ -35,7 +34,6 @@
                     @foreach($entries as $entry)
                     <tr class="text-white">
                         <td class="border px-4 py-1">{{ ++$ite }}</td>
-                        <td class="border px-4 py-1">{{ $entry->id }}</td>
                         <td class="border px-4 py-1">{{ $entry->document->ref }}</td>
                         <td class="border px-4 py-1">{{ $entry->account->name }}</td>
                         <td class="border px-4 py-1">{{ $entry->debit }}</td>

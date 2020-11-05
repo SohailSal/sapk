@@ -28,9 +28,12 @@
             <table class="table-auto w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-1 w-20">No.</th>
-                        <th class="px-4 py-1">DB ID</th>
+                        <th class="px-4 py-1">No.</th>
                         <th class="px-4 py-1">Name</th>
+                        <th class="px-4 py-1">Address</th>
+                        <th class="px-4 py-1">Email</th>
+                        <th class="px-4 py-1">Website</th>
+                        <th class="px-4 py-1">Phone</th>
                         @can('isAdmin')<th class="px-4 py-1">Action</th>@endcan
                     </tr>
                 </thead>
@@ -38,8 +41,11 @@
                     @foreach($docss as $doc)
                     <tr class="text-white">
                         <td class="border px-4 py-1">{{ ++$ite }}</td>
-                        <td class="border px-4 py-1">{{ $doc->id }}</td>
                         <td class="border px-4 py-1">{{ $doc->name }}</td>
+                        <td class="border px-4 py-1">{{ $doc->address }}</td>
+                        <td class="border px-4 py-1">{{ $doc->email }}</td>
+                        <td class="border px-4 py-1">{{ $doc->web }}</td>
+                        <td class="border px-4 py-1">{{ $doc->phone }}</td>
                         @can('isAdmin')
                         <td class="border px-4 py-1">
                         <x-jet-button wire:click="edit({{ $doc->id }})" >Edit</x-jet-button>

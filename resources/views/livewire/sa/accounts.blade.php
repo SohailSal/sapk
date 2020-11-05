@@ -22,10 +22,9 @@
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-1 w-20">No.</th>
-                        <th class="px-4 py-1">DB ID</th>
-                        <th class="px-4 py-1">Group</th>
-                        <th class="px-4 py-1">Name</th>
+                        <th class="px-4 py-1">No.</th>
+                        <th class="px-4 py-1">Name of Account</th>
+                        <th class="px-4 py-1">Group of Account</th>
                         <th class="px-4 py-1">Action</th>
                     </tr>
                 </thead>
@@ -33,9 +32,8 @@
                     @foreach($accounts as $account)
                     <tr class="text-white">
                         <td class="border px-4 py-1">{{ ++$ite }}</td>
-                        <td class="border px-4 py-1">{{ $account->id }}</td>
-                        <td class="border px-4 py-1">{{ $account->accountGroup->name }}</td>
                         <td class="border px-4 py-1">{{ $account->name }}</td>
+                        <td class="border px-4 py-1">{{ $account->accountGroup->name }}</td>
                         <td class="border px-4 py-1">
                         <a href="{{('ledger/'.$account->id)}}">Ledger in PDF</a>
                         <x-jet-button wire:click="edit({{ $account->id }})" >Edit</x-jet-button>

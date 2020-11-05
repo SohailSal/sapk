@@ -22,10 +22,9 @@
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-1 w-20">No.</th>
-                        <th class="px-4 py-1">DB ID</th>
-                        <th class="px-4 py-1">Type</th>
-                        <th class="px-4 py-1">Name</th>
+                        <th class="px-4 py-1">No.</th>
+                        <th class="px-4 py-1">Group Name</th>
+                        <th class="px-4 py-1">Group Type</th>
                         <th class="px-4 py-1">Action</th>
                     </tr>
                 </thead>
@@ -33,9 +32,8 @@
                     @foreach($groups as $group)
                     <tr class="text-white">
                         <td class="border px-4 py-1">{{ ++$ite }}</td>
-                        <td class="border px-4 py-1">{{ $group->id }}</td>
-                        <td class="border px-4 py-1">{{ $group->accountType->name }}</td>
                         <td class="border px-4 py-1">{{ $group->name }}</td>
+                        <td class="border px-4 py-1">{{ $group->accountType->name }}</td>
                         <td class="border px-4 py-1">
                         <x-jet-button wire:click="edit({{ $group->id }})" >Edit</x-jet-button>
                         <x-jet-danger-button wire:click="delete({{ $group->id }})" >Delete</x-jet-danger-button>

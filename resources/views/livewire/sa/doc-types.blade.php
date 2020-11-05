@@ -23,9 +23,8 @@
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-1 w-20">No.</th>
-                        <th class="px-4 py-1">DB ID</th>
-                        <th class="px-4 py-1">Name</th>
+                        <th class="px-4 py-1">No.</th>
+                        <th class="px-4 py-1">Voucher Name</th>
                         <th class="px-4 py-1">Prefix</th>
                         <th class="px-4 py-1">Action</th>
                     </tr>
@@ -34,7 +33,6 @@
                     @foreach($types as $type)
                     <tr class="text-white">
                         <td class="border px-4 py-1">{{ ++$ite }}</td>
-                        <td class="border px-4 py-1">{{ $type->id }}</td>
                         <td class="border px-4 py-1">{{ $type->name }}</td>
                         <td class="border px-4 py-1">{{ $type->prefix }}</td>
                         <td class="border px-4 py-1">
