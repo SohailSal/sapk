@@ -5,6 +5,11 @@
         </h2>
     </x-slot>
 
+@if(Auth::user()->companies()->first())
+    <div class="text-white">Welcome, {{Auth::user()->name}}</div>
+@else
+    <div class="text-white">First <a href="{{url('company')}}">create a Company</a></div>
+@endif
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">

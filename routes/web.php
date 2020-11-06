@@ -52,6 +52,6 @@ Route::get('choose', function () {
     return view('choose');
 })->middleware('co');
 
-Route::get('report', function () {
+Route::get('/report', function () {
     return view('report');
-});
+})->middleware('ch');
