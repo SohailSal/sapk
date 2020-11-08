@@ -20,9 +20,6 @@
             @if($isOpen)
                 @include('livewire.sa.try2')
             @endif
-            <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('tb')}}">Trial Balance</a>
-            <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('first-chart')}}">Chart</a>
-            <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800" href="{{url('excel')}}">Excel</a>
             <span class="flex-wrap ml-5">{{$docss->links()}}</span>
             </div>
             <table class="table-auto w-full">

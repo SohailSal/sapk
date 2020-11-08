@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Account;
+use App\Models\AccountGroup;
 use App\Models\Entry;
 use PDF;
 
@@ -32,5 +33,17 @@ class PDFController extends Controller
         $accounts = Account::where('company_id',session('company_id'))->get();
         $pdf = PDF::loadView('tb', compact('accounts'));
         return $pdf->stream('tb.pdf');
+    }        
+
+    public function bs()
+    {
+        $pdf = PDF::loadView('bs');
+        return $pdf->stream('bs.pdf');
+    }        
+
+    public function pl()
+    {
+        $pdf = PDF::loadView('pl');
+        return $pdf->stream('pl.pdf');
     }        
 }

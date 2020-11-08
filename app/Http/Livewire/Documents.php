@@ -65,6 +65,7 @@ class Documents extends Component
 
     public function render()
     {
+        $this->docs = Document::where('company_id',session('company_id'))->get();
         $this->type = $this->types->where('id',$this->type_id)->first();
         if(count($this->docs->where('type_id',$this->type_id))){
         $lastref = Document::where('type_id',$this->type_id)->latest()->first()->ref;
@@ -123,6 +124,12 @@ class Documents extends Component
             'date' => 'required',
             'description' => 'required',
             'type_id' => 'required',
+            'account_id.0' => 'required',
+            'debit.0' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'credit.0' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'account_id.1' => 'required',
+            'debit.1' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'credit.1' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'account_id.*' => 'required',
             'debit.*' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'credit.*' => 'required|regex:/^\d+(\.\d{1,2})?$/',

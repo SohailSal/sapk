@@ -45,6 +45,8 @@ Route::get('company', Companies::class);
 Route::get('create-pdf-file', [PDFController::class, 'index']);
 Route::get('ledger/{id}', [PDFController::class, 'ledger']);
 Route::get('tb', [PDFController::class, 'tb']);
+Route::get('bs', [PDFController::class, 'bs']);
+Route::get('pl', [PDFController::class, 'pl']);
 Route::get('first-chart', [ChartController::class, 'index']);
 Route::get('excel', [ExcelController::class, 'export']);
 

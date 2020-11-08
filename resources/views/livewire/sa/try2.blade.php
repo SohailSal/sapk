@@ -48,7 +48,7 @@
                     <select wire:model="account_id.0" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
                         <option value=''>Choose an Account:</option>
                         @foreach($accounts as $account)
-                            <option value={{ $account->id }}>{{ $account->name }}</option>
+                            <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>
                         @endforeach
                     </select>
 
@@ -82,7 +82,7 @@
                     <select wire:model="account_id.1" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
                         <option value=''>Choose an Account:</option>
                         @foreach($accounts as $account)
-                            <option value={{ $account->id }}>{{ $account->name }}</option>
+                            <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>
                         @endforeach
                     </select>
 
@@ -115,7 +115,7 @@
                     <select wire:model="account_id.{{$value}}" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
                         <option value=''>Choose an Account:</option>
                         @foreach($accounts as $account)
-                            <option value={{ $account->id }}>{{ $account->name }}</option>
+                            <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>
                         @endforeach
                     </select>
 
