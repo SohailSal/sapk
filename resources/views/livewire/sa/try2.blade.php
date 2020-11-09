@@ -24,7 +24,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Date (YYYY-MM-DD):</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="date">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="date">
 
                   </div>
             </div>
@@ -33,7 +33,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Description:</label>
-                      <textarea row='2' class="shadow resize-none appearance-none rounded w-80 py-2 px-4 mr-1 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="description" x-ref="desc"></textarea>
+                      <textarea row='2' class="shadow resize-none appearance-none rounded w-80 py-2 px-4 mr-1 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="description" x-ref="desc"></textarea>
 
                   </div>
             </div>
@@ -59,7 +59,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Debit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="debit.0">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="debit.0">
 
                   </div>
             </div>
@@ -68,7 +68,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Credit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="credit.0">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="credit.0">
 
                   </div>
             </div>
@@ -92,7 +92,7 @@
           <div class="bg-gray-800 px-4 pt-1 pb-1">
             <div class="">
                   <div class="mb-1">
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="debit.1">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="debit.1">
 
                   </div>
             </div>
@@ -100,7 +100,7 @@
           <div class="bg-gray-800 px-4 pt-1 pb-1">
             <div class="">
                   <div class="mb-1">
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="credit.1">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="credit.1">
 
                   </div>
             </div>
@@ -126,7 +126,7 @@
             <div class="">
                   <div class="mb-1">
 <!--                      <label>{{$key}}{{$value}}<br><?php print_r($debit); ?></label> -->
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="debit.{{$value}}">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="debit.{{$value}}">
 
                   </div>
             </div>
@@ -135,7 +135,7 @@
             <div class="">
                   <div class="mb-1">
 <!--                      <label>{{$key}}{{$value}}<br><?php print_r($credit); ?></label> -->
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="credit.{{$value}}">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="credit.{{$value}}">
 
                   </div>
             </div>

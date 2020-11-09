@@ -11,7 +11,7 @@
           <div class="">
                 <div class="mb-4">
                     <label class="block text-white text-sm font-bold mb-2">Name:</label>
-                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" wire:model="name">
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Cash in Hand" wire:model="name">
                     @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>

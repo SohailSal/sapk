@@ -106,6 +106,9 @@
                     }
                     $gbalance5[$gite5++] = $balance;
                 }
+            
+            $profit = abs(array_sum($gbalance4)) - array_sum($gbalance5);
+            $equity = abs(array_sum($gbalance2)) + array_sum($gbalance3) + $profit;
 
 /*                $obalance = [];
                 $oite= 0;
@@ -167,11 +170,19 @@
                 <td style="width: 15%;">
                     {{$group->name}}
                 </td>
-                <td style="width: 10%; border-left: 1pt solid black;" align="right">
+                <td style="width: 10%;" align="right">
                     {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($gbalance1[$loop->index],'Rs.'))}}
                 </td>
             </tr>
             @endforeach
+            <tr>
+                <td style="width: 15%;">
+                    Assets - Total
+                </td>
+                <td style="width: 10%; border-top: 1pt solid black; border-bottom: 3pt double black;" align="right">
+                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency(array_sum($gbalance1),'Rs.'))}}
+                </td>
+            </tr>
 
             <tr>
                 <td><strong>LIABILITIES</strong></td>
@@ -185,8 +196,8 @@
                 <td style="width: 15%;">
                     {{$group->name}}
                 </td>
-                <td style="width: 10%; border-left: 1pt solid black;" align="right">
-                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($gbalance2[$loop->index],'Rs.'))}}
+                <td style="width: 10%;" align="right">
+                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency(abs($gbalance2[$loop->index]),'Rs.'))}}
                 </td>
             </tr>
             @endforeach
@@ -203,47 +214,27 @@
                 <td style="width: 15%;">
                     {{$group->name}}
                 </td>
-                <td style="width: 10%; border-left: 1pt solid black;" align="right">
-                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($gbalance3[$loop->index],'Rs.'))}}
+                <td style="width: 10%; " align="right">
+                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency(abs($gbalance3[$loop->index]),'Rs.'))}}
                 </td>
             </tr>
             @endforeach
-
-            <tr>
-                <td><strong>REVENUE</strong></td>
-                <td></td>
-            </tr>
-            @foreach ($grps4 as $group)
-                    @if($gbalance4[$loop->index]==0)
-                    @continue
-                    @endif
             <tr>
                 <td style="width: 15%;">
-                    {{$group->name}}
+                    Accumulated Profit
                 </td>
-                <td style="width: 10%; border-left: 1pt solid black;" align="right">
-                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($gbalance4[$loop->index],'Rs.'))}}
+                <td style="width: 10%; " align="right">
+                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($profit,'Rs.'))}}
                 </td>
             </tr>
-            @endforeach
-
-            <tr>
-                <td><strong>EXPENSES</strong></td>
-                <td></td>
-            </tr>
-            @foreach ($grps5 as $group)
-                @if($gbalance5[$loop->index]==0)
-                @continue
-                @endif
             <tr>
                 <td style="width: 15%;">
-                    {{$group->name}}
+                    Equity - Total
                 </td>
-                <td style="width: 10%; border-left: 1pt solid black;" align="right">
-                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($gbalance5[$loop->index],'Rs.'))}}
+                <td style="width: 10%; border-top: 1pt solid black; border-bottom: 3pt double black;" align="right">
+                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($equity,'Rs.'))}}
                 </td>
             </tr>
-            @endforeach
 
         </tbody>
     </table>

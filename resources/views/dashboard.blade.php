@@ -16,19 +16,19 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
                     <ul class="list-disc ml-4">
                         <li>
-                            First, create a Company.
+                            First, <a href="{{url('company')}}">create a Company</a>.
                         </li>
                         <li>
-                            Second, create Account Groups.
+                            Second, <a href="{{url('group')}}">create Account Groups</a>.
                         </li>
                         <li>
-                            Then create some accounts.
+                            Then <a href="{{url('account')}}">create some accounts</a>.
                         </li>
                         <li>
-                            Third, create Voucher Types as you desire.
+                            Third, <a href="{{url('doctype')}}">create Voucher Types</a> as you desire.
                         </li>
                         <li>
-                            Now, start entering Transactions.
+                            Now, <a href="{{url('doc')}}">start entering Transactions</a>.
                         </li>
                     </ul>
                 </div>

@@ -58,6 +58,9 @@
                     }
                     $gbalance5[$gite5++] = $balance;
                 }
+
+                $profit = abs(array_sum($gbalance4)) - array_sum($gbalance5);
+
 ?>
 
 <div class="information">
@@ -94,15 +97,15 @@
                 <td style="width: 15%;">
                     {{$group->name}}
                 </td>
-                <td style="width: 10%; border-left: 1pt solid black;" align="right">
-                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($gbalance4[$loop->index],'Rs.'))}}
+                <td style="width: 10%; " align="right">
+                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency(abs($gbalance4[$loop->index]),'Rs.'))}}
                 </td>
             </tr>
             @endforeach
 
             <tr>
                 <td><strong>EXPENSES</strong></td>
-                <td></td>
+                <td style="width: 10%; border-bottom: 1pt solid black;"></td>
             </tr>
             @foreach ($grps5 as $group)
                 @if($gbalance5[$loop->index]==0)
@@ -112,11 +115,29 @@
                 <td style="width: 15%;">
                     {{$group->name}}
                 </td>
-                <td style="width: 10%; border-left: 1pt solid black;" align="right">
+                <td style="width: 10%; border-right: 1pt solid black; border-left: 1pt solid black;" align="right">
                     {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($gbalance5[$loop->index],'Rs.'))}}
+                </td>
+                <td style="width: 10%; border-left: 1pt solid black; background-color:white;">
                 </td>
             </tr>
             @endforeach
+            <tr>
+                <td style="width: 15%;">
+                    Expenses - Total
+                </td>
+                <td style="width: 10%; border-top: 1pt solid black; border-bottom: 1pt solid black;" align="right">
+                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency(array_sum($gbalance5),'Rs.'))}}
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 15%;">
+                    Net Profit
+                </td>
+                <td style="width: 10%; border-top: 1pt solid black; border-bottom: 3pt double black;" align="right">
+                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($profit,'Rs.'))}}
+                </td>
+            </tr>
 
         </tbody>
     </table>
