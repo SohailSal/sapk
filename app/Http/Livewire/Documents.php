@@ -121,7 +121,7 @@ class Documents extends Component
     {
         $this->validate([
             'ref' => 'required',
-            'date' => 'required',
+            'date' => 'required|date',
             'description' => 'required',
             'type_id' => 'required',
             'account_id.0' => 'required',
@@ -180,18 +180,22 @@ class Documents extends Component
     function total(){
         $dtotal=0;
         $ctotal=0;
-        for($j=0;$j<count($this->debit);$j++){
-            if($this->debit[$j]){
-                $dtotal = $dtotal + $this->debit[$j];
+        try{
+            for($j=0;$j<count($this->debit);$j++){
+                if($this->debit[$j]){
+                    $dtotal = $dtotal + $this->debit[$j];
+                }
             }
-        }
-        for($j=0;$j<count($this->credit);$j++){
-            if($this->credit[$j]){
-                $ctotal = $ctotal + $this->credit[$j];
+            for($j=0;$j<count($this->credit);$j++){
+                if($this->credit[$j]){
+                    $ctotal = $ctotal + $this->credit[$j];
+                }
             }
-        }
         $this->dtotal = $dtotal;
         $this->ctotal = $ctotal;
         $this->diff = $this->dtotal - $this->ctotal;
+        } catch (\Exception $e){
+            return $e->getMessage();
+        }
     }
 }

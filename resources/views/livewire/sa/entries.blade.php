@@ -1,7 +1,24 @@
 <x-slot name="header">
-    <h2 class="font-semibold text-xl text-white leading-tight">
-        Entries
-    </h2>
+<div class="flex mx-auto items-center justify-between">
+        <div class="inline-flex font-semibold text-xl text-white leading-tight">
+            Entries
+        </div>
+        <div class="inline-flex  bg-gray-600 rounded-lg">
+            <form method="GET" action="{{ route('dashboard') }}">
+            @csrf
+                <div class="inline-flex">
+                    <select name="company" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                        @foreach(\Auth::user()->companies as $company)
+                            <option value='{{ $company->id }}' {{ ($company->id == session('company_id')) ? 'selected' : '' }}>{{ $company->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="inline-flex">
+                    <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Go</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </x-slot>
 <div class="py-6 bg-gray-600">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

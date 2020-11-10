@@ -192,12 +192,7 @@
               Add row
             </button>
           </div>
-              @error('date') <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $message }}</span>@enderror
-              @error('description') <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $message }}</span>@enderror
-              @error('diff') <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $message }}</span>@enderror
-                    @error('account_id.*') <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $message }}</span>@enderror
-                      @error('debit.*') <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $message }}</span>@enderror
-                      @error('credit.*') <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $message }}</span>@enderror
+              <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $errors->first() }}</span>
         </div>
       </form>
     </div>
