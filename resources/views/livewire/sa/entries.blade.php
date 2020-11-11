@@ -20,9 +20,9 @@
         </div>
     </div>
 </x-slot>
-<div class="py-6 bg-gray-600">
+<div class="py-3 bg-gray-600">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="overflow-hidden sm:rounded-lg bg-gray-800 shadow-lg px-4 py-4">
+        <div class="overflow-hidden sm:rounded-lg bg-gray-800 shadow-lg px-3 py-3">
             @if (session()->has('message'))
                 <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
                   <div class="flex">
