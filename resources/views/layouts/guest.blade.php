@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'SA Accounting') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
@@ -31,7 +31,7 @@
         <div class="">
         <img src="{{asset('/img/ledger2.jpg')}}" class="w-screen h-screen">
         </div>
-        <div class="absolute z-10 inset-y-2/12 inset-x-2/12 font-sans text-gray-900 antialiased">
+        <div class="absolute z-10 inset-y-0/12 inset-x-2/12 font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
     </div>

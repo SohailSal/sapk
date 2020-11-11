@@ -1,4 +1,10 @@
-<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" {{ $attributes }}>
-  <path d="M11.395 44.428C4.557 40.198 0 32.632 0 24 0 10.745 10.745 0 24 0a23.891 23.891 0 0113.997 4.502c-.2 17.907-11.097 33.245-26.602 39.926z" fill="#6875F5"/>
-  <path d="M14.134 45.885A23.914 23.914 0 0024 48c13.255 0 24-10.745 24-24 0-3.516-.756-6.856-2.115-9.866-4.659 15.143-16.608 27.092-31.75 31.751z" fill="#6875F5"/>
+<svg id="svg8" width="32mm" height="33.611mm" version="1.1" viewBox="0 0 184.89 33.611" xmlns="http://www.w3.org/2000/svg">
+ <g id="layer1" transform="translate(-8.6366 -101.9)">
+  <rect id="rect10" x="9.6366" y="102.9" width="23.397" height="29.612" fill="none" stroke="#fff" stroke-width="2"/>
+  <text id="text837" x="15.38962" y="130.41719" font-family="'Matura MT Script Capitals'" font-size="24.976px" fill="#fff" stroke="none" stroke-width=".29268" style="line-height:1.25" xml:space="preserve"><tspan id="tspan835" x="15.38962" y="130.41719" font-family="sans-serif" font-size="24.976px" stroke-width=".29268">S</tspan></text>
+  <rect id="rect10-5" x="33.034" y="102.9" width="23.397" height="29.612" fill="none" stroke="#fff" stroke-width="2"/>
+  <text id="text837-2" x="34.55349" y="130.41719" font-family="'Matura MT Script Capitals'" font-size="24.976px" fill="#fff" stroke="none" stroke-width=".29268" style="line-height:1.25" xml:space="preserve"><tspan id="tspan835-5" x="34.55349" y="130.41719" font-family="sans-serif" font-size="24.976px" stroke-width=".29268">A</tspan></text>
+  <text id="text837-2-1" x="59.926598" y="130.34967" font-family="'Matura MT Script Capitals'" font-size="24.976px" fill="#fff" stroke="none" stroke-width=".29268" style="line-height:1.25" xml:space="preserve"><tspan id="tspan835-5-6" x="59.926598" y="130.34967" font-family="sans-serif" font-size="24.976px" stroke-width=".29268">accounting</tspan></text>
+ </g>
 </svg>
+
