@@ -32,6 +32,9 @@
                   </div>
                 </div>
             @endif
+            @if (!\App\Models\AccountGroup::count())
+            <a class="px-4 py-2 flex-wrap mb-2 border bg-gray-600 text-white rounded-lg" href="{{url('generate')}}">Generate default groups and accounts</a>
+            @endif
             <x-jet-button class="mb-2 border" wire:click="create()">Create New Group</x-jet-button>
             @if($isOpen)
                 @include('livewire.sa.groupcreate')

@@ -14,17 +14,21 @@ class AccountSeeder extends Seeder
      */
     public function run()
     {
+        $group_id = \App\Models\AccountGroup::where('name','Advances, Deposits & Prepayments')->first()->id;
         DB::table('accounts')->insert([
         'name' => 'Advances',
-        'group_id' => '19',
+        'group_id' => $group_id,
+        'company_id' => session('company_id'),
         ]);
         DB::table('accounts')->insert([
         'name' => 'Deposits',
-        'group_id' => '19',
+        'group_id' => $group_id,
+        'company_id' => session('company_id'),
         ]);
         DB::table('accounts')->insert([
         'name' => 'Prepayments',
-        'group_id' => '19',
+        'group_id' => $group_id,
+        'company_id' => session('company_id'),
         ]);
     }
 }

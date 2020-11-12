@@ -57,3 +57,5 @@ Route::get('choose', function () {
 Route::get('/report', function () {
     return view('report');
 })->middleware('ch');
+
+Route::get('generate', AcGroups::class)->middleware('df');
