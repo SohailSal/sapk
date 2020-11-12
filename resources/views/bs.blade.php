@@ -152,7 +152,7 @@
                     <strong></strong>
                 </th>
                 <th style="width: 15%;border-bottom:2pt solid black;" align="centre">
-                    <strong>Amount</strong>
+                    <strong>Amount in Rs.</strong>
                 </th>
             </tr>
         </thead>

@@ -1,5 +1,5 @@
 <a href="/">
-<svg id="svg8" width="75mm" height="33.611mm" version="1.1" viewBox="0 0 184.89 33.611" xmlns="http://www.w3.org/2000/svg">
+<svg id="svg8" width="75mm" height="33.611mm" version="1.1" viewBox="0 0 190 33.611" xmlns="http://www.w3.org/2000/svg">
  <g id="layer1" transform="translate(-8.6366 -101.9)">
   <rect id="rect10" x="9.6366" y="102.9" width="23.397" height="29.612" fill="none" stroke="#fff" stroke-width="2"/>
   <text id="text837" x="15.38962" y="130.41719" font-family="'Matura MT Script Capitals'" font-size="24.976px" fill="#fff" stroke="none" stroke-width=".29268" style="line-height:1.25" xml:space="preserve"><tspan id="tspan835" x="15.38962" y="130.41719" font-family="sans-serif" font-size="24.976px" stroke-width=".29268">S</tspan></text>

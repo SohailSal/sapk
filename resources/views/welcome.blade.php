@@ -14,7 +14,7 @@
             @if (Route::has('login'))
                 <div class="flex flex-row items-center justify-between fixed px-6 py-1">
                     <div class="">
-                    <a href="{{ url('/') }}" class="text-sm text-white ml-5 hover:text-blue-300 font-bold">SA Accounting</a>
+                    <a href="{{ url('/') }}" class="text-sm text-white ml-5 hover:text-blue-300 font-bold">SA accounting</a>
                     </div>
                     <div class="fixed inset-y-0 right-0 mr-12 py-1">
                     @auth
@@ -34,19 +34,21 @@
                 <div class="flex pt-8 h-11/12">
                    <img src="{{asset('/img/ledger.jpg')}}" class="px-2 w-full object-cover flex-wrap">
                 </div>
+                <div class="absolute z-9 inset-y-52 inset-x-72 rounded-lg p-10 bg-white h-44 w-7/12 opacity-50 shadow-lg">
+                </div>
                 <div class="absolute z-10 inset-y-40 inset-x-72 rounded-lg p-10">
-                    <svg id="svg8" width="178mm" height="55mm" version="1.1" viewBox="0 0 184.89 33.611" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="svg8" width="178mm" height="55mm" version="1.1" viewBox="0 0 190 33.611" xmlns="http://www.w3.org/2000/svg">
                     <g id="layer1" transform="translate(-8.6366 -101.9)">
                     <rect id="rect10" x="9.6366" y="102.9" width="23.397" height="29.612" fill="none" stroke="#000" stroke-width="2"/>
-                    <text id="text837" x="15.38962" y="130.41719" font-family="'Matura MT Script Capitals'" font-size="24.976px" fill="#fff" stroke="#000" stroke-width="1" style="line-height:1.25" xml:space="preserve"><tspan id="tspan835" x="15.38962" y="130.41719" font-family="sans-serif" font-size="24.976px" stroke-width="1">S</tspan></text>
+                    <text id="text837" x="15.38962" y="130.41719" font-family="'Matura MT Script Capitals'" font-size="24.976px" fill="#000" stroke="#000" stroke-width="1" style="line-height:1.25" xml:space="preserve"><tspan id="tspan835" x="15.38962" y="130.41719" font-family="sans-serif" font-size="24.976px" stroke-width=".3">S</tspan></text>
                     <rect id="rect10-5" x="33.034" y="102.9" width="23.397" height="29.612" fill="none" stroke="#000" stroke-width="2"/>
-                    <text id="text837-2" x="34.55349" y="130.41719" font-family="'Matura MT Script Capitals'" font-size="24.976px" fill="#fff" stroke="#000" stroke-width="1" style="line-height:1.25" xml:space="preserve"><tspan id="tspan835-5" x="34.55349" y="130.41719" font-family="sans-serif" font-size="24.976px" stroke-width="1">A</tspan></text>
-                    <text id="text837-2-1" x="59.926598" y="130.34967" font-family="'Matura MT Script Capitals'" font-size="24.976px" fill="#fff" stroke="#000" stroke-width="1" style="line-height:1.25" xml:space="preserve"><tspan id="tspan835-5-6" x="59.926598" y="130.34967" font-family="sans-serif" font-size="24.976px" stroke-width="1">accounting</tspan></text>
+                    <text id="text837-2" x="34.55349" y="130.41719" font-family="'Matura MT Script Capitals'" font-size="24.976px" fill="#000" stroke="#000" stroke-width="1" style="line-height:1.25" xml:space="preserve"><tspan id="tspan835-5" x="34.55349" y="130.41719" font-family="sans-serif" font-size="24.976px" stroke-width=".3">A</tspan></text>
+                    <text id="text837-2-1" x="59.926598" y="130.34967" font-family="'Matura MT Script Capitals'" font-size="24.976px" fill="#000" stroke="#000" stroke-width="1" style="line-height:1.25" xml:space="preserve"><tspan id="tspan835-5-6" x="59.926598" y="130.34967" font-family="sans-serif" font-size="24.976px" stroke-width=".3">accounting</tspan></text>
                     </g>
                     </svg>
                 </div>
                 <div class="mt-3 text-center text-xs text-white">
-                    Copyright 2020, SA Accounting
+                    Copyright 2020, SA accounting
                 </div>
             </div>
         </div>
