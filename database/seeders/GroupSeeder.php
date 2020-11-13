@@ -14,9 +14,10 @@ class GroupSeeder extends Seeder
      */
     public function run()
     {
+        $type_id = \App\Models\AccountType::where('name','Assets')->first()->id;
         DB::table('account_groups')->insert([
         'name' => 'Advances, Deposits & Prepayments',
-        'type_id' => '1',
+        'type_id' => $type_id,
         'company_id' => session('company_id'),
         ]);
         $this->call([

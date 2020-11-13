@@ -29,19 +29,30 @@
     @else
         <div class="text-white px-8 py-2">First <a href="{{url('company')}}">create a Company</a></div>
     @endif
-
     <div class="flex mx-auto">
         <div class="inline-flex py-2 px-4 bg-gray-800 m-4 rounded-lg shadow-lg overflow-hidden md:w-1/3 w-full">
             <ul class="list-disc ml-4 text-white">
                 <li>
                     First, <a class="hover:text-blue-200" href="{{url('company')}}">create a Company</a>.
                 </li>
-                <li>
-                    Second, <a class="hover:text-blue-200" href="{{url('group')}}">create Account Groups</a>.
-                </li>
-                <li>
-                    Then <a class="hover:text-blue-200" href="{{url('account')}}">create some accounts</a>.
-                </li>
+                <table  class="border-white border-solid rounded-lg shadow-lg bg-gray-700">
+                    <tr>
+                        <td>
+                        <li>
+                            Second, <a class="hover:text-blue-200" href="{{url('group')}}">create Account Groups</a>.
+                        </li>
+                        <li>
+                            Then <a class="hover:text-blue-200" href="{{url('account')}}">create some accounts</a>.
+                        </li>
+                        </td>
+                        <td>
+                        OR
+                        </td>
+                        <td>
+                        Press "Generate Default accounts" button in Groups
+                        </td>
+                    </tr>
+                </table>
                 <li>
                     Third, <a class="hover:text-blue-200" href="{{url('doctype')}}">create Voucher Types</a> as you desire.
                 </li>

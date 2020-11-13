@@ -5,7 +5,7 @@
               Reports
           </div>
           <div class="inline-flex  bg-gray-600 rounded-lg">
-              <form method="GET" action="{{ route('dashboard') }}">
+              <form method="GET" action="{{ url('report') }}">
               @csrf
                   <div class="inline-flex">
                       <select name="company" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">

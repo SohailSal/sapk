@@ -35,12 +35,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('post', Posts::class);
 Route::view('customers','livewire.home');
 Route::get('type', AcTypes::class);
-Route::get('group', AcGroups::class);
-Route::get('account', Accounts::class)->middleware('gr');
-Route::get('doctype', DocTypes::class);
-Route::get('doc', Documents::class)->middleware('ck');
-Route::get('entry', Entries::class);
-Route::get('company', Companies::class);
+Route::get('group', AcGroups::class)->middleware('ch');
+Route::get('account', Accounts::class)->middleware('ch','gr');
+Route::get('doctype', DocTypes::class)->middleware('ch');
+Route::get('doc', Documents::class)->middleware('ch','ck');
+Route::get('entry', Entries::class)->middleware('ch');
+Route::get('company', Companies::class)->middleware('ch');
 
 Route::get('create-pdf-file', [PDFController::class, 'index']);
 Route::get('ledger/{id}', [PDFController::class, 'ledger']);

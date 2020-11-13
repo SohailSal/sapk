@@ -4,7 +4,7 @@
             Account Groups
         </div>
         <div class="inline-flex  bg-gray-600 rounded-lg">
-            <form method="GET" action="{{ route('dashboard') }}">
+            <form method="GET" action="{{ url('group') }}">
             @csrf
                 <div class="inline-flex">
                     <select name="company" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
@@ -32,7 +32,7 @@
                   </div>
                 </div>
             @endif
-            @if (!\App\Models\AccountGroup::count())
+            @if (!\App\Models\AccountGroup::where('company_id',session('company_id'))->count())
             <a class="px-4 py-2 flex-wrap mb-2 border bg-gray-600 text-white rounded-lg" href="{{url('generate')}}">Generate default groups and accounts</a>
             @endif
             <x-jet-button class="mb-2 border" wire:click="create()">Create New Group</x-jet-button>

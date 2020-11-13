@@ -42,7 +42,7 @@ class Companies extends Component
         $this->web = '';
         $this->phone = '';
         $this->fiscal = '';
-        $this->incorp = '';
+        $this->incorp = null;
     }
 
     public function store()
@@ -94,6 +94,7 @@ class Companies extends Component
         $this->name = $company->name;
         $this->address = $company->address;
         $this->email = $company->email;
+        $this->web = $company->web;
         $this->phone = $company->phone;
         $this->fiscal = $company->fiscal;
         $this->incorp = $company->incorp;
