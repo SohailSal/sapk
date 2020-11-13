@@ -58,6 +58,7 @@
                         <td class="border px-4 py-1">{{ $doc->description }}</td>
                         @can('isAdmin')
                         <td class="border px-4 py-1">
+                        <a href="{{url('voucher/'.Crypt::encrypt($doc->id))}}">Voucher in PDF</a>
                         <x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>
                         </td>
                         @endcan

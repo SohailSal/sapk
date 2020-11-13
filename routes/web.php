@@ -44,6 +44,7 @@ Route::get('company', Companies::class)->middleware('ch');
 
 Route::get('create-pdf-file', [PDFController::class, 'index']);
 Route::get('ledger/{id}', [PDFController::class, 'ledger']);
+Route::get('voucher/{id}', [PDFController::class, 'voucher']);
 Route::get('tb', [PDFController::class, 'tb']);
 Route::get('bs', [PDFController::class, 'bs']);
 Route::get('pl', [PDFController::class, 'pl']);

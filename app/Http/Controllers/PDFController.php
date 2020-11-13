@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Account;
 use App\Models\AccountGroup;
 use App\Models\Entry;
+use App\Models\Document;
+use \Crypt;
 use PDF;
 
 class PDFController extends Controller
@@ -23,7 +25,7 @@ class PDFController extends Controller
 
     public function ledger($id)
     {
-        $entries = Entry::where('account_id',$id)->where('company_id',session('company_id'))->get();
+        $entries = Entry::where('account_id',Crypt::decrypt($id))->where('company_id',session('company_id'))->get();
         $pdf = PDF::loadView('led', compact('entries'));
         return $pdf->stream('ledger.pdf');
     }        
@@ -46,4 +48,12 @@ class PDFController extends Controller
         $pdf = PDF::loadView('pl');
         return $pdf->stream('pl.pdf');
     }        
+
+    public function voucher($id)
+    {
+        $voucher = Document::where('id',Crypt::decrypt($id))->first();
+        $pdf = PDF::loadView('voucher', compact('voucher'));
+        return $pdf->stream('voucher.pdf');
+    }        
+
 }
