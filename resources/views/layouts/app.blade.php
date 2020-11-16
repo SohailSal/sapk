@@ -24,9 +24,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" defer></script>
     
-
-    
-    
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-600">
@@ -34,7 +31,7 @@
 
             <!-- Page Heading -->
             <header class="bg-gray-800 shadow-solid">
-                <div class="max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
             </header>

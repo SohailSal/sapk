@@ -39,7 +39,7 @@
             @if($isOpen)
                 @include('livewire.sa.groupcreate')
             @endif
-            <table class="table-fixed w-full">
+            <table class="table-auto w-full">
                 <thead>
                     <tr class="bg-gray-100">
                         <th class="px-4 py-1">No.</th>

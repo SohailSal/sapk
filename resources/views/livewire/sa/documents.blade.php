@@ -1,7 +1,7 @@
 <x-slot name="header">
 <div class="flex mx-auto items-center justify-between">
         <div class="inline-flex font-semibold text-xl text-white leading-tight">
-            Vouchers
+            Transactions
         </div>
         <div class="inline-flex  bg-gray-600 rounded-lg">
             <form method="GET" action="{{ url('doc') }}">
@@ -33,7 +33,7 @@
                 </div>
             @endif
             <div class="flex items-center justify-between">
-            <x-jet-button x-ref="go" class="flex-wrap mb-2 border" wire:click="create()">Create New Voucher</x-jet-button>
+            <x-jet-button x-ref="go" class="flex-wrap mb-2 border" wire:click="create()">New Entry</x-jet-button>
             @if($isOpen)
                 @include('livewire.sa.try2')
             @endif

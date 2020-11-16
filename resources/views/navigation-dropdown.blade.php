@@ -1,7 +1,7 @@
 <nav x-data="{ open: false }" class="bg-gray-600 border-b border-gray-200">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-600">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between max-h-10">
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
@@ -16,7 +16,7 @@
                         {{ __('Transactions') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/account" :active="request()->routeIs('account')">
-                        {{ __('Account') }}
+                        {{ __('Accounts') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/group" :active="request()->routeIs('group')">
                         {{ __('Groups') }}

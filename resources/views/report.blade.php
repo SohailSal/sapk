@@ -35,39 +35,39 @@
                 </div>
             @endif
             <div class="flex items-center justify-between">
-                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center" href="{{url('tb')}}">Trial Balance</a>
-                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center" href="{{url('bs')}}">Balance Sheet</a>
-                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center" href="{{url('pl')}}">Profit or Loss A/c</a>
+                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center hover:no-underline" href="{{url('tb')}}">Trial Balance</a>
+                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center hover:no-underline" href="{{url('bs')}}">Balance Sheet</a>
+                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center hover:no-underline" href="{{url('pl')}}">Profit or Loss A/c</a>
             </div>
+        </div>
 
+        <div class="overflow-auto sm:rounded-lg  bg-gray-800 text-white shadow-lg px-4 py-2 mt-4">
+        <div class="flex-col ml-2 text-xl pb-2"> Date-wise Ledger </div>
             <div class="flex items-center justify-between">
                 <form method="get" action="{{ url('range') }}">
                 @csrf
-                <div class="text-white">
-                        <div class="flex-1">
-                            <label for="date_start">Start date:</label>
-                            <input type="text" class="date bg-gray-600 rounded-lg" name="date_start"/>
-                        </div>
-                        <div class="flex-1">
-                            <label for="date_end">End date:</label>
-                            <input type="text" class="date bg-gray-600 rounded-lg" name="date_end"/>
-                        </div>
-                        <div class="flex-1">
-                            <label for="account_id">Account:</label>
-                            <select class="bg-gray-600 rounded-lg" name="account_id">
-                                @foreach (\App\Models\Account::where('company_id',session('company_id'))->get() as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="flex-1">
-                            <label for="submit">&nbsp;</label>
-                            <button type="submit" class="px-4 py-2 rounded-lg border-solid border-2" name="submit">Get Ledger</button>
-                        </div>
-                </div>
+                    <div class="inline-flex items-center ml-2">
+                        <label for="account_id">Account:</label>
+                        <select class="bg-gray-600 rounded-lg mx-2" name="account_id">
+                            @foreach (\App\Models\Account::where('company_id',session('company_id'))->get() as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="inline-flex items-center">
+                        <label for="date_start">Start date:</label>
+                        <input type="text" class="date bg-gray-600 rounded-lg mx-2" name="date_start"/>
+                    </div>
+                    <div class="inline-flex items-center">
+                        <label for="date_end">End date:</label>
+                        <input type="text" class="date bg-gray-600 rounded-lg mx-2" name="date_end"/>
+                    </div>
+                    <div class="inline-flex items-center">
+                        <label for="submit">&nbsp;</label>
+                        <button type="submit" class="mx-2 px-3 py-1 rounded-lg border bg-gray-600 hover:bg-gray-800" name="submit">Get Ledger</button>
+                    </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
