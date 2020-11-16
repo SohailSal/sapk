@@ -8,6 +8,7 @@ use App\Models\DocumentType;
 use App\Models\Account;
 use App\Models\Entry;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Documents extends Component
 {
@@ -137,17 +138,19 @@ class Documents extends Component
 
         $this->validate();
 
-        $current = Document::create([
-            'ref' => $this->ref,
-            'date' => $this->date,
-            'description' => $this->description,
-            'type_id' => $this->type_id,
-            'company_id' => session('company_id'),
-        ]);
+        DB::transaction(function () {
+            $current = Document::create([
+                'ref' => $this->ref,
+                'date' => $this->date,
+                'description' => $this->description,
+                'type_id' => $this->type_id,
+                'company_id' => session('company_id'),
+            ]);
 
-        foreach ($this->account_id as $key => $value) {
-            Entry::create(['document_id' => $current->id, 'account_id' => $this->account_id[$key], 'debit' => $this->debit[$key], 'credit' => $this->credit[$key], 'company_id' => session('company_id')]);
-        }
+            foreach ($this->account_id as $key => $value) {
+                Entry::create(['document_id' => $current->id, 'account_id' => $this->account_id[$key], 'debit' => $this->debit[$key], 'credit' => $this->credit[$key], 'company_id' => session('company_id')]);
+            }
+        });
 
         session()->flash('message', 
             $this->at_id ? 'Record Updated Successfully.' : 'Record Created Successfully.');
@@ -169,12 +172,15 @@ class Documents extends Component
 
     public function delete($id)
     {
-        $entries = Entry::where('document_id',$id)->where('company_id',session('company_id'))->get();
-        foreach($entries as $entry){
-            $entry->delete();
-        }
-        Document::find($id)->where('company_id',session('company_id'))->delete();
-        session()->flash('message', 'Record Deleted Successfully.');
+        DB::transaction(function () use ($id) {
+            $entries = Entry::where('document_id',$id)->where('company_id',session('company_id'))->get();
+            foreach($entries as $entry){
+                $entry->delete();
+            }
+            $doc=Document::where('id',$id)->where('company_id',session('company_id'))->first();
+            $doc->delete();
+            session()->flash('message', 'Record Deleted Successfully.');
+        });
     }
 
     function total(){

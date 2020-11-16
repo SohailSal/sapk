@@ -35,12 +35,43 @@
                 </div>
             @endif
             <div class="flex items-center justify-between">
-            <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center" href="{{url('tb')}}">Trial Balance</a>
-            <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center" href="{{url('bs')}}">Balance Sheet</a>
-            <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center" href="{{url('pl')}}">Profit or Loss A/c</a>
+                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center" href="{{url('tb')}}">Trial Balance</a>
+                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center" href="{{url('bs')}}">Balance Sheet</a>
+                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center" href="{{url('pl')}}">Profit or Loss A/c</a>
             </div>
+
+            <div class="flex items-center justify-between">
+                <form method="get" action="{{ url('range') }}">
+                @csrf
+                <div class="text-white">
+                        <div class="flex-1">
+                            <label for="date_start">Start date:</label>
+                            <input type="text" class="date bg-gray-600 rounded-lg" name="date_start"/>
+                        </div>
+                        <div class="flex-1">
+                            <label for="date_end">End date:</label>
+                            <input type="text" class="date bg-gray-600 rounded-lg" name="date_end"/>
+                        </div>
+                        <div class="flex-1">
+                            <label for="account_id">Account:</label>
+                            <select class="bg-gray-600 rounded-lg" name="account_id">
+                                @foreach (\App\Models\Account::where('company_id',session('company_id'))->get() as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="flex-1">
+                            <label for="submit">&nbsp;</label>
+                            <button type="submit" class="px-4 py-2 rounded-lg border-solid border-2" name="submit">Get Ledger</button>
+                        </div>
+                </div>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>
+
+
 
 </x-app-layout>

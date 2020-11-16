@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Company;
 use App\Models\Setting;
+use Illuminate\Support\Facades\DB;
 
 class Companies extends Component
 {
@@ -57,34 +58,37 @@ class Companies extends Component
             'incorp' =>  'nullable|date',
         ]);
 
-        $company = Company::updateOrCreate(['id' => $this->co_id], [
-            'name' => $this->name,
-            'address' => $this->address,
-            'email' => $this->email,
-            'web' => $this->web,
-            'phone' => $this->phone,
-            'fiscal' => $this->fiscal,
-            'incorp' => $this->incorp,
-        ]);
-        
-        if(!$this->co_id){
-            $company->users()->attach(auth()->user()->id);
-            $cos = auth()->user()->companies;
-            foreach($cos as $co){
-                foreach($co->settings as $setting){
-                    if(($setting->key =='active')&&($setting->value == 'yes'))
-                    $setting->update(['value' => '']);
+        DB::transaction(function () {
+            $company = Company::updateOrCreate(['id' => $this->co_id], [
+                'name' => $this->name,
+                'address' => $this->address,
+                'email' => $this->email,
+                'web' => $this->web,
+                'phone' => $this->phone,
+                'fiscal' => $this->fiscal,
+                'incorp' => $this->incorp,
+            ]);
+            
+            if(!$this->co_id){
+                $company->users()->attach(auth()->user()->id);
+                $cos = auth()->user()->companies;
+                foreach($cos as $co){
+                    foreach($co->settings as $setting){
+                        if(($setting->key =='active')&&($setting->value == 'yes'))
+                        $setting->update(['value' => '']);
+                    }
                 }
+                $setting = Setting::create(['company_id' => $company->id, 'key' => 'active' , 'value' => 'yes']);
+                session(['company_id' => $company->id ]);
             }
-            $setting = Setting::create(['company_id' => $company->id, 'key' => 'active' , 'value' => 'yes']);
-            session(['company_id' => $company->id ]);
-        }
+        });
 
         session()->flash('message', 
             $this->co_id ? 'Company Updated Successfully.' : 'Company Created Successfully.');
 
         $this->closeModal();
         $this->resetInputFields();
+        return redirect('group');
     }
 
     public function edit($id)
@@ -103,7 +107,23 @@ class Companies extends Component
 
     public function delete($id)
     {
-        Company::find($id)->delete();
-        session()->flash('message', 'Company Deleted Successfully.');
+        DB::transaction(function () use ($id) {
+            $co = Company::findOrFail($id);
+            foreach($co->settings as $setting){
+                $setting->delete();
+            }
+            $co->users()->detach();
+            $co->delete();
+            if(auth()->user()->companies()){
+                $newid = auth()->user()->companies()->latest()->first()->id;
+                session(['company_id' => $newid ]);
+                $newset = \App\Models\Setting::where('company_id',$newid)->where('key','active')->first();
+                $newset->update(['value' => 'yes']);
+            } else {
+                session(['company_id' => '' ]);
+            }
+            session()->flash('message', 'Company Deleted Successfully.');
+        });
+        return redirect('dashboard');
     }
 }

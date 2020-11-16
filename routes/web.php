@@ -60,3 +60,4 @@ Route::get('/report', function () {
 })->middleware('ch');
 
 Route::get('generate', AcGroups::class)->middleware('df');
+Route::get('range', [PDFController::class, 'rangeLedger']);

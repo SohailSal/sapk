@@ -11,9 +11,9 @@
         a {text-decoration: none;}
         table {font-size: medium; margin: 15px;}
         .pv table {margin: 15px; border: 2px solid;}
-        .pv td {margin:10px;padding:10px; border-bottom: 2px solid; border-right:2px solid;}
+        .pv td {margin:10px;padding:2px; border-bottom: 2px solid; border-right:2px solid;border-top:2px solid;}
         .information {background-color: #fff;}
-        .information table {padding: 10px;}
+        .information table {padding: 0px;}
     </style>
 </head>
 <body>
@@ -23,7 +23,8 @@
             $fmt->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
             $fmt->setSymbol(NumberFormatter::CURRENCY_SYMBOL, '');
 
-            $total=99;
+            $debits = $voucher->entries->sum('debit');
+            $credits = $voucher->entries->sum('credit');
     ?>
 
 <div class="information">
@@ -41,32 +42,30 @@
         </tr>
     </table>
 </div>
-
 <div class="pv">
+<div style="padding-left:18px"> Description: {{$voucher->description}} </div>
     <table width="100%" style="border-collapse: collapse;">
+        <tr>
+            <th style="width: 70%">Description</th>
+            <th style="width: 15%">Debit</th>
+            <th style="width: 15%">Credit</th>
+        </tr>
         <tbody>
+        @foreach ($voucher->entries as $entry)
         <tr>
-            <td style="width: 23%">Total:</td>
-            <td style="width: 77%"><strong>Rs. {{ str_replace(['Rs.','.00'],'',$fmt->formatCurrency($total,'Rs.')) }}</strong></td>
+            <td style="width: 70%">{{$entry->account->name}}</td>
+            <td style="width: 15%" align="right">{{ str_replace(['Rs.','.00'],'',$fmt->formatCurrency($entry->debit,'Rs.')) }}</td>
+            <td style="width: 15%" align="right">{{ str_replace(['Rs.','.00'],'',$fmt->formatCurrency($entry->credit,'Rs.')) }}</td>
         </tr>
+        @endforeach
         <tr>
-            <td>In words:</td>
-            <td><strong>Rupees {{$amt->format($total) }} only.</strong></td>
-        </tr>
-        <tr>
-            <td>Description:</td>
-            <td><strong>{{$voucher->description}}</strong></td>
-        </tr>
-        <tr>
-            <td>Cheque #:</td>
-            <td><strong></strong></td>
-        </tr>
-        <tr>
-            <td>Payee:</td>
-            <td><strong></strong></td>
+            <td><strong>Total</strong></td>
+            <td align="right"><strong>{{ str_replace(['Rs.','.00'],'',$fmt->formatCurrency($debits,'Rs.')) }}</strong></td>
+            <td align="right"><strong>{{ str_replace(['Rs.','.00'],'',$fmt->formatCurrency($credits,'Rs.')) }}</strong></td>
         </tr>
         </tbody>
    </table>
+<div style="padding-left:18px"> Amount in words: Rupees {{$amt->format($debits) }} only.</div>
  </div>
  <br>
  <br>
