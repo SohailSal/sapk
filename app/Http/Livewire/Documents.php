@@ -25,6 +25,19 @@ class Documents extends Component
     public $month, $year;
 
     protected $rules = [
+        'ref' => 'required',
+        'date' => 'required|date',
+        'description' => 'required',
+        'type_id' => 'required',
+        'account_id.0' => 'required',
+        'debit.0' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+        'credit.0' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+        'account_id.1' => 'required',
+        'debit.1' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+        'credit.1' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+        'account_id.*' => 'required',
+        'debit.*' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+        'credit.*' => 'required|regex:/^\d+(\.\d{1,2})?$/',
         'diff' => 'gte:0|lte:0',
     ];
 
@@ -120,22 +133,6 @@ class Documents extends Component
 
     public function store()
     {
-        $this->validate([
-            'ref' => 'required',
-            'date' => 'required|date',
-            'description' => 'required',
-            'type_id' => 'required',
-            'account_id.0' => 'required',
-            'debit.0' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'credit.0' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'account_id.1' => 'required',
-            'debit.1' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'credit.1' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'account_id.*' => 'required',
-            'debit.*' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'credit.*' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-        ]);
-
         $this->validate();
 
         DB::transaction(function () {
