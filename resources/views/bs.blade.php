@@ -108,7 +108,7 @@
                 }
             
             $profit = abs(array_sum($gbalance4)) - array_sum($gbalance5);
-            $equity = abs(array_sum($gbalance2)) + array_sum($gbalance3) + $profit;
+            $equity = abs(array_sum($gbalance2)) + abs(array_sum($gbalance3)) + $profit;
 
 /*                $obalance = [];
                 $oite= 0;

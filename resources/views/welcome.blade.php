@@ -48,7 +48,7 @@
                     </svg>
                 </div>
                 <div class="mt-3 text-center text-xs text-white">
-                    Copyright 2020, SA accounting
+                    Copyright 2020, SA accounting - beta 0.2.11
                 </div>
             </div>
         </div>

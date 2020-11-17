@@ -31,18 +31,18 @@
     @endif
     <div class="flex mx-auto">
         <div class="inline-flex py-2 px-4 bg-gray-800 m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
-            <ul class="list-disc ml-4 text-white">
+            <ul class="list-disc ml-1 text-white ">
                 <li>
-                    First, <a class="hover:text-blue-200" href="{{url('company')}}">create a Company</a>.
+                    First, <a class="text-gray-400 hover:text-blue-200 hover:no-underline" href="{{url('company')}}">create a Company</a>.
                 </li>
                 <table>
                     <tr>
                         <td  class="border-gray-600 border-2" width="40%">
                         <li>
-                            Second, <a class="hover:text-blue-200" href="{{url('group')}}">create Account Groups</a>.
+                            Second, <a class="text-gray-400 hover:text-blue-200 hover:no-underline" href="{{url('group')}}">create Account Groups</a>.
                         </li>
                         <li>
-                            Then <a class="hover:text-blue-200" href="{{url('account')}}">create some accounts</a>.
+                            Then <a class="text-gray-400 hover:text-blue-200 hover:no-underline" href="{{url('account')}}">create some accounts</a>.
                         </li>
                         </td>
                         <td class="px-4">
@@ -54,10 +54,10 @@
                     </tr>
                 </table>
                 <li>
-                    Third, <a class="hover:text-blue-200" href="{{url('doctype')}}">create Voucher Types</a> as you desire.
+                    Third, <a class="text-gray-400 hover:text-blue-200 hover:no-underline" href="{{url('doctype')}}">create Voucher Types</a> as you desire.
                 </li>
                 <li>
-                    Now, <a class="hover:text-blue-200" href="{{url('doc')}}">start entering Transactions</a>.
+                    Now, <a class="text-gray-400 hover:text-blue-200 hover:no-underline" href="{{url('doc')}}">start entering Transactions</a>.
                 </li>
             </ul>
         </div>

@@ -48,7 +48,7 @@
                 @csrf
                     <div class="inline-flex items-center ml-2">
                         <label for="account_id">Account:</label>
-                        <select class="bg-gray-600 rounded-lg mx-2" name="account_id">
+                        <select class="bg-gray-600 rounded-lg mx-2 w-52" name="account_id">
                             @foreach (\App\Models\Account::where('company_id',session('company_id'))->get() as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
