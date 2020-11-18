@@ -53,7 +53,7 @@
         <tbody>
         @foreach ($voucher->entries as $entry)
         <tr>
-            <td style="width: 70%">{{$entry->account->name}}</td>
+            <td style="width: 70%">{{$entry->account->name}} - {{$entry->account->accountGroup->name}}</td>
             <td style="width: 15%" align="right">{{ str_replace(['Rs.','.00'],'',$fmt->formatCurrency($entry->debit,'Rs.')) }}</td>
             <td style="width: 15%" align="right">{{ str_replace(['Rs.','.00'],'',$fmt->formatCurrency($entry->credit,'Rs.')) }}</td>
         </tr>

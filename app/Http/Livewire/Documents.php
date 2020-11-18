@@ -81,15 +81,19 @@ class Documents extends Component
     {
         $this->docs = Document::where('company_id',session('company_id'))->get();
         $this->type = $this->types->where('id',$this->type_id)->first();
-        if(count($this->docs->where('type_id',$this->type_id))){
-            $lastref = Document::where('type_id',$this->type_id)->latest()->first()->ref;
-            $expNum=explode('/', $lastref);
-            $this->latest = $expNum[3];
-            ++$this->latest;
-            } else {
-                $this->latest = 1;      // for first voucher. only works on fresh database starting from id=1 or else error in entries
+
+        if(!$this->at_id){
+            if(count($this->docs->where('type_id',$this->type_id))){
+                $lastref = Document::where('type_id',$this->type_id)->latest()->first()->ref;
+                $expNum=explode('/', $lastref);
+                $this->latest = $expNum[3];
+                ++$this->latest;
+                } else {
+                    $this->latest = 1;      // for first voucher. only works on fresh database starting from id=1 or else error in entries
+            }
+            $this->ref = $this->type->prefix . '/' . Carbon::today()->year . '/' . Carbon::today()->month . '/' .$this->latest;
         }
-        $this->ref = $this->type->prefix . '/' . Carbon::today()->year . '/' . Carbon::today()->month . '/' .$this->latest;
+
         $this->total();
         return view('livewire.sa.documents',['docss'=>Document::where('company_id',session('company_id'))->paginate(10)]);
     }
@@ -156,11 +160,52 @@ class Documents extends Component
         $this->resetInputFields();
     }
 
+    public function storee()
+    {
+        $this->validate();
+
+        $doc = Document::where('id',$this->at_id)->where('company_id',session('company_id'))->first();
+
+
+
+        DB::transaction(function () use ($doc) {
+
+            $entries = Entry::where('document_id',$doc->id)->where('company_id',session('company_id'))->get();
+            foreach($entries as $entry){
+                $entry->delete();
+            }
+
+            $doc->ref = $this->ref;
+            $doc->date = $this->date;
+            $doc->description = $this->description;
+            $doc->type_id = $this->type_id;
+            $doc->company_id = session('company_id');
+            $doc->save();
+
+            foreach ($this->account_id as $key => $value) {
+                Entry::create(['document_id' => $doc->id, 'account_id' => $this->account_id[$key], 'debit' => $this->debit[$key], 'credit' => $this->credit[$key], 'company_id' => session('company_id')]);
+            }
+        });
+
+        session()->flash('message', 
+            $this->at_id ? 'Record Updated Successfully.' : 'Record Created Successfully.');
+
+        $this->closeModal();
+        $this->resetInputFields();
+    }
+
     public function edit($id)
     {
         $this->resetInputFields();
         $this->at_id = $id;
         $doc = Document::where('id',$this->at_id)->where('company_id',session('company_id'))->first();
+        $num = count($doc->entries);
+        if($num>2){
+            $this->i = $num-1;
+            for($i=0;$i<($num-2);$i++){
+                $this->inputs[$i] = $i+2; 
+            }
+        }
         $this->ref = $doc->ref;
         $this->date = $doc->date;
         $this->description = $doc->description;
