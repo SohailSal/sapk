@@ -82,12 +82,12 @@ class Documents extends Component
         $this->docs = Document::where('company_id',session('company_id'))->get();
         $this->type = $this->types->where('id',$this->type_id)->first();
         if(count($this->docs->where('type_id',$this->type_id))){
-        $lastref = Document::where('type_id',$this->type_id)->latest()->first()->ref;
-        $expNum=explode('/', $lastref);
-        $this->latest = $expNum[3];
-        ++$this->latest;
-        } else {
-            $this->latest = 1;      // for first voucher. only works on fresh database starting from id=1 or else error in entries
+            $lastref = Document::where('type_id',$this->type_id)->latest()->first()->ref;
+            $expNum=explode('/', $lastref);
+            $this->latest = $expNum[3];
+            ++$this->latest;
+            } else {
+                $this->latest = 1;      // for first voucher. only works on fresh database starting from id=1 or else error in entries
         }
         $this->ref = $this->type->prefix . '/' . Carbon::today()->year . '/' . Carbon::today()->month . '/' .$this->latest;
         $this->total();
@@ -158,12 +158,19 @@ class Documents extends Component
 
     public function edit($id)
     {
-        $doc = Document::findOrFail($id)->where('company_id',session('company_id'));
+        $this->resetInputFields();
         $this->at_id = $id;
+        $doc = Document::where('id',$this->at_id)->where('company_id',session('company_id'))->first();
         $this->ref = $doc->ref;
         $this->date = $doc->date;
         $this->description = $doc->description;
         $this->type_id = $doc->type_id;
+        $this->accounts = Account::where('company_id',session('company_id'))->get();
+        foreach($doc->entries as $key => $value){
+            $this->account_id[$key] = $value->account_id;
+            $this->debit[$key] = $value->debit;
+            $this->credit[$key] = $value->credit;
+        }
         $this->openModal();
     }
 
