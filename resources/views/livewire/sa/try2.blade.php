@@ -7,7 +7,7 @@
             <div class="flex-row">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Reference:</label>
-                      <select wire:model="type_id" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                      <select wire:model="type_id" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo">
                           @foreach($types as $type)
                               <option value={{ $type->id }}>{{ $type->name }}</option>
                           @endforeach
@@ -15,7 +15,7 @@
                       @error('type_id') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
                   <div class="mb-1">
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="ref" disabled>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="ref" disabled>
                       @error('ref') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
@@ -24,7 +24,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Date (YYYY-MM-DD):</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="date">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="date">
 
                   </div>
             </div>
@@ -33,7 +33,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Description:</label>
-                      <textarea row='2' class="shadow resize-none appearance-none rounded w-80 py-2 px-4 mr-1 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="description" x-ref="desc"></textarea>
+                      <textarea row='2' class="shadow resize-none appearance-none rounded w-80 py-2 px-4 mr-1 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="description" x-ref="desc"></textarea>
 
                   </div>
             </div>
@@ -45,7 +45,7 @@
             <div class="">
                 <div class="mb-1">
                     <label class="block text-white text-sm font-bold mb-2">Account:</label>
-                    <select wire:model="account_id.0" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                    <select wire:model="account_id.0" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo">
                         <option value=''>Choose an Account:</option>
                         @foreach($accounts as $account)
                             <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>
@@ -59,7 +59,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Debit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="debit.0">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="debit.0">
 
                   </div>
             </div>
@@ -68,7 +68,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Credit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="credit.0">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="credit.0">
 
                   </div>
             </div>
@@ -79,7 +79,7 @@
           <div class="bg-gray-800 px-4 pt-1 pb-1">
             <div class="">
                   <div class="mb-1">
-                    <select wire:model="account_id.1" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                    <select wire:model="account_id.1" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo">
                         <option value=''>Choose an Account:</option>
                         @foreach($accounts as $account)
                             <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>
@@ -92,7 +92,7 @@
           <div class="bg-gray-800 px-4 pt-1 pb-1">
             <div class="">
                   <div class="mb-1">
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="debit.1">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="debit.1">
 
                   </div>
             </div>
@@ -100,7 +100,7 @@
           <div class="bg-gray-800 px-4 pt-1 pb-1">
             <div class="">
                   <div class="mb-1">
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="credit.1">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="credit.1">
 
                   </div>
             </div>
@@ -112,7 +112,7 @@
           <div class="bg-gray-800 px-4 pt-1 pb-1">
             <div class="">
                   <div class="mb-1">
-                    <select wire:model="account_id.{{$value}}" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                    <select wire:model="account_id.{{$value}}" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo">
                         <option value=''>Choose an Account:</option>
                         @foreach($accounts as $account)
                             <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>
@@ -126,7 +126,7 @@
             <div class="">
                   <div class="mb-1">
 <!--                      <label>{{$key}}{{$value}}<br><?php print_r($debit); ?></label> -->
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="debit.{{$value}}">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="debit.{{$value}}">
 
                   </div>
             </div>
@@ -135,7 +135,7 @@
             <div class="">
                   <div class="mb-1">
 <!--                      <label>{{$key}}{{$value}}<br><?php print_r($credit); ?></label> -->
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="credit.{{$value}}">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="credit.{{$value}}">
 
                   </div>
             </div>

@@ -53,6 +53,7 @@ class Documents extends Component
         $i = $i + 1;
         $this->i = $i;
         array_push($this->inputs ,$i);
+        array_push($this->account_id ,'');
         array_push($this->debit ,'0');
         array_push($this->credit ,'0');
     }
@@ -166,8 +167,6 @@ class Documents extends Component
 
         $doc = Document::where('id',$this->at_id)->where('company_id',session('company_id'))->first();
 
-
-
         DB::transaction(function () use ($doc) {
 
             $entries = Entry::where('document_id',$doc->id)->where('company_id',session('company_id'))->get();
@@ -175,11 +174,11 @@ class Documents extends Component
                 $entry->delete();
             }
 
-            $doc->ref = $this->ref;
+//            $doc->ref = $this->ref;
             $doc->date = $this->date;
             $doc->description = $this->description;
-            $doc->type_id = $this->type_id;
-            $doc->company_id = session('company_id');
+//            $doc->type_id = $this->type_id;
+//            $doc->company_id = session('company_id');
             $doc->save();
 
             foreach ($this->account_id as $key => $value) {
