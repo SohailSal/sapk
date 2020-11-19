@@ -7,7 +7,7 @@
             <div class="flex-row">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Reference:</label>
-                      <select wire:model="type_id" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo">
+                      <select wire:model="type_id" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo" {{($at_id)? 'disabled' : ''}}>
                           @foreach($types as $type)
                               <option value={{ $type->id }}>{{ $type->name }}</option>
                           @endforeach
@@ -151,7 +151,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Difference:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="diff" disabled>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="diff" disabled>
 
                   </div>
             </div>
@@ -160,7 +160,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Debit Total:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="dtotal" disabled>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="dtotal" disabled>
                       @error('dtotal') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
@@ -169,7 +169,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Credit Total:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="ctotal" disabled>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="ctotal" disabled>
                       @error('ctotal') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
@@ -178,17 +178,17 @@
 
         <div class="bg-gray-400 px-4 py-2 sm:px-6 sm:flex sm:flex-row rounded-b-lg">
           <div class="mt-1 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <button wire:click.prevent="{{ ($at_id) ? 'storee()' : 'store()' }}>{{ $company->name }}" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-green-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+            <button wire:click.prevent="{{ ($at_id) ? 'storee()' : 'store()' }}" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-green-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-600 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
               Save
             </button>
           </div>
           <div class="mt-1 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <button wire:click="closeModal()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+            <button wire:click="closeModal()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
               Cancel
             </button>
           </div>
           <div class="mt-1 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <button wire:click.prevent="add({{$i}})" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 mx-3 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+            <button wire:click.prevent="add({{$i}})" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 mx-3 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
               Add row
             </button>
           </div>

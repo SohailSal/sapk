@@ -85,7 +85,7 @@ class Documents extends Component
 
         if(!$this->at_id){
             if(count($this->docs->where('type_id',$this->type_id))){
-                $lastref = Document::where('type_id',$this->type_id)->latest()->first()->ref;
+                $lastref = Document::where('type_id',$this->type_id)->where('company_id',session('company_id'))->latest()->first()->ref;
                 $expNum=explode('/', $lastref);
                 $this->latest = $expNum[3];
                 ++$this->latest;
@@ -93,6 +93,10 @@ class Documents extends Component
                     $this->latest = 1;      // for first voucher. only works on fresh database starting from id=1 or else error in entries
             }
             $this->ref = $this->type->prefix . '/' . Carbon::today()->year . '/' . Carbon::today()->month . '/' .$this->latest;
+        }
+        else{
+                $ref = Document::where('id',$this->at_id)->where('company_id',session('company_id'))->first()->ref;
+                $this->ref = $ref;
         }
 
         $this->total();

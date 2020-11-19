@@ -63,7 +63,7 @@ class Accounts extends Component
 
     public function edit($id)
     {
-        $account = Account::findOrFail($id);
+        $account = Account::where('id',$id)->where('company_id',session('company_id'))->first();
         $this->ag_id = $id;
         $this->name = $account->name;
         $this->groups = AccountGroup::where('company_id',session('company_id'))->get();
@@ -73,7 +73,7 @@ class Accounts extends Component
 
     public function delete($id)
     {
-        Account::find($id)->delete();
+        Account::where('id',$id)->where('company_id',session('company_id'))->first()->delete();
         session()->flash('message', 'Record Deleted Successfully.');
     }
 }
