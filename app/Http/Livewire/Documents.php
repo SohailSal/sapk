@@ -9,9 +9,12 @@ use App\Models\Account;
 use App\Models\Entry;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 
 class Documents extends Component
 {
+    use WithPagination;
+
     public $docs, $accounts, $ref, $date, $description, $type_id, $type, $types, $at_id;
     public $ite=0;
     public $isOpen = 0;
@@ -40,6 +43,12 @@ class Documents extends Component
         'credit.*' => 'required|regex:/^\d+(\.\d{1,2})?$/',
         'diff' => 'gte:0|lte:0',
     ];
+
+    protected $messages = [
+        'diff.gte' => 'The entry is not tally!',
+        'diff.lte' => 'The entry is not tally!',
+    ];
+
 
     public function mount(){
         $this->docs = Document::where('company_id',session('company_id'))->get();
@@ -125,6 +134,7 @@ class Documents extends Component
     public function closeModal()
     {
         $this->isOpen = false;
+        $this->resetPage();
     }
 
     private function resetInputFields(){
