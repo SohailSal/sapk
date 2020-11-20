@@ -42,7 +42,7 @@
                         <th class="px-4 py-1">No.</th>
                         <th class="px-4 py-1">Name of Account</th>
                         <th class="px-4 py-1">Group of Account</th>
-                        <th class="px-4 py-1">Action</th>
+                        <th class="px-4 py-1 text-center w-auto">Tasks</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,10 +52,11 @@
                         <td class="border px-4 py-1">{{ $account->name }}</td>
                         <td class="border px-4 py-1">{{ $account->accountGroup->name }}</td>
                         <td class="border px-4 py-1">
-                        <a href="{{('ledger/'.Crypt::encrypt($account->id))}}" target="_blank" class="text-gray-400 hover:text-blue-200 hover:no-underline">Ledger in PDF</a>
-                        <x-jet-button wire:click="edit({{ $account->id }})" >Edit</x-jet-button>
-                        <x-jet-danger-button wire:click="delete({{ $account->id }})">Delete</x-jet-danger-button>
-                        <?php echo ($account->entries) ?>
+                        <div class="flex justify-between">
+                            <a href="{{('ledger/'.Crypt::encrypt($account->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white hover:no-underline">Ledger in PDF</a>
+                            <x-jet-button wire:click="edit({{ $account->id }})" >Edit</x-jet-button>
+                            @if(count($account->entries)==0)<x-jet-danger-button wire:click="delete({{ $account->id }})">Delete</x-jet-danger-button>@endif
+                        </div>
                         </td>
                     </tr>
                     @endforeach

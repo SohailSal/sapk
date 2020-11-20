@@ -46,7 +46,7 @@
                         <th class="px-4 py-1">Type</th>
                         <th class="px-4 py-1">Date</th>
                         <th class="px-4 py-1">Description</th>
-                        @can('isAdmin')<th class="px-4 py-1">Action</th>@endcan
+                        @can('isAdmin')<th class="px-4 py-1 text-center w-auto">Tasks</th>@endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -58,9 +58,11 @@
                         <td class="border px-4 py-1">{{ $doc->description }}</td>
                         @can('isAdmin')
                         <td class="border px-4 py-1">
-                        <a href="{{url('voucher/'.Crypt::encrypt($doc->id))}}" target="_blank" class="text-gray-400 hover:text-blue-200 hover:no-underline">Voucher in PDF</a>
-                        <x-jet-button wire:click="edit({{ $doc->id }})" >Edit</x-jet-button>
-                        <x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>
+                        <div class="flex justify-between">
+                            <a href="{{url('voucher/'.Crypt::encrypt($doc->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white hover:no-underline">Voucher in PDF</a>
+                            <x-jet-button wire:click="edit({{ $doc->id }})" >Edit</x-jet-button>
+                            <x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>
+                        </div>
                         </td>
                         @endcan
                     </tr>

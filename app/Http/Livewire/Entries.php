@@ -67,7 +67,7 @@ class Entries extends Component
 
     public function edit($id)
     {
-        $entry = Entry::findOrFail($id);
+        $entry = Entry::where('id',$id)->where('company_id',session('company_id'))->first();
         $this->at_id = $id;
         $this->document_id = $entry->document_id;
         $this->account_id = $entry->account_id;
@@ -78,7 +78,7 @@ class Entries extends Component
 
     public function delete($id)
     {
-        Entry::find($id)->delete();
+        Entry::where('id',$id)->where('company_id',session('company_id'))->first()->delete();
         session()->flash('message', 'Record Deleted Successfully.');
     }
 }

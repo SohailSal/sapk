@@ -11,7 +11,7 @@
           <div class="">
                 <div class="mb-4">
                     <label class="block text-white text-sm font-bold mb-2">Document ID:</label>
-                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter doc" wire:model="document_id">
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter doc" wire:model.lazy="document_id">
                     @error('document_id') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
@@ -20,7 +20,7 @@
           <div class="">
                 <div class="mb-4">
                     <label class="block text-white text-sm font-bold mb-2">Account:</label>
-                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Account" wire:model="account_id">
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Account" wire:model.lazy="account_id">
                     @error('account_id') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
@@ -29,7 +29,7 @@
           <div class="">
                 <div class="mb-4">
                     <label class="block text-white text-sm font-bold mb-2">Debit:</label>
-                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Debit" wire:model="debit">
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Debit" wire:model.lazy="debit">
                     @error('debit') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
@@ -38,7 +38,7 @@
           <div class="">
                 <div class="mb-4">
                     <label class="block text-white text-sm font-bold mb-2">Credit:</label>
-                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Credit" wire:model="credit">
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Credit" wire:model.lazy="credit">
                     @error('credit') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>

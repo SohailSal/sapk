@@ -43,7 +43,7 @@
                         <th class="px-4 py-1">No.</th>
                         <th class="px-4 py-1">Voucher Name</th>
                         <th class="px-4 py-1">Prefix</th>
-                        <th class="px-4 py-1">Action</th>
+                        <th class="px-4 py-1 text-center w-auto">Tasks</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,8 +53,10 @@
                         <td class="border px-4 py-1">{{ $type->name }}</td>
                         <td class="border px-4 py-1">{{ $type->prefix }}</td>
                         <td class="border px-4 py-1">
-                        <x-jet-button wire:click="edit({{ $type->id }})" >Edit</x-jet-button>
-                        <x-jet-danger-button wire:click="delete({{ $type->id }})" >Delete</x-jet-danger-button>
+                        <div class="flex justify-between">
+                            <x-jet-button wire:click="edit({{ $type->id }})" >Edit</x-jet-button>
+                            @if(count($type->documents)==0)<x-jet-danger-button wire:click="delete({{ $type->id }})" >Delete</x-jet-danger-button>@endif
+                        </div>
                         </td>
                     </tr>
                     @endforeach

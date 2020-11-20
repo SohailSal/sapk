@@ -53,7 +53,7 @@ class DocTypes extends Component
         ]);
 
         session()->flash('message', 
-            $this->at_id ? 'Record Updated Successfully.' : 'Record Created Successfully.');
+            $this->at_id ? 'Voucher Type Updated Successfully.' : 'Voucher Type Created Successfully.');
 
         $this->closeModal();
         $this->resetInputFields();
@@ -61,7 +61,7 @@ class DocTypes extends Component
 
     public function edit($id)
     {
-        $type = DocumentType::findOrFail($id);
+        $type = DocumentType::where('id',$id)->where('company_id',session('company_id'))->first();
         $this->at_id = $id;
         $this->name = $type->name;
         $this->prefix = $type->prefix;
@@ -70,7 +70,7 @@ class DocTypes extends Component
 
     public function delete($id)
     {
-        DocumentType::find($id)->delete();
-        session()->flash('message', 'Record Deleted Successfully.');
+        DocumentType::where('id',$id)->where('company_id',session('company_id'))->first()->delete();
+        session()->flash('message', 'Voucher Type Deleted Successfully.');
     }
 }

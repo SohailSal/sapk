@@ -11,7 +11,7 @@
           <div class="">
                 <div class="mb-0">
                     <label class="block text-white text-sm font-bold mb-2">Name:</label>
-                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" placeholder="Cash in Hand" wire:model="name">
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" placeholder="Cash in Hand" wire:model.lazy="name">
                     @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
@@ -31,7 +31,7 @@
                 </div>
           </div>
         </div>
-        <div class="bg-gray-400 px-4 py-2 sm:px-6 sm:flex sm:flex-row-reverse">
+        <div class="bg-gray-400 px-4 py-2 sm:px-6 sm:flex sm:flex-row">
           <span class="mt-1 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
             <button wire:click.prevent="store()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-green-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-600 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
               Save

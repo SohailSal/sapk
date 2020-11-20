@@ -159,7 +159,7 @@ class Documents extends Component
         });
 
         session()->flash('message', 
-            $this->at_id ? 'Record Updated Successfully.' : 'Record Created Successfully.');
+            $this->at_id ? 'Entry Updated Successfully.' : 'Entry Created Successfully.');
 
         $this->closeModal();
         $this->resetInputFields();
@@ -191,7 +191,7 @@ class Documents extends Component
         });
 
         session()->flash('message', 
-            $this->at_id ? 'Record Updated Successfully.' : 'Record Created Successfully.');
+            $this->at_id ? 'Entry Updated Successfully.' : 'Entry Created Successfully.');
 
         $this->closeModal();
         $this->resetInputFields();
@@ -231,7 +231,7 @@ class Documents extends Component
             }
             $doc=Document::where('id',$id)->where('company_id',session('company_id'))->first();
             $doc->delete();
-            session()->flash('message', 'Record Deleted Successfully.');
+            session()->flash('message', 'Entry Deleted Successfully.');
         });
     }
 

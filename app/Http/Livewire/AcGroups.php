@@ -55,7 +55,7 @@ class AcGroups extends Component
         ]);
 
         session()->flash('message', 
-            $this->ag_id ? 'Record Updated Successfully.' : 'Record Created Successfully.');
+            $this->ag_id ? 'Account Group Updated Successfully.' : 'Account Group Created Successfully.');
 
         $this->closeModal();
         $this->resetInputFields();
@@ -63,7 +63,7 @@ class AcGroups extends Component
 
     public function edit($id)
     {
-        $group = AccountGroup::findOrFail($id);
+        $group = AccountGroup::where('id',$id)->where('company_id',session('company_id'))->first();
         $this->ag_id = $id;
         $this->name = $group->name;
         $this->types = AccountType::all();
@@ -73,8 +73,8 @@ class AcGroups extends Component
 
     public function delete($id)
     {
-        AccountGroup::find($id)->delete();
-        session()->flash('message', 'Record Deleted Successfully.');
+        AccountGroup::where('id',$id)->where('company_id',session('company_id'))->first()->delete();
+        session()->flash('message', 'Account Group Deleted Successfully.');
     }
 
 }

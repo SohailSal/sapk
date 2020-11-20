@@ -48,7 +48,7 @@
                         <th class="px-4 py-1">Email</th>
                         <th class="px-4 py-1">Website</th>
                         <th class="px-4 py-1">Phone</th>
-                        @can('isAdmin')<th class="px-4 py-1">Action</th>@endcan
+                        @can('isAdmin')<th class="px-4 py-1 text-center w-auto">Tasks</th>@endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -62,8 +62,10 @@
                         <td class="border px-4 py-1">{{ $doc->phone }}</td>
                         @can('isAdmin')
                         <td class="border px-4 py-1">
-                        <x-jet-button wire:click="edit({{ $doc->id }})" >Edit</x-jet-button>
-                        <x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>
+                        <div class="flex justify-between">
+                            <x-jet-button wire:click="edit({{ $doc->id }})" >Edit</x-jet-button>
+                            @if(count($doc->accountGroups)==0 && count($doc->documentTypes)==0)<x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>@endif
+                        </div>
                         </td>
                         @endcan
                     </tr>

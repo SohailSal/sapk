@@ -11,7 +11,7 @@
           <div class="">
                 <div class="mb-0">
                     <label class="block text-white text-sm font-bold">Voucher Name:</label>
-                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="Journal Voucher" wire:model="name">
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" placeholder="Journal Voucher" wire:model.lazy="name">
                     @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
@@ -20,19 +20,19 @@
           <div class="">
                 <div class="mb-2">
                     <label class="block text-white text-sm font-bold mb-2">Prefix:</label>
-                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" placeholder="JV" wire:model="prefix">
+                    <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" placeholder="JV" wire:model.lazy="prefix">
                     @error('prefix') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
         </div>
-        <div class="bg-gray-400 px-4 py-2 sm:px-6 sm:flex sm:flex-row-reverse">
+        <div class="bg-gray-400 px-4 py-2 sm:px-6 sm:flex sm:flex-row">
           <span class="mt-1 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <button wire:click.prevent="store()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-green-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+            <button wire:click.prevent="store()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-green-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-600 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
               Save
             </button>
           </span>
           <span class="mt-1 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <button wire:click="closeModal()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+            <button wire:click="closeModal()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
               Cancel
             </button>
           </span>

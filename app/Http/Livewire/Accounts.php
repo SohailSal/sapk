@@ -55,7 +55,7 @@ class Accounts extends Component
         ]);
 
         session()->flash('message', 
-            $this->ag_id ? 'Record Updated Successfully.' : 'Record Created Successfully.');
+            $this->ag_id ? 'Account Updated Successfully.' : 'Account Created Successfully.');
 
         $this->closeModal();
         $this->resetInputFields();
@@ -74,6 +74,6 @@ class Accounts extends Component
     public function delete($id)
     {
         Account::where('id',$id)->where('company_id',session('company_id'))->first()->delete();
-        session()->flash('message', 'Record Deleted Successfully.');
+        session()->flash('message', 'Account Deleted Successfully.');
     }
 }
