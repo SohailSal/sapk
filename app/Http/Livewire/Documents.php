@@ -45,8 +45,13 @@ class Documents extends Component
     ];
 
     protected $messages = [
-        'diff.gte' => 'The entry is not tally!',
-        'diff.lte' => 'The entry is not tally!',
+        'diff.gte' => 'The entry is not balanced!',
+        'diff.lte' => 'The entry is not balanced!',
+        'account_id.*.required' => 'The head of account has not been selected!',
+        'debit.*.required' => 'Debit amount has not been entered!',
+        'credit.*.required' => 'Credit amount has not been entered!',
+        'debit.*.regex' => 'Amount must a numeric value!',
+        'credit.*.regex' => 'Amount must a numeric value!',
     ];
 
 
@@ -74,17 +79,6 @@ class Documents extends Component
         unset($this->account_id[$j]);
         $this->debit[$j]=0;
         $this->credit[$j]=0;
- //       unset($this->debit[$j]);
-  //      unset($this->credit[$j]);
-//        $this->inputs = array_values($this->inputs);
- //       $this->account_id = array_values($this->account_id);
- //       $this->debit = array_values($this->debit);
- //       $this->credit = array_values($this->credit);
- //       $this->i = $this->i - 1;
-
-
-//        $this->debit[$j]=0;
-//        $this->credit[$j]=0;
     }
 
     public function render()
@@ -120,8 +114,6 @@ class Documents extends Component
         $this->credit[0]='0';
         $this->credit[1]='0';
         $this->accounts = Account::where('company_id',session('company_id'))->get();
-//        $this->type_id = $this->type->id;
-//        $type=DocumentType::find($this->type_id);
         $this->date = Carbon::today()->toDateString();
         $this->openModal();
     }
@@ -141,7 +133,6 @@ class Documents extends Component
         $this->ref = '';
         $this->date = '';
         $this->description = '';
-//        $this->type='';
         $this->at_id = '';
         $this->inputs = [];
         $this->account_id = [];
@@ -188,11 +179,8 @@ class Documents extends Component
                 $entry->delete();
             }
 
-//            $doc->ref = $this->ref;
             $doc->date = $this->date;
             $doc->description = $this->description;
-//            $doc->type_id = $this->type_id;
-//            $doc->company_id = session('company_id');
             $doc->save();
 
             foreach ($this->account_id as $key => $value) {
@@ -201,7 +189,7 @@ class Documents extends Component
         });
 
         session()->flash('message', 
-            $this->at_id ? 'Entry Updated Successfully.' : 'Entry Created Successfully.');
+            $this->at_id ? 'Entry Updated Successfully.' : 'Entry Recoreded Successfully.');
 
         $this->closeModal();
         $this->resetInputFields();

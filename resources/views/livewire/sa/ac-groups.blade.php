@@ -32,17 +32,19 @@
                   </div>
                 </div>
             @endif
+            <div class="flex place-items-auto justify-between">
             @if (!\App\Models\AccountGroup::where('company_id',session('company_id'))->count())
             <a class="px-4 py-2 flex-wrap mb-2 border bg-gray-600 text-white rounded-lg" href="{{url('generate')}}">Auto Generate</a>
             @endif
-            <x-jet-button class="mb-2 border" wire:click="create()">Create New Group</x-jet-button>
-            @if($isOpen)
-                @include('livewire.sa.groupcreate')
-            @endif
+                <x-jet-button class="flex-wrap mb-2 border" wire:click="create()">Create New Group</x-jet-button>
+                @if($isOpen)
+                    @include('livewire.sa.groupcreate')
+                @endif
+                <span class="flex-wrap ml-5">{{$groups->links()}}</span>
+            </div>
             <table class="table-auto w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-1">No.</th>
                         <th class="px-4 py-1">Group Name</th>
                         <th class="px-4 py-1">Group Type</th>
                         <th class="px-4 py-1 text-center w-auto">Tasks</th>
@@ -51,7 +53,6 @@
                 <tbody>
                     @foreach($groups as $group)
                     <tr class="text-white">
-                        <td class="border px-4 py-1">{{ ++$ite }}</td>
                         <td class="border px-4 py-1">{{ $group->name }}</td>
                         <td class="border px-4 py-1">{{ $group->accountType->name }}</td>
                         <td class="border px-4 py-1">

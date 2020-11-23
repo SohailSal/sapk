@@ -12,7 +12,6 @@
                 <div class="mb-0">
                     <label class="block text-white text-sm font-bold mb-2">Group Name:</label>
                     <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" placeholder="Cash and Bank Balances" wire:model.lazy="name">
-                    @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
         </div>
@@ -26,8 +25,6 @@
                             <option value={{ $type->id }}>{{ $type->name }}</option>
                         @endforeach
                     </select>
-
-                    @error('type_id') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
         </div>
@@ -42,6 +39,7 @@
               Cancel
             </button>
           </span>
+         <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $errors->first() }}</span>
         </div>
       </form>
     </div>

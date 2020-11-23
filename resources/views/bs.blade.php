@@ -110,29 +110,6 @@
             $profit = abs(array_sum($gbalance4)) - array_sum($gbalance5);
             $equity = abs(array_sum($gbalance2)) + abs(array_sum($gbalance3)) + $profit;
 
-/*                $obalance = [];
-                $oite= 0;
-                foreach ($accounts as $account) {
-                    $balance = 0;
-                    $lastbalance = 0;
-                    foreach ($account->entries as $entry) {
-                        $balance= $lastbalance + floatval($entry->debit) - floatval($entry->credit);
-                        $lastbalance = $balance;
-                    }
-                    $obalance[$oite++] = $balance;
-                }
-
-                $debit = 0;
-                $credit = 0;
-                for($i=0;$i<count($obalance);$i++){
-                    if($obalance[$i]>0){
-                        $debit = $debit + $obalance[$i];
-                    }
-                    else {
-                        $credit = $credit + $obalance[$i];
-                    }
-                }
-*/
 ?>
 
 

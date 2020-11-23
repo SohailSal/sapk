@@ -12,7 +12,6 @@
                 <div class="mb-0">
                     <label class="block text-white text-sm font-bold mb-1">Name:</label>
                     <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="name">
-                    @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
         </div>
@@ -21,7 +20,6 @@
                 <div class="mb-0">
                     <label class="block text-white text-sm font-bold mb-1">Address:</label>
                     <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="address">
-                    @error('address') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
         </div>
@@ -30,7 +28,6 @@
                 <div class="mb-0">
                     <label class="block text-white text-sm font-bold mb-1">Email:</label>
                     <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="email">
-                    @error('email') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
         </div>
@@ -39,7 +36,6 @@
                 <div class="mb-0">
                     <label class="block text-white text-sm font-bold mb-1">Web address:</label>
                     <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="web">
-                    @error('web') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
         </div>
@@ -48,7 +44,6 @@
                 <div class="mb-0">
                     <label class="block text-white text-sm font-bold mb-1">Phone:</label>
                     <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="phone">
-                    @error('phone') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
         </div>
@@ -63,7 +58,6 @@
                         <option value='September'>September</option>
                         <option value='March'>March</option>
                       </select>
-                    @error('fiscal') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
         </div>
@@ -72,7 +66,6 @@
                 <div class="mb-2">
                     <label class="block text-white text-sm font-bold mb-1">Date of Incorporation:</label>
                     <input type="text" class="shadow appearance-none rounded w-full py-2 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="incorp">
-                    @error('incorp') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
           </div>
         </div>
@@ -87,6 +80,7 @@
               Cancel
             </button>
           </span>
+          <span class="inline-flex text-white font-extrabold animate-pulse ml-6 mt-1">{{ $errors->first() }}</span>
         </div>
       </form>
     </div>

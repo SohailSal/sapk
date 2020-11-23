@@ -4,17 +4,18 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Entry;
+use Livewire\WithPagination;
 
 class Entries extends Component
 {
-    public $entries, $document_id, $account_id, $debit, $credit, $at_id;
-    public $ite=0;
+    use WithPagination;
+
+    public $document_id, $account_id, $debit, $credit, $at_id;
     public $isOpen = 0;
 
     public function render()
     {
-        $this->entries = Entry::where('company_id',session('company_id'))->get();
-        return view('livewire.sa.entries');
+        return view('livewire.sa.entries',['entries'=>Entry::where('company_id',session('company_id'))->paginate(10)]);
     }
 
     public function create()

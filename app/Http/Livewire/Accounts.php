@@ -5,17 +5,18 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Account;
 use App\Models\AccountGroup;
+use Livewire\WithPagination;
 
 class Accounts extends Component
 {
-    public $groups, $name, $group_id, $ag_id, $accounts;
-    public $ite=0;
+    use WithPagination;
+
+    public $groups, $name, $group_id, $ag_id;
     public $isOpen = 0;
 
     public function render()
     {
-        $this->accounts = Account::where('company_id',session('company_id'))->get();
-        return view('livewire.sa.accounts');
+        return view('livewire.sa.accounts',['accounts'=>Account::where('company_id',session('company_id'))->paginate(10)]);
     }
 
     public function create()

@@ -33,11 +33,11 @@
                 </div>
             @endif
             <div class="flex items-center justify-between">
-            <x-jet-button x-ref="go" class="flex-wrap mb-2 border" wire:click="create()">New Entry</x-jet-button>
-            @if($isOpen)
-                @include('livewire.sa.try2')
-            @endif
-            <span class="flex-wrap ml-5">{{$docss->links()}}</span>
+                <x-jet-button x-ref="go" class="flex-wrap mb-2 border" wire:click="create()">New Entry</x-jet-button>
+                @if($isOpen)
+                    @include('livewire.sa.try2')
+                @endif
+                <span class="flex-wrap ml-5">{{$docss->links()}}</span>
             </div>
             <table class="table-auto w-full">
                 <thead>

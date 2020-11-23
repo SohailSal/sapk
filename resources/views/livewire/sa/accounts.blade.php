@@ -32,14 +32,17 @@
                   </div>
                 </div>
             @endif
-            <x-jet-button class="mb-2 border" wire:click="create()">Create New Account</x-jet-button>
-            @if($isOpen)
-                @include('livewire.sa.accountcreate')
-            @endif
+            <div class="flex items-center justify-between">
+                <x-jet-button class="flex-wrap mb-2 border" wire:click="create()">Create New Account</x-jet-button>
+                @if($isOpen)
+                    @include('livewire.sa.accountcreate')
+                @endif
+                <span class="flex-wrap ml-5">{{$accounts->links()}}</span>
+            </div>
             <table class="table-auto w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-1">No.</th>
+                        <th class="px-4 py-1">ID</th>
                         <th class="px-4 py-1">Name of Account</th>
                         <th class="px-4 py-1">Group of Account</th>
                         <th class="px-4 py-1 text-center w-auto">Tasks</th>
@@ -48,7 +51,7 @@
                 <tbody>
                     @foreach($accounts as $account)
                     <tr class="text-white">
-                        <td class="border px-4 py-1">{{ ++$ite }}</td>
+                        <td class="border px-4 py-1">{{ $account->id }}</td>
                         <td class="border px-4 py-1">{{ $account->name }}</td>
                         <td class="border px-4 py-1">{{ $account->accountGroup->name }}</td>
                         <td class="border px-4 py-1">
