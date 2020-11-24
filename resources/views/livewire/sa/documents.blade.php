@@ -37,6 +37,22 @@
                 @if($isOpen)
                     @include('livewire.sa.try2')
                 @endif
+                <div class="">
+                      <label class="block text-white text-sm font-bold mb-2">Ref:</label>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search1">
+                </div>
+                <div class="">
+                      <label class="block text-white text-sm font-bold mb-2">Description:</label>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search2">
+                </div>
+                <div class="">
+                      <label class="block text-white text-sm font-bold mb-2">Start date:</label>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search3">
+                </div>
+                <div class="">
+                      <label class="block text-white text-sm font-bold mb-2">End date:</label>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search4">
+                </div>
                 <span class="flex-wrap ml-5">{{$docss->links()}}</span>
             </div>
             <table class="table-auto w-full">

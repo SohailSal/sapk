@@ -4,7 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Entry;
+use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
+use Illuminate\Support\Carbon;
 
 class Entries extends Component
 {
@@ -12,10 +14,29 @@ class Entries extends Component
 
     public $document_id, $account_id, $debit, $credit, $at_id;
     public $isOpen = 0;
+    public $search1 = '';
+    public $search2 = '';
+    public $search3 = '';
+
+    public function mount(){
+        $str1 = Carbon::today()->year . '-' . Carbon::today()->month . '-' . Carbon::today()->day;
+        $this->search2 = strval($str1);
+        $this->search3 = strval($str1);
+    }
 
     public function render()
     {
-        return view('livewire.sa.entries',['entries'=>Entry::where('company_id',session('company_id'))->paginate(10)]);
+        $entries = DB::table('entries')
+        ->join('documents', 'documents.id', '=', 'entries.document_id')
+        ->whereDate('documents.date', '>=', $this->search2)
+        ->whereDate('documents.date', '<=', $this->search3)
+        ->where('documents.company_id',session('company_id'))
+        ->select('entries.id','entries.account_id', 'entries.debit', 'entries.credit', 'documents.ref', 'documents.date', 'documents.description')
+        ->where('entries.account_id','=',$this->search1)
+        ->paginate(10);
+
+        return view('livewire.sa.entries',['entries' => $entries]);
+//        return view('livewire.sa.entries',['entries'=>Entry::where('company_id',session('company_id'))->where('id',$this->search1)->where('date','>=',$this->search2)->where('date','<=',$this->search3)->paginate(10)]);
     }
 
     public function create()

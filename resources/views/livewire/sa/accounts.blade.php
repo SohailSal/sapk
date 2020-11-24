@@ -37,6 +37,10 @@
                 @if($isOpen)
                     @include('livewire.sa.accountcreate')
                 @endif
+                <div class="">
+                      <label class="block text-white text-sm font-bold mb-2">Account:</label>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search">
+                </div>
                 <span class="flex-wrap ml-5">{{$accounts->links()}}</span>
             </div>
             <table class="table-auto w-full">

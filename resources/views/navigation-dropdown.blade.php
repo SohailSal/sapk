@@ -18,14 +18,14 @@
                     <x-jet-nav-link href="/account" :active="request()->routeIs('account')">
                         {{ __('Accounts') }}
                     </x-jet-nav-link>
+                    @can('isAdmin')
+                    <x-jet-nav-link href="/entry" :active="request()->routeIs('entry')">
+                        {{ __('Entries') }}
+                    </x-jet-nav-link>
+                    @endcan
                     <x-jet-nav-link href="/group" :active="request()->routeIs('group')">
                         {{ __('Groups') }}
                     </x-jet-nav-link>
-                    @can('isAdmin')
-                    <x-jet-nav-link href="/entry" :active="request()->routeIs('entry')">
-                        {{ __('Entry') }}
-                    </x-jet-nav-link>
-                    @endcan
                     <x-jet-nav-link href="/doctype" :active="request()->routeIs('doctype')">
                         {{ __('Vouchers') }}
                     </x-jet-nav-link>

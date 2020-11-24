@@ -13,10 +13,11 @@ class Accounts extends Component
 
     public $groups, $name, $group_id, $ag_id;
     public $isOpen = 0;
+    public $search = '';
 
     public function render()
     {
-        return view('livewire.sa.accounts',['accounts'=>Account::where('company_id',session('company_id'))->paginate(10)]);
+        return view('livewire.sa.accounts',['accounts'=>Account::where('company_id',session('company_id'))->where('name','like','%' . $this->search . '%')->paginate(10)]);
     }
 
     public function create()

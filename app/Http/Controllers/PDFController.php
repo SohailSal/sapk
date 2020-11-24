@@ -46,12 +46,9 @@ class PDFController extends Controller
             ->where('entries.account_id','=',$account)
             ->get();
 
-//        $entries = Entry::whereDate('created_at','>=',$start)->whereDate('created_at','<=',$end)->where('account_id','=',$account)->where('company_id',session('company_id'))->get();
         $previous = Entry::whereDate('created_at','<',$start)->where('account_id','=',$account)->where('company_id',session('company_id'))->get();
         $acc = Account::where('id','=',$account)->where('company_id',session('company_id'))->first();
         $period = "From ".strval($start)." to ".strval($end);
-//        $pdf = app('dompdf.wrapper');
-//        $pdf->getDomPDF()->set_option("enable_php", true);
         $pdf = PDF::loadView('range', compact('entries','previous','acc','period'));
         return $pdf->stream('ledger.pdf');
     }

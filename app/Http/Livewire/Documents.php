@@ -26,6 +26,10 @@ class Documents extends Component
     public $latest;
     public $diff, $dtotal, $ctotal;
     public $month, $year;
+    public $search1 = '';
+    public $search2 = '';
+    public $search3 = '';
+    public $search4 = '';
 
     protected $rules = [
         'ref' => 'required',
@@ -60,6 +64,9 @@ class Documents extends Component
         $this->types = DocumentType::where('company_id',session('company_id'))->get();
         $this->type_id = DocumentType::where('company_id',session('company_id'))->first()->id;
         $this->type = $this->types->where('id',$this->type_id)->first();
+        $str1 = Carbon::today()->year . '-' . Carbon::today()->month . '-' . Carbon::today()->day;
+        $this->search3 = strval($str1);
+        $this->search4 = strval($str1);
     }
 
     public function add($i)
@@ -103,7 +110,7 @@ class Documents extends Component
         }
 
         $this->total();
-        return view('livewire.sa.documents',['docss'=>Document::where('company_id',session('company_id'))->paginate(10)]);
+        return view('livewire.sa.documents',['docss'=>Document::where('company_id',session('company_id'))->where('ref','like','%' . $this->search1 . '%')->where('description','like','%' . $this->search2 . '%')->where('date','>=',$this->search3)->where('date','<=',$this->search4)->paginate(10)]);
     }
 
     public function create()

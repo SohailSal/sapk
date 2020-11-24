@@ -37,13 +37,31 @@
                 @if($isOpen)
                     @include('livewire.sa.entrycreate')
                 @endif
+                <div class="">
+                    <label class="block text-white text-sm font-bold mb-2">Account:</label>
+                    <select wire:model="search1" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo">
+                        <option value=''>Choose an Account:</option>
+                        @foreach(\App\Models\Account::where('company_id',session('company_id'))->get() as $account)
+                            <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="">
+                      <label class="block text-white text-sm font-bold mb-2">Start date:</label>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search2">
+                </div>
+                <div class="">
+                      <label class="block text-white text-sm font-bold mb-2">End date:</label>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search3">
+                </div>
                 <span class="flex-wrap ml-5">{{$entries->links()}}</span>
             </div>
             <table class="table-auto w-full">
                 <thead>
                     <tr class="bg-gray-100">
                         <th class="px-4 py-1">Voucher</th>
-                        <th class="px-4 py-1">Account</th>
+                        <th class="px-4 py-1">Date</th>
+                        <th class="px-4 py-1">Description</th>
                         <th class="px-4 py-1">Debit</th>
                         <th class="px-4 py-1">Credit</th>
                         <th class="px-4 py-1">Action</th>
@@ -52,8 +70,9 @@
                 <tbody>
                     @foreach($entries as $entry)
                     <tr class="text-white">
-                        <td class="border px-4 py-1">{{ $entry->document->ref }}</td>
-                        <td class="border px-4 py-1">{{ $entry->account->name }}</td>
+                        <td class="border px-4 py-1">{{ $entry->ref }}</td>
+                        <td class="border px-4 py-1">{{ $entry->date }}</td>
+                        <td class="border px-4 py-1">{{ $entry->description }}</td>
                         <td class="border px-4 py-1">{{ $entry->debit }}</td>
                         <td class="border px-4 py-1">{{ $entry->credit }}</td>
                         <td class="border px-4 py-1">
