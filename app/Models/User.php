@@ -27,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -62,5 +63,10 @@ class User extends Authenticatable
     public function companies()
     {
         return $this->belongsToMany('App\Models\Company','companies_users');
+    }
+
+    public function settings()
+    {
+        return $this->hasMany('App\Models\Setting','user_id');
     }
 }

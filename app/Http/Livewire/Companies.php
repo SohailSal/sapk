@@ -15,7 +15,6 @@ class Companies extends Component
 
     public function render()
     {
-//        $this->companies = Company::all();
         return view('livewire.sa.companies',['docss' => auth()->user()->companies()->paginate(10)]);
     }
 
@@ -78,7 +77,8 @@ class Companies extends Component
                         $setting->update(['value' => '']);
                     }
                 }
-                $setting = Setting::create(['company_id' => $company->id, 'key' => 'active' , 'value' => 'yes']);
+                $user_id = auth()->user()->id;
+                $setting = Setting::create(['company_id' => $company->id, 'key' => 'active' , 'value' => 'yes', 'user_id' => $user_id]);
                 session(['company_id' => $company->id ]);
             }
         });
