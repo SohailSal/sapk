@@ -77,8 +77,8 @@ class Companies extends Component
                         $setting->update(['value' => '']);
                     }
                 }
-                $user_id = auth()->user()->id;
-                $setting = Setting::create(['company_id' => $company->id, 'key' => 'active' , 'value' => 'yes', 'user_id' => $user_id]);
+                $setting = Setting::create(['company_id' => $company->id, 'key' => 'active' , 'value' => 'yes', 'user_id' => auth()->user()->id]);
+                $setting = Setting::create(['company_id' => $company->id, 'key' => 'role' , 'value' => 'admin', 'user_id' => auth()->user()->id]);
                 session(['company_id' => $company->id ]);
             }
         });

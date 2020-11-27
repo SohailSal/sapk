@@ -23,11 +23,11 @@ class CompanyChange
                 $cos = auth()->user()->companies;
                 foreach($cos as $co){
                     foreach($co->settings as $setting){
-                        if(($setting->key =='active')&&($setting->value == 'yes'))
+                        if(($setting->key =='active')&&($setting->value == 'yes')&&($setting->user_id == auth()->user()->id))
                         $setting->update(['value' => '']);
                     }
                 }
-                $newset = \App\Models\Setting::where('company_id',$message2)->where('key','active')->first();
+                $newset = \App\Models\Setting::where('company_id',$message2)->where('user_id', auth()->user()->id)->where('key','active')->first();
                 $newset->update(['value' => 'yes']);
                 session(['company_id' => $message2 ]);
             });          
@@ -36,11 +36,21 @@ class CompanyChange
                 $cos = auth()->user()->companies;
                 foreach($cos as $co){
                     foreach($co->settings as $setting){
-                        if(($setting->key =='active')&&($setting->value == 'yes'))
+                        if(($setting->key =='active')&&($setting->value == 'yes')&&($setting->user_id == auth()->user()->id))
                         session(['company_id' => $setting->company_id ]);
                 }
             }
+        }
 
+        if ($email = $request->email){
+            DB::transaction(function () use ($email,$request) {
+                $role = $request->role;
+                $company = \App\Models\Company::where('id',$request->comp)->first();
+                $user = \App\Models\User::where('email',$email)->first();
+                $company->users()->attach($user->id);
+                $setting = \App\Models\Setting::create(['company_id' => $request->comp, 'key' => 'active' , 'value' => '', 'user_id' => $user->id]);
+                $setting = \App\Models\Setting::create(['company_id' => $request->comp, 'key' => 'role' , 'value' => $request->role, 'user_id' => $user->id]);
+            });
         }
 
         return $next($request);

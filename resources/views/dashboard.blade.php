@@ -115,6 +115,38 @@
             </table>
         </div>
     </div>
+
+    <div class="flex mx-auto">
+        <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
+            <form method="GET" action="{{ route('dashboard') }}">
+                @csrf
+                <div class="inline-flex">
+                    <input name="email" type="text" class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" placeholder="Enter Email of User">
+                </div>
+                <div class="inline-flex">
+                    <select name="comp" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                        @foreach(\Auth::user()->companies as $company)
+                            <option value='{{ $company->id }}' {{ ($company->id == session('company_id')) ? 'selected' : '' }}>{{ $company->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="inline-flex">
+                    <select name="role" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                        <option value=''>Choose Role:</option>
+                        <option value='manager'>Manager</option>
+                        <option value='user'>Read Only</option>
+                    </select>
+                </div>
+                <div class="inline-flex">
+                    <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Assign</button>
+                </div>
+            </form>
+        </div>
+        <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
+    
+        </div>
+    </div>
+
 </div>
 
 
