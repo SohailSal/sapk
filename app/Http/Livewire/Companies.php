@@ -82,11 +82,35 @@ class Companies extends Component
                 Setting::create(['company_id' => $company->id, 'key' => 'active' , 'value' => 'yes', 'user_id' => auth()->user()->id]);
                 Setting::create(['company_id' => $company->id, 'key' => 'role' , 'value' => 'admin', 'user_id' => auth()->user()->id]);
                 session(['company_id' => $company->id ]);
-                $endMonth = Carbon::parse($this->fiscal)->month;
-                $days = Carbon::create()->month($endMonth)->endOfMonth();
-                $end = Carbon::today()->year+1 . '-' . $endMonth . '-' . $days->daysInMonth;
+
+/*                $endMonth = Carbon::parse($this->fiscal)->month;
+                $startMonth = Carbon::parse($this->fiscal)->month+1;
+                if($startMonth == 13) {$startMonth = 1;}
+                $month = Carbon::create()->month($endMonth);
+                $end = Carbon::today()->year+1 . '-' . $endMonth . '-' . $month->daysInMonth;
                 $begin = Carbon::parse($end)->subDays(364);
                 Year::create(['begin' => $begin, 'end' => $end, 'company_id' => session('company_id')]);
+*/
+                $endMonth = Carbon::parse($this->fiscal)->month;
+                $startMonth = Carbon::parse($this->fiscal)->month+1;
+                if($startMonth == 13) {$startMonth = 1;}
+                $endMonthDays = Carbon::create()->month($endMonth)->daysInMonth;
+                $startMonthDays = 1;
+                $today = Carbon::today();
+                $endYear = 0;
+                $startYear = 0;
+                if($startMonth == 1){
+                    $endYear = $today->year;
+                    $startYear = $today->year;
+                } else {
+                    $endYear = ($today->month >= $startMonth) ? $today->year+1 : $today->year;
+                    $startYear = $endYear-1;
+                }
+                $endDate = $endYear.'-'.$endMonth.'-'.$endMonthDays;
+                $startDate = $startYear.'-'.$startMonth.'-'.$startMonthDays;
+                dd($startDate.'-'.$endDate);
+                Year::create(['begin' => $begin, 'end' => $end, 'company_id' => session('company_id')]);
+
             }
         });
 
@@ -118,6 +142,9 @@ class Companies extends Component
             $co = Company::findOrFail($id);
             foreach($co->settings as $setting){
                 $setting->delete();
+            }
+            foreach($co->years as $year){
+                $year->delete();
             }
             $co->users()->detach();
             $co->delete();
