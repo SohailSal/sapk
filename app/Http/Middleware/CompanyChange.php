@@ -42,14 +42,22 @@ class CompanyChange
             }
         }
 
-        if ($email = $request->email){
-            DB::transaction(function () use ($email,$request) {
+        if ($request->email && $request->comp){
+            DB::transaction(function () use ($request) {
                 $role = $request->role;
                 $company = \App\Models\Company::where('id',$request->comp)->first();
-                $user = \App\Models\User::where('email',$email)->first();
-                $company->users()->attach($user->id);
-                $setting = \App\Models\Setting::create(['company_id' => $request->comp, 'key' => 'active' , 'value' => '', 'user_id' => $user->id]);
-                $setting = \App\Models\Setting::create(['company_id' => $request->comp, 'key' => 'role' , 'value' => $request->role, 'user_id' => $user->id]);
+                $user = \App\Models\User::where('email',$request->email)->first();
+                if($setting = \App\Models\Setting::where('company_id',$company->id)->where('user_id',$user->id)->where('key','role')->first()){
+                    $setting->update(['value' => $role]);
+                } else {
+                    $company->users()->attach($user->id);
+                    if(count($user->companies) == 1){
+                        \App\Models\Setting::create(['company_id' => $request->comp, 'key' => 'active' , 'value' => 'yes', 'user_id' => $user->id]);
+                    }else{
+                        \App\Models\Setting::create(['company_id' => $request->comp, 'key' => 'active' , 'value' => '', 'user_id' => $user->id]);
+                    }
+                    \App\Models\Setting::create(['company_id' => $request->comp, 'key' => 'role' , 'value' => $request->role, 'user_id' => $user->id]);
+                }
             });
         }
 

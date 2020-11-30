@@ -126,13 +126,16 @@
                 <div class="inline-flex">
                     <select name="comp" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
                         @foreach(\Auth::user()->companies as $company)
-                            <option value='{{ $company->id }}' {{ ($company->id == session('company_id')) ? 'selected' : '' }}>{{ $company->name }}</option>
+                            @foreach($company->settings as $setting)
+                                @if(($setting->key == 'role') && ($setting->value == 'admin')&& ($setting->user_id == Auth::user()->id))
+                                    <option value='{{ $company->id }}' {{ ($company->id == session('company_id')) ? 'selected' : '' }}>{{ $company->name }}</option>
+                                @endif
+                            @endforeach
                         @endforeach
                     </select>
                 </div>
                 <div class="inline-flex">
                     <select name="role" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
-                        <option value=''>Choose Role:</option>
                         <option value='manager'>Manager</option>
                         <option value='user'>Read Only</option>
                     </select>
@@ -143,7 +146,7 @@
             </form>
         </div>
         <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
-    
+        <livewire:years/>
         </div>
     </div>
 

@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Company;
 use App\Models\Setting;
+use App\Models\Year;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class Companies extends Component
@@ -73,13 +75,18 @@ class Companies extends Component
                 $cos = auth()->user()->companies;
                 foreach($cos as $co){
                     foreach($co->settings as $setting){
-                        if(($setting->key =='active')&&($setting->value == 'yes'))
+                        if(($setting->key =='active')&&($setting->value == 'yes')&&($setting->user_id == auth()->user()->id))
                         $setting->update(['value' => '']);
                     }
                 }
-                $setting = Setting::create(['company_id' => $company->id, 'key' => 'active' , 'value' => 'yes', 'user_id' => auth()->user()->id]);
-                $setting = Setting::create(['company_id' => $company->id, 'key' => 'role' , 'value' => 'admin', 'user_id' => auth()->user()->id]);
+                Setting::create(['company_id' => $company->id, 'key' => 'active' , 'value' => 'yes', 'user_id' => auth()->user()->id]);
+                Setting::create(['company_id' => $company->id, 'key' => 'role' , 'value' => 'admin', 'user_id' => auth()->user()->id]);
                 session(['company_id' => $company->id ]);
+                $endMonth = Carbon::parse($this->fiscal)->month;
+                $days = Carbon::create()->month($endMonth)->endOfMonth();
+                $end = Carbon::today()->year+1 . '-' . $endMonth . '-' . $days->daysInMonth;
+                $begin = Carbon::parse($end)->subDays(364);
+                Year::create(['begin' => $begin, 'end' => $end, 'company_id' => session('company_id')]);
             }
         });
 
@@ -117,7 +124,7 @@ class Companies extends Component
             if(auth()->user()->companies()){
                 $newid = auth()->user()->companies()->latest()->first()->id;
                 session(['company_id' => $newid ]);
-                $newset = \App\Models\Setting::where('company_id',$newid)->where('key','active')->first();
+                $newset = \App\Models\Setting::where('company_id',$newid)->where('user_id', auth()->user()->id)->where('key','active')->first();
                 $newset->update(['value' => 'yes']);
             } else {
                 session(['company_id' => '' ]);

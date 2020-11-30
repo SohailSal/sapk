@@ -32,8 +32,9 @@
                   </div>
                 </div>
             @endif
+            @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
             <x-jet-button class="mb-2 border" wire:click="create()">Create Voucher Type</x-jet-button> 
-            
+            @endcannot
             @if($isOpen)
                 @include('livewire.sa.doctypecreate')
             @endif

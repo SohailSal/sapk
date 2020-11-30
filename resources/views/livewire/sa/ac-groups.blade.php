@@ -36,7 +36,9 @@
             @if (!\App\Models\AccountGroup::where('company_id',session('company_id'))->count())
             <a class="px-4 py-2 flex-wrap mb-2 border bg-gray-600 text-white rounded-lg" href="{{url('generate')}}">Auto Generate</a>
             @endif
-                <x-jet-button class="flex-wrap mb-2 border" wire:click="create()">Create New Group</x-jet-button>
+            @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
+            <x-jet-button class="flex-wrap mb-2 border" wire:click="create()">Create New Group</x-jet-button>
+            @endcannot
                 @if($isOpen)
                     @include('livewire.sa.groupcreate')
                 @endif

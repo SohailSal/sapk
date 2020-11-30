@@ -26,18 +26,21 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         /* define a admin user role */
-        Gate::define('isAdmin', function($user) {
-           return $user->role == 'admin';
+        Gate::define('isAdmin', function($user, $company) {
+            $setting = \App\Models\Setting::where('company_id',$company->id)->where('user_id', $user->id)->where('key','role')->first();
+            return $setting->value == 'admin';
         });
        
         /* define a manager user role */
-        Gate::define('isManager', function($user) {
-            return $user->role == 'manager';
+        Gate::define('isManager', function($user, $company) {
+            $setting = \App\Models\Setting::where('company_id',$company->id)->where('user_id', $user->id)->where('key','role')->first();
+            return $setting->value == 'manager';
         });
       
         /* define a user role */
-        Gate::define('isUser', function($user) {
-            return $user->role == 'user';
+        Gate::define('isUser', function($user, $company) {
+            $setting = \App\Models\Setting::where('company_id',$company->id)->where('user_id', $user->id)->where('key','role')->first();
+            return $setting->value == 'user';
         });
 
     }

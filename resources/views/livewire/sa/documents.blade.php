@@ -33,7 +33,9 @@
                 </div>
             @endif
             <div class="flex items-center justify-between">
+                @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
                 <x-jet-button x-ref="go" class="flex-wrap mb-2 border" wire:click="create()">New Entry</x-jet-button>
+                @endcannot
                 @if($isOpen)
                     @include('livewire.sa.try2')
                 @endif
@@ -62,7 +64,7 @@
                         <th class="px-4 py-1">Type</th>
                         <th class="px-4 py-1">Date</th>
                         <th class="px-4 py-1">Description</th>
-                        @can('isAdmin')<th class="px-4 py-1 text-center w-auto">Tasks</th>@endcan
+                        @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())<th class="px-4 py-1 text-center w-auto">Tasks</th>@endcannot
                     </tr>
                 </thead>
                 <tbody>
@@ -72,7 +74,7 @@
                         <td class="border px-4 py-1">{{ $doc->documentType->name }}</td>
                         <td class="border px-4 py-1">{{ $doc->date }}</td>
                         <td class="border px-4 py-1">{{ $doc->description }}</td>
-                        @can('isAdmin')
+                        @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
                         <td class="border px-4 py-1">
                         <div class="flex justify-between">
                             <a href="{{url('voucher/'.Crypt::encrypt($doc->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white hover:no-underline">Voucher in PDF</a>
@@ -80,7 +82,7 @@
                             <x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>
                         </div>
                         </td>
-                        @endcan
+                        @endcannot
                     </tr>
                     @endforeach
                 </tbody>

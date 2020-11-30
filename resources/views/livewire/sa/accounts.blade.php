@@ -33,7 +33,9 @@
                 </div>
             @endif
             <div class="flex items-center justify-between">
-                <x-jet-button class="flex-wrap mb-2 border" wire:click="create()">Create New Account</x-jet-button>
+              @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
+              <x-jet-button class="flex-wrap mb-2 border" wire:click="create()">Create New Account</x-jet-button>
+              @endcannot
                 @if($isOpen)
                     @include('livewire.sa.accountcreate')
                 @endif
