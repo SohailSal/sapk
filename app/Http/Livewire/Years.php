@@ -33,14 +33,31 @@ class Years extends Component
             'end' => 'required|date',
         ]);
 
-        Year::updateOrCreate(['id' => $this->y_id], [
+        Year::create([
             'begin' => $this->begin,
             'end' => $this->end,
             'company_id' => session('company_id'),
         ]);
 
-        session()->flash('message', 
-            $this->y_id ? 'Record Updated Successfully.' : 'Record Created Successfully.');
+        session()->flash('message',  'Record Created Successfully.');
+
+        $this->resetInputFields();
+    }
+
+    public function storen()
+    {
+        $this->validate([
+            'begin' => 'required|date',
+            'end' => 'required|date',
+        ]);
+
+        Year::create([
+            'begin' => $this->begin,
+            'end' => $this->end,
+            'company_id' => session('company_id'),
+        ]);
+
+        session()->flash('message', 'Record Created Successfully.');
 
         $this->resetInputFields();
     }

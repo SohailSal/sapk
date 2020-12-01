@@ -108,8 +108,7 @@ class Companies extends Component
                 }
                 $endDate = $endYear.'-'.$endMonth.'-'.$endMonthDays;
                 $startDate = $startYear.'-'.$startMonth.'-'.$startMonthDays;
-                dd($startDate.'-'.$endDate);
-                Year::create(['begin' => $begin, 'end' => $end, 'company_id' => session('company_id')]);
+                Year::create(['begin' => $startDate, 'end' => $endDate, 'company_id' => session('company_id')]);
 
             }
         });

@@ -7,17 +7,13 @@
     <form>
     @csrf
         <div class="">
-            <div class="inline-flex">
-                <input type="text" class="bg-gray-600 text-white m-1" placeholder="Begin date" wire:model="begin">
-                @error('begin') <span class="">{{ $message }}</span>@enderror
-                <input type="text" class="bg-gray-600 text-white m-1" wire:model="end" placeholder="End date">
-                @error('end') <span class="">{{ $message }}</span>@enderror
+            <div class="">
+                <button type="button" wire:click.prevent="store()" class="border-gray-400 border-2 rounded-lg px-2">Add Previous Year</button>
             </div>
         </div>
-
         <div class="">
             <div class="">
-                <button type="button" wire:click.prevent="store()" class="border-gray-400 border-2 rounded-lg px-2">Save</button>
+                <button type="button" wire:click.prevent="storen()" class="border-gray-400 border-2 rounded-lg px-2">Add Next Year</button>
             </div>
         </div>
     </form>
