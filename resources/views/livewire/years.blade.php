@@ -19,11 +19,15 @@
         <tr class="border-gray-400 border-2 rounded-lg px-2">
             <th class="border-gray-400 border-2 rounded-lg px-2">Year Begin</th>
             <th class="border-gray-400 border-2 rounded-lg px-2">Year End</th>
+            <th class="border-gray-400 border-2 rounded-lg px-2">Active</th>
         </tr>
         @foreach($years as $year)
         <tr class="border-gray-400 border-2 rounded-lg px-2">
             <td class="border-gray-400 border-2 rounded-lg px-2">{{$year->begin}}</td>
             <td class="border-gray-400 border-2 rounded-lg px-2">{{$year->end}}</td>
+            <td class="border-gray-400 border-2 rounded-lg px-2">
+                <input type="radio" name="result" value="{{$year->enabled}}"  wire:click="activate({{ $year->id }})" {{($year->enabled == 1)? 'checked':''}}>
+            </td>
             <td>
                 <div class="flex justify-between">
                     <x-jet-button wire:click="edit({{ $year->id }})" >Edit</x-jet-button>
@@ -32,19 +36,5 @@
             </td>
         </tr>
         @endforeach
-    </table>
-    <table>
-        <tr>
-            <td>Option one:</td>
-            <td><input type="radio" wire.model="result" name="result" value="buy" checked>{{$result}}</td>
-        </tr>
-        <tr>
-            <td>Option two:</td>
-            <td><input type="radio" wire.model="result" name="result" value="sell"></td>
-        </tr>
-        <tr>
-            <td>Option three:</td>
-            <td><input type="radio" wire.model="result" name="result" value="wait"></td>
-        </tr>
     </table>
 </div>

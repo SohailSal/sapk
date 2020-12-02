@@ -7,9 +7,11 @@ use App\Models\Document;
 use App\Models\DocumentType;
 use App\Models\Account;
 use App\Models\Entry;
+use App\Models\Year;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
+use App\Rules\Range;
 
 class Documents extends Component
 {
@@ -33,7 +35,7 @@ class Documents extends Component
 
     protected $rules = [
         'ref' => 'required',
-        'date' => 'required|date',
+        'date' => ['required','date'],
         'description' => 'required',
         'type_id' => 'required',
         'account_id.0' => 'required',
@@ -64,9 +66,12 @@ class Documents extends Component
         $this->types = DocumentType::where('company_id',session('company_id'))->get();
         $this->type_id = DocumentType::where('company_id',session('company_id'))->first()->id;
         $this->type = $this->types->where('id',$this->type_id)->first();
-        $str1 = Carbon::today()->year . '-' . Carbon::today()->month . '-' . Carbon::today()->day;
-        $this->search3 = strval($str1);
-        $this->search4 = strval($str1);
+    //    $str1 = Carbon::today()->year . '-' . Carbon::today()->month . '-' . Carbon::today()->day;
+    //    $this->search3 = strval($str1);
+    //    $this->search4 = strval($str1);
+        $year =  Year::where('company_id',session('company_id'))->where('enabled',1)->first();
+        $this->search3 = $year->begin;
+        $this->search4 = $year->end;
     }
 
     public function add($i)
@@ -110,6 +115,16 @@ class Documents extends Component
         }
 
         $this->total();
+        try{
+        $this->validate([
+            'search3' => [new Range],
+            'search4' => [new Range], 
+            ]);
+        }catch (\Exception $e){
+            return $e->getMessage();
+        }
+
+        
         return view('livewire.sa.documents',['docss'=>Document::where('company_id',session('company_id'))->where('ref','like','%' . $this->search1 . '%')->where('description','like','%' . $this->search2 . '%')->where('date','>=',$this->search3)->where('date','<=',$this->search4)->paginate(10)]);
     }
 
@@ -151,6 +166,9 @@ class Documents extends Component
     public function store()
     {
         $this->validate();
+        $this->validate([
+            'date' => [new Range],
+        ]);
 
         DB::transaction(function () {
             $current = Document::create([

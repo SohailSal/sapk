@@ -12,13 +12,14 @@ class Years extends Component
     public $isOpen = 0;
     public $result;
 
-    public function render()
+    public function mount(){
+        
+    }
+
+        public function render()
     {
         $this->years = Year::where('company_id',session('company_id'))->get();
         return view('livewire.years');
-        if($result=='buy'){session()->flash('message', 'Your option is to buy');}
-        if($result=='sell'){session()->flash('message', 'Your option is to sell');}
-        if($result=='wait'){session()->flash('message', 'Your option is to wait');}
     }
 
     public function create()
@@ -56,6 +57,7 @@ class Years extends Component
                 'begin' => $newBegin,
                 'end' => $newEnd,
                 'company_id' => session('company_id'),
+                'enabled' => 0
             ]);
         } else {
             $this->validate([
@@ -85,8 +87,32 @@ class Years extends Component
         if(count(Year::where('company_id',session('company_id'))->get()) == 1){
             session()->flash('message', 'Can\'t delete the initial year.');
         } else {
+            if(Year::find($id)->enabled == 1){
+                DB::transaction(function () {
+                    $years = Year::where('company_id',session('company_id'))->get();
+                    foreach($years as $year){
+                        $year->update(['enabled' => 0]);
+                    }
+                    Year::find($id)->delete();
+                    $current = Year::where('company_id',session('company_id'))->latest()->first();
+                    $current->update(['enabled' => 1]);
+                });
+            } else {
             Year::find($id)->delete();
-            session()->flash('message', 'Record Deleted Successfully.');
+            }
+            session()->flash('message', 'Year Deleted Successfully.');
         }
+    }
+
+    public function activate($id)
+    {
+        DB::transaction(function () {
+            $years = Year::where('company_id',session('company_id'))->get();
+            foreach($years as $year){
+                $year->update(['enabled' => 0]);
+            }
+            $current = Year::where('company_id',session('company_id'))->where('id',$id)->first();
+            $current->update(['enabled' => 1]);
+        });
     }
 }
