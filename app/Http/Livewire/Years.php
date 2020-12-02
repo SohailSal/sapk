@@ -10,11 +10,15 @@ class Years extends Component
 {
     public $years, $begin, $end, $company_id, $y_id;
     public $isOpen = 0;
+    public $result;
 
     public function render()
     {
         $this->years = Year::where('company_id',session('company_id'))->get();
         return view('livewire.years');
+        if($result=='buy'){session()->flash('message', 'Your option is to buy');}
+        if($result=='sell'){session()->flash('message', 'Your option is to sell');}
+        if($result=='wait'){session()->flash('message', 'Your option is to wait');}
     }
 
     public function create()
@@ -40,11 +44,6 @@ class Years extends Component
 
     public function store()
     {
- /*       $this->validate([
-            'begin' => 'required|date',
-            'end' => 'required|date',
-        ]);
-*/
         if(!$this->y_id){
             $previous = Year::where('company_id',session('company_id'))->latest()->first();
             $begin = explode('-', $previous->begin);
@@ -59,6 +58,10 @@ class Years extends Component
                 'company_id' => session('company_id'),
             ]);
         } else {
+            $this->validate([
+                'begin' => 'required|date',
+                'end' => 'required|date',
+            ]);
             $year = Year::findOrFail($this->y_id);
             $year->update(['begin' => $this->begin, 'end' => $this->end]);
         }
@@ -79,7 +82,11 @@ class Years extends Component
 
     public function delete($id)
     {
-        Year::find($id)->delete();
-        session()->flash('message', 'Record Deleted Successfully.');
+        if(count(Year::where('company_id',session('company_id'))->get()) == 1){
+            session()->flash('message', 'Can\'t delete the initial year.');
+        } else {
+            Year::find($id)->delete();
+            session()->flash('message', 'Record Deleted Successfully.');
+        }
     }
 }

@@ -33,4 +33,18 @@
         </tr>
         @endforeach
     </table>
+    <table>
+        <tr>
+            <td>Option one:</td>
+            <td><input type="radio" wire.model="result" name="result" value="buy" checked>{{$result}}</td>
+        </tr>
+        <tr>
+            <td>Option two:</td>
+            <td><input type="radio" wire.model="result" name="result" value="sell"></td>
+        </tr>
+        <tr>
+            <td>Option three:</td>
+            <td><input type="radio" wire.model="result" name="result" value="wait"></td>
+        </tr>
+    </table>
 </div>
