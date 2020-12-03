@@ -58,15 +58,16 @@
     $year = \App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first();
 ?>
                     <div class="inline-flex items-center">
-                        <label for="date_start">Start date:</label>
-                        <input type="text" class="date bg-gray-600 rounded-lg mx-2" name="date_start" value="{{$year->begin}}"/>
+                        <span class=" date" id="dstart">
+                            <input type="text" id="ledgerstart" class=" bg-gray-600 rounded-lg mx-2" name="date_start" value="{{$year->begin}}"/>
+                        </span>
                     </div>
                     <div class="inline-flex items-center">
-                        <label for="date_end">End date:</label>
-                        <input type="text" class="date bg-gray-600 rounded-lg mx-2" name="date_end" value="{{$year->end}}"/>
+                        <span class=" date" id="dend">
+                            <input type="text" id="ledgerend" class=" bg-gray-600 rounded-lg mx-2" name="date_end" value="{{$year->end}}"/>
+                        </span>
                     </div>
                     <div class="inline-flex items-center">
-                        <label for="submit">&nbsp;</label>
                         <button type="submit" class="mx-2 px-3 py-1 rounded-lg border bg-gray-600 hover:bg-gray-800" name="submit">Get Ledger</button>
                     </div>
                 </form>
