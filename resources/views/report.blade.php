@@ -54,13 +54,16 @@
                             @endforeach
                         </select>
                     </div>
+<?php
+    $year = \App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first();
+?>
                     <div class="inline-flex items-center">
                         <label for="date_start">Start date:</label>
-                        <input type="text" class="date bg-gray-600 rounded-lg mx-2" name="date_start"/>
+                        <input type="text" class="date bg-gray-600 rounded-lg mx-2" name="date_start" value="{{$year->begin}}"/>
                     </div>
                     <div class="inline-flex items-center">
                         <label for="date_end">End date:</label>
-                        <input type="text" class="date bg-gray-600 rounded-lg mx-2" name="date_end"/>
+                        <input type="text" class="date bg-gray-600 rounded-lg mx-2" name="date_end" value="{{$year->end}}"/>
                     </div>
                     <div class="inline-flex items-center">
                         <label for="submit">&nbsp;</label>

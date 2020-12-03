@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Year;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Years extends Component
 {
@@ -67,7 +68,7 @@ class Years extends Component
             $year = Year::findOrFail($this->y_id);
             $year->update(['begin' => $this->begin, 'end' => $this->end]);
         }
-        session()->flash('message',  $this->y_id ? 'Company Updated Successfully.' : 'Company Created Successfully.');
+        session()->flash('message',  $this->y_id ? 'Year Updated Successfully.' : 'Year Created Successfully.');
 
         $this->resetInputFields();
         $this->closeModal();
@@ -88,7 +89,7 @@ class Years extends Component
             session()->flash('message', 'Can\'t delete the initial year.');
         } else {
             if(Year::find($id)->enabled == 1){
-                DB::transaction(function () {
+                DB::transaction(function () use ($id){
                     $years = Year::where('company_id',session('company_id'))->get();
                     foreach($years as $year){
                         $year->update(['enabled' => 0]);
@@ -106,7 +107,7 @@ class Years extends Component
 
     public function activate($id)
     {
-        DB::transaction(function () {
+        DB::transaction(function () use ($id){
             $years = Year::where('company_id',session('company_id'))->get();
             foreach($years as $year){
                 $year->update(['enabled' => 0]);

@@ -27,7 +27,7 @@ class Documents extends Component
     public $i = 1;
     public $latest;
     public $diff, $dtotal, $ctotal;
-    public $month, $year;
+    public $year;
     public $search1 = '';
     public $search2 = '';
     public $search3 = '';
@@ -69,9 +69,9 @@ class Documents extends Component
     //    $str1 = Carbon::today()->year . '-' . Carbon::today()->month . '-' . Carbon::today()->day;
     //    $this->search3 = strval($str1);
     //    $this->search4 = strval($str1);
-        $year =  Year::where('company_id',session('company_id'))->where('enabled',1)->first();
-        $this->search3 = $year->begin;
-        $this->search4 = $year->end;
+        $this->year =  Year::where('company_id',session('company_id'))->where('enabled',1)->first();
+        $this->search3 = $this->year->begin;
+        $this->search4 = $this->year->end;
     }
 
     public function add($i)
@@ -115,19 +115,20 @@ class Documents extends Component
         }
 
         $this->total();
-        try{
-        $this->validate([
-            'search3' => [new Range],
-            'search4' => [new Range], 
-            ]);
-        }catch (\Exception $e){
-            return $e->getMessage();
-        }
-
-        
+        if(($this->search3 < $this->year->begin) || ($this->search3 > $this->year->end)){$this->search3 = $this->year->begin;}
+        if(($this->search4 < $this->year->begin) || ($this->search4 > $this->year->end)){$this->search4 = $this->year->end;}
         return view('livewire.sa.documents',['docss'=>Document::where('company_id',session('company_id'))->where('ref','like','%' . $this->search1 . '%')->where('description','like','%' . $this->search2 . '%')->where('date','>=',$this->search3)->where('date','<=',$this->search4)->paginate(10)]);
     }
 
+/*
+    public function updated()
+    {
+        $this->validateOnly([
+            'search3' => ['required','date', new Range],
+//            'search4' => [new Range], 
+        ]);
+    }
+*/
     public function create()
     {
         $this->resetInputFields();
@@ -194,6 +195,9 @@ class Documents extends Component
     public function storee()
     {
         $this->validate();
+        $this->validate([
+            'date' => [new Range],
+        ]);
 
         $doc = Document::where('id',$this->at_id)->where('company_id',session('company_id'))->first();
 

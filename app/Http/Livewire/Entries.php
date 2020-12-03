@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Entry;
+use App\Models\Year;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
@@ -14,18 +15,25 @@ class Entries extends Component
 
     public $document_id, $account_id, $debit, $credit, $at_id;
     public $isOpen = 0;
+    public $year;
     public $search1 = '';
     public $search2 = '';
     public $search3 = '';
 
     public function mount(){
-        $str1 = Carbon::today()->year . '-' . Carbon::today()->month . '-' . Carbon::today()->day;
-        $this->search2 = strval($str1);
-        $this->search3 = strval($str1);
+//        $str1 = Carbon::today()->year . '-' . Carbon::today()->month . '-' . Carbon::today()->day;
+//        $this->search2 = strval($str1);
+//        $this->search3 = strval($str1);
+        $this->year =  Year::where('company_id',session('company_id'))->where('enabled',1)->first();
+        $this->search2 = $this->year->begin;
+        $this->search3 = $this->year->end;
     }
 
     public function render()
     {
+        if(($this->search2 < $this->year->begin) || ($this->search2 > $this->year->end)){$this->search2 = $this->year->begin;}
+        if(($this->search3 < $this->year->begin) || ($this->search3 > $this->year->end)){$this->search3 = $this->year->end;}
+
         $entries = DB::table('entries')
         ->join('documents', 'documents.id', '=', 'entries.document_id')
         ->whereDate('documents.date', '>=', $this->search2)
