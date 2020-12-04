@@ -33,7 +33,7 @@
                 </div>
             @endif
             <div class="flex items-center justify-between">
-            <x-jet-button x-ref="go" class="flex-wrap mb-2 border" wire:click="create()">Create New Company</x-jet-button>
+            <button x-ref="go" class="flex-wrap mb-2 px-2 py-1 border border-white rounded-lg text-white" wire:click="create()">Create New Company</button>
             @if($isOpen)
                 @include('livewire.sa.cocreate')
             @endif
