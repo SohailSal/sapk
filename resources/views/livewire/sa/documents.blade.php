@@ -20,7 +20,7 @@
         </div>
     </div>
 </x-slot>
-<div class=" bg-gray-600 x-data x-init="$refs.go.focus()">
+<div class=" bg-gray-600" x-data x-init="$refs.go.focus()">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="overflow-hidden sm:rounded-lg bg-gray-800 shadow-lg px-3 py-3 mt-3">
             @if (session()->has('message'))
@@ -34,7 +34,7 @@
             @endif
             <div class="flex items-center justify-between">
                 @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
-                <x-jet-button x-ref="go" class="flex-wrap mb-2 border" wire:click="create()">New Entry</x-jet-button>
+                <button x-ref="go" class="flex-wrap mb-2 px-2 py-1 border border-white rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:shadow-outline-indigo" wire:click="create()">New Entry</button>
                 @endcannot
                 @if($isOpen)
                     @include('livewire.sa.try2')
