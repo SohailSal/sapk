@@ -10,7 +10,7 @@ class Year extends Model
     use HasFactory;
 
     protected $fillable = [
-        'begin', 'end','enabled','company_id'
+        'begin', 'end','enabled','company_id','closed'
     ];
 
     public function company(){

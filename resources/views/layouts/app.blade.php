@@ -83,6 +83,11 @@
                 $(this).val(end);
             });
 
+            $(".delbutton").on("click",function(){    
+                $(this).attr('disabled', true);
+                return true;
+            });
+
         });
         </script>
     </body>

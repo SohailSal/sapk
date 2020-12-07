@@ -64,7 +64,7 @@
                         <div class="flex justify-between">
                             <a href="{{('ledger/'.Crypt::encrypt($account->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white hover:no-underline">Ledger in PDF</a>
                             <x-jet-button wire:click="edit({{ $account->id }})" >Edit</x-jet-button>
-                            @if(count($account->entries)==0)<x-jet-danger-button wire:click="delete({{ $account->id }})">Delete</x-jet-danger-button>@endif
+                            @if(count($account->entries)==0)<x-jet-danger-button class="delbutton" wire:click.prevent="delete({{ $account->id }})">Delete</x-jet-danger-button>@endif
                         </div>
                         </td>
                     </tr>

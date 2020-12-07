@@ -12,6 +12,7 @@ use App\Http\Livewire\Companies;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\CloseYear;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,3 +62,5 @@ Route::get('/report', function () {
 
 Route::get('generate', AcGroups::class)->middleware('df');
 Route::get('range', [PDFController::class, 'rangeLedger']);
+
+Route::get('close', CloseYear::class);

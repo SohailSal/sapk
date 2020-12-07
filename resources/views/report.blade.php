@@ -23,17 +23,17 @@
     </x-slot>
 
 <div class="py-6 bg-gray-600"">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="overflow-auto sm:rounded-lg  bg-gray-800 shadow-lg px-4 py-4 ">
             @if (session()->has('message'))
-                <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
-                  <div class="flex">
+                <div class="bg-indigo-100 border-t-4 border-indigo-500 rounded-b text-indigo-900 px-4 shadow-md mx-4" role="alert">
+                  <div class="flex-1 align-middle">
                     <div>
-                      <p class="text-sm">{{ session('message') }}</p>
+                      <p class="text-sm py-2">{{ session('message') }}</p>
                     </div>
                   </div>
                 </div>
             @endif
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="overflow-auto sm:rounded-lg  bg-gray-800 shadow-lg px-4 py-4 ">
             <div class="flex items-center justify-between">
                 <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center hover:no-underline" href="{{url('tb')}}">Trial Balance</a>
                 <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center hover:no-underline" href="{{url('bs')}}">Balance Sheet</a>

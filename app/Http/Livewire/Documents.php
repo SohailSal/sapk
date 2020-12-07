@@ -62,14 +62,11 @@ class Documents extends Component
 
 
     public function mount(){
-        $this->docs = Document::where('company_id',session('company_id'))->get();
+        $this->year =  Year::where('company_id',session('company_id'))->where('enabled',1)->first();
+        $this->docs = Document::where('company_id',session('company_id'))->where('date','>=',$this->year->begin)->where('date','<=',$this->year->end)->get();
         $this->types = DocumentType::where('company_id',session('company_id'))->get();
         $this->type_id = DocumentType::where('company_id',session('company_id'))->first()->id;
         $this->type = $this->types->where('id',$this->type_id)->first();
-    //    $str1 = Carbon::today()->year . '-' . Carbon::today()->month . '-' . Carbon::today()->day;
-    //    $this->search3 = strval($str1);
-    //    $this->search4 = strval($str1);
-        $this->year =  Year::where('company_id',session('company_id'))->where('enabled',1)->first();
         $this->search3 = $this->year->begin;
         $this->search4 = $this->year->end;
     }
@@ -95,19 +92,22 @@ class Documents extends Component
 
     public function render()
     {
-        $this->docs = Document::where('company_id',session('company_id'))->get();
+        $this->docs = Document::where('company_id',session('company_id'))->where('date','>=',$this->year->begin)->where('date','<=',$this->year->end)->get();
         $this->type = $this->types->where('id',$this->type_id)->first();
-
+        if(! $this->date){
+            $this->date = Document::where('type_id',$this->type_id)->where('company_id',session('company_id'))->where('date','>=',$this->year->begin)->where('date','<=',$this->year->end)->latest()->first()->date;
+        }
         if(!$this->at_id){
             if(count($this->docs->where('type_id',$this->type_id))){
-                $lastref = Document::where('type_id',$this->type_id)->where('company_id',session('company_id'))->latest()->first()->ref;
+                $lastref = Document::where('type_id',$this->type_id)->where('company_id',session('company_id'))->where('date','>=',$this->year->begin)->where('date','<=',$this->year->end)->latest()->first()->ref;
                 $expNum=explode('/', $lastref);
                 $this->latest = $expNum[3];
                 ++$this->latest;
                 } else {
                     $this->latest = 1;      // for first voucher. only works on fresh database starting from id=1 or else error in entries
             }
-            $this->ref = $this->type->prefix . '/' . Carbon::today()->year . '/' . Carbon::today()->month . '/' .$this->latest;
+            $nowdate = Carbon::parse($this->date);
+            $this->ref = $this->type->prefix . '/' . $nowdate->year . '/' . $nowdate->month . '/' .$this->latest;
         }
         else{
                 $ref = Document::where('id',$this->at_id)->where('company_id',session('company_id'))->first()->ref;
@@ -137,7 +137,12 @@ class Documents extends Component
         $this->credit[0]='0';
         $this->credit[1]='0';
         $this->accounts = Account::where('company_id',session('company_id'))->get();
-        $this->date = Carbon::today()->toDateString();
+//        $this->date = Carbon::today()->toDateString();
+        if(count($this->docs->where('type_id',$this->type_id))){
+            $this->date = Document::where('type_id',$this->type_id)->where('company_id',session('company_id'))->where('date','>=',$this->year->begin)->where('date','<=',$this->year->end)->latest()->first()->date;
+        } else {
+            $this->date = $this->year->begin;
+        }
         $this->openModal();
     }
 
