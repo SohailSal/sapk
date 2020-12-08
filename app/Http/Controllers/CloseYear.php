@@ -41,7 +41,8 @@ class CloseYear extends Controller
                 ]);
 
             $id4= \App\Models\AccountType::where('name','Revenue')->first()->id;
-            $grps4 = AccountGroup::where('company_id',session('company_id'))->where('type_id',$id4)->get();
+            $id5= \App\Models\AccountType::where('name','Expenses')->first()->id;
+            $grps4 = AccountGroup::where('company_id',session('company_id'))->where('type_id',$id4)->orWhere('type_id',$id5)->get();
             $balance4 = [];
             $ite4 = 0;
             foreach($grps4 as $group){
@@ -65,6 +66,10 @@ class CloseYear extends Controller
                     ]);
                 }
             }
+
+
+//            $profit = abs(array_sum($gbalance4)) - array_sum($gbalance5);
+
             Entry::create([
                 'document_id' => $doc->id,
                 'account_id' => $claccount->id,
@@ -73,25 +78,7 @@ class CloseYear extends Controller
                 'company_id' => session('company_id'),
             ]);
             
-    /*
-            $id5= \App\Models\AccountType::where('name','Expenses')->first()->id;
-            $grps5 = \App\Models\AccountGroup::where('company_id',session('company_id'))->where('type_id',$id5)->get();
-            $gbalance5 = [];
-            $gite5 = 0;
-            foreach($grps5 as $group){
-                $balance = 0;
-                $lastbalance = 0;
-                foreach($group->accounts as $account){
-                    foreach ($account->entries as $entry){
-                        $balance= $lastbalance + floatval($entry->debit) - floatval($entry->credit);
-                        $lastbalance = $balance;
-                    }
-                }
-                $gbalance5[$gite5++] = $balance;
-            }
-                
-            $profit = abs(array_sum($gbalance4)) - array_sum($gbalance5);
-    */
+
             $year->update(['closed' => 1]);
         });
         session()->flash('message', 'Fiscal Year closed successfully.');
