@@ -196,6 +196,7 @@
                 </td>
             </tr>
             @endforeach
+            @if($profit != 0)
             <tr>
                 <td style="width: 15%;">
                     Accumulated Profit
@@ -204,6 +205,7 @@
                     {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($profit,'Rs.'))}}
                 </td>
             </tr>
+            @endif
             <tr>
                 <td style="width: 15%;">
                     Equity - Total

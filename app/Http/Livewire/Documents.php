@@ -95,7 +95,12 @@ class Documents extends Component
         $this->docs = Document::where('company_id',session('company_id'))->where('date','>=',$this->year->begin)->where('date','<=',$this->year->end)->get();
         $this->type = $this->types->where('id',$this->type_id)->first();
         if(! $this->date){
-            $this->date = Document::where('type_id',$this->type_id)->where('company_id',session('company_id'))->where('date','>=',$this->year->begin)->where('date','<=',$this->year->end)->latest()->first()->date;
+            if(count($this->docs->where('type_id',$this->type_id))){
+                $this->date = Document::where('type_id',$this->type_id)->where('company_id',session('company_id'))->where('date','>=',$this->year->begin)->where('date','<=',$this->year->end)->latest()->first()->date;
+            } else {
+                $this->date = $this->year->begin;
+            }
+ //           $this->date = Document::where('type_id',$this->type_id)->where('company_id',session('company_id'))->where('date','>=',$this->year->begin)->where('date','<=',$this->year->end)->latest()->first()->date;
         }
         if(!$this->at_id){
             if(count($this->docs->where('type_id',$this->type_id))){

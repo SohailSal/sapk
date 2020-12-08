@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use App\Models\AccountGroup;
 use App\Models\Account;
 use App\Models\Entry;
@@ -20,20 +22,21 @@ class CloseYear extends Controller
     {
         DB::transaction(function () {
             $year =  \App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first();
+            $yearef = Carbon::parse($year->end);
             $claccount;
             
-            if(! Account::where('company_id',session('company_id'))->where('name','Income Summary')->first()){
+            if(! Account::where('company_id',session('company_id'))->where('name','Accumulated Profit')->first()){
                 $claccount = Account::create([
-                'name' => 'Income Summary',
-                'group_id' => AccountGroup::where('company_id',session('company_id'))->latest()->first()->id,
+                'name' => 'Accumulated Profit',
+                'group_id' => AccountGroup::where('company_id',session('company_id'))->first()->id,
                 'company_id' => session('company_id'),
                 ]);
             } else {
-                $claccount = Account::where('company_id',session('company_id'))->where('name','Income Summary')->first();
+                $claccount = Account::where('company_id',session('company_id'))->where('name','Accumulated Profit')->first();
             }
 
             $doc = \App\Models\Document::create([
-                    'ref' => 'close',
+                    'ref' => 'CL/' . $yearef->year . '/' . $yearef->month . '/00',
                     'date' => $year->end,
                     'description' => 'To the record the closing entry.',
                     'type_id' => \App\Models\DocumentType::where('company_id',session('company_id'))->first()->id,
@@ -42,7 +45,12 @@ class CloseYear extends Controller
 
             $id4= \App\Models\AccountType::where('name','Revenue')->first()->id;
             $id5= \App\Models\AccountType::where('name','Expenses')->first()->id;
-            $grps4 = AccountGroup::where('company_id',session('company_id'))->where('type_id',$id4)->orWhere('type_id',$id5)->get();
+            $grps4 = AccountGroup::where('company_id',session('company_id'))
+                        ->where(function (Builder $query)  use ($id4,$id5) {
+                            return $query->where('type_id',$id4)
+                                         ->orWhere('type_id',$id5);
+                        })->get();
+
             $balance4 = [];
             $ite4 = 0;
             foreach($grps4 as $group){
