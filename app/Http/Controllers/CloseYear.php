@@ -57,12 +57,21 @@ class CloseYear extends Controller
                 foreach($group->accounts as $account){
                     $balance = 0;
                     $lastbalance = 0;
-                    foreach ($account->entries as $entry){
-                        if(($entry->document->date >= $year->begin)&&($entry->document->date <= $year->end)){
-                            $balance= $lastbalance + floatval($entry->debit) - floatval($entry->credit);
-                            $lastbalance = $balance;
-                        }
+
+                    $entries = DB::table('documents')
+                        ->join('entries', 'documents.id', '=', 'entries.document_id')
+                        ->whereDate('documents.date', '>=', $year->begin)
+                        ->whereDate('documents.date', '<=', $year->end)
+                        ->where('documents.company_id',session('company_id'))
+                        ->where('entries.account_id','=',$account->id)
+                        ->select('entries.debit', 'entries.credit')
+                        ->get();
+
+                    foreach ($entries as $entry){
+                        $balance= $lastbalance + floatval($entry->debit) - floatval($entry->credit);
+                        $lastbalance = $balance;
                     }
+
                     $balance4[$ite4++] = $balance;
                     $balance = -1 * $balance;
                     Entry::create([
@@ -86,8 +95,8 @@ class CloseYear extends Controller
                 'company_id' => session('company_id'),
             ]);
             
-
             $year->update(['closed' => 1]);
+
         });
         session()->flash('message', 'Fiscal Year closed successfully.');
         return view('report');

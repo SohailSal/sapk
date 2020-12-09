@@ -8,6 +8,7 @@ use App\Models\Account;
 use App\Models\AccountGroup;
 use App\Models\Entry;
 use App\Models\Document;
+use App\Models\Year;
 use Illuminate\Support\Facades\DB;
 use \Crypt;
 use PDF;
