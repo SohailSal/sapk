@@ -37,7 +37,11 @@
                 <button x-ref="go" class="flex-wrap mb-2 px-2 py-1 border border-white rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:shadow-outline-indigo" wire:click="create()">New Entry</button>
                 @endcannot
                 @if($isOpen)
-                    @include('livewire.sa.try2')
+                    @if(App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first()->closed == 0)
+                        @include('livewire.sa.try2')
+                    @else
+                        <script> alert('Can\'t enter! This fiscal year is Closed.') </script>
+                    @endif
                 @endif
                 <div class="">
                       <label class="block text-white text-sm font-bold mb-2">Ref:</label>
@@ -78,8 +82,10 @@
                         <td class="border px-4 py-1">
                         <div class="flex justify-between">
                             <a href="{{url('voucher/'.Crypt::encrypt($doc->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white hover:no-underline">Voucher in PDF</a>
-                            <x-jet-button wire:click="edit({{ $doc->id }})" >Edit</x-jet-button>
-                            <x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>
+                            @if(App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first()->closed == 0)
+                                <x-jet-button wire:click="edit({{ $doc->id }})" >Edit</x-jet-button>
+                                <x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>
+                            @endif
                         </div>
                         </td>
                         @endcannot

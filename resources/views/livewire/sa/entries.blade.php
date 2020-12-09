@@ -33,10 +33,11 @@
                 </div>
             @endif
             <div class="flex items-center justify-between">
-                <x-jet-button class="flex-wrap mb-2 border" wire:click="create()">Create New Entry</x-jet-button>
+<!--                <x-jet-button class="flex-wrap mb-2 border" wire:click="create()">Create New Entry</x-jet-button>
                 @if($isOpen)
                     @include('livewire.sa.entrycreate')
                 @endif
+-->
                 <div class="">
                     <label class="block text-white text-sm font-bold mb-2">Account:</label>
                     <select wire:model="search1" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo">
@@ -48,11 +49,11 @@
                 </div>
                 <div class="">
                       <label class="block text-white text-sm font-bold mb-2">Start date:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search2">
+                          <input type="date" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search2">
                 </div>
                 <div class="">
                       <label class="block text-white text-sm font-bold mb-2">End date:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search3">
+                          <input type="date" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search3">
                 </div>
                 <span class="flex-wrap ml-5">{{$entries->links()}}</span>
             </div>
@@ -64,7 +65,7 @@
                         <th class="px-4 py-1">Description</th>
                         <th class="px-4 py-1">Debit</th>
                         <th class="px-4 py-1">Credit</th>
-                        <th class="px-4 py-1">Action</th>
+<!--                        <th class="px-4 py-1">Action</th>   -->
                     </tr>
                 </thead>
                 <tbody>
@@ -75,10 +76,11 @@
                         <td class="border px-4 py-1">{{ $entry->description }}</td>
                         <td class="border px-4 py-1">{{ $entry->debit }}</td>
                         <td class="border px-4 py-1">{{ $entry->credit }}</td>
-                        <td class="border px-4 py-1">
+<!--                        <td class="border px-4 py-1">
                         <x-jet-button wire:click="edit({{ $entry->id }})" >Edit</x-jet-button>
                         <x-jet-danger-button wire:click="delete({{ $entry->id }})" >Delete</x-jet-danger-button>
                         </td>
+-->
                     </tr>
                     @endforeach
                 </tbody>
