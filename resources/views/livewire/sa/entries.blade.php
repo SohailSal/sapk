@@ -49,11 +49,15 @@
                 </div>
                 <div class="">
                       <label class="block text-white text-sm font-bold mb-2">Start date:</label>
-                          <input type="date" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search2">
+                        <span class=" date" id="dstart">
+                          <input type="text" id="ledgerstart" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search2">
+                        </span>
                 </div>
                 <div class="">
                       <label class="block text-white text-sm font-bold mb-2">End date:</label>
-                          <input type="date" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search3">
+                        <span class=" date" id="dend">
+                          <input type="text" id="ledgerend" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search3">
+                        </span>
                 </div>
                 <span class="flex-wrap ml-5">{{$entries->links()}}</span>
             </div>
@@ -87,4 +91,51 @@
             </table>
         </div>
     </div>
+    <script>
+            $(document).ready(function() {
+
+        <?php $year = \App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first(); ?>
+        var start = "<?php echo $year->begin; ?>";
+        var end = "<?php echo $year->end; ?>";
+        var startf = new Date(start);
+        var endf = new Date(end);
+
+            $('.date').datepicker({
+                    autoclose: true,
+                    format: "yyyy-mm-dd",
+                    startDate: startf ,
+                    endDate: endf ,
+                    immediateUpdates: true,
+                }).datepicker();
+
+            $('#dstart').datepicker().on('change', function (ev) {
+                @this.set('search2', ev.target.value);
+                $('#ledgerstart').change();
+            });
+
+            $('#ledgerstart').change(function(){
+                thisstart = new Date($(this).val());
+                if(thisstart < startf)
+                $(this).val(start);
+            });
+
+            $('#dend').datepicker().on('change', function (ev) {
+                @this.set('search3', ev.target.value);
+                $('#ledgerend').change();
+            });
+
+            $('#ledgerend').change(function(){
+                thisend = new Date($(this).val());
+                if(thisend > endf)
+                $(this).val(end);
+            });
+
+            $(".delbutton").on("click",function(){    
+                $(this).attr('disabled', true);
+                return true;
+            });
+
+        });
+
+    </script>
 </div>

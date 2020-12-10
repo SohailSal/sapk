@@ -31,8 +31,8 @@ class Entries extends Component
 
     public function render()
     {
-        if(($this->search2 < $this->year->begin) || ($this->search2 > $this->year->end)){$this->search2 = $this->year->begin;}
-        if(($this->search3 < $this->year->begin) || ($this->search3 > $this->year->end)){$this->search3 = $this->year->end;}
+//        if(($this->search2 < $this->year->begin) || ($this->search2 > $this->year->end)){$this->search2 = $this->year->begin;}
+//        if(($this->search3 < $this->year->begin) || ($this->search3 > $this->year->end)){$this->search3 = $this->year->end;}
 
         $entries = DB::table('entries')
         ->join('documents', 'documents.id', '=', 'entries.document_id')
