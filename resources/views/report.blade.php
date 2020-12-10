@@ -35,9 +35,9 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="overflow-auto sm:rounded-lg  bg-gray-800 shadow-lg px-4 py-4 ">
             <div class="flex items-center justify-between">
-                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center hover:no-underline" href="{{url('tb')}}">Trial Balance</a>
-                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center hover:no-underline" href="{{url('bs')}}">Balance Sheet</a>
-                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center hover:no-underline" href="{{url('pl')}}">Profit or Loss A/c</a>
+                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center " href="{{url('tb')}}">Trial Balance</a>
+                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center " href="{{url('bs')}}">Balance Sheet</a>
+                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center " href="{{url('pl')}}">Profit or Loss A/c</a>
             </div>
         </div>
 
@@ -74,6 +74,46 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+
+        var start = "<?php echo $year->begin; ?>";
+        var end = "<?php echo $year->end; ?>";
+        var startf = new Date(start);
+        var endf = new Date(end);
+
+            $('.date').datepicker({
+                    autoclose: true,
+                    format: "yyyy-mm-dd",
+                    startDate: startf ,
+                    endDate: endf ,
+                    immediateUpdates: true,
+                }).datepicker();
+
+            $('#dstart').datepicker().on('changeDate', function (ev) {
+                $('#ledgerstart').change();
+            });
+
+            $('#ledgerstart').change(function(){
+                thisstart = new Date($(this).val());
+                if(thisstart < startf)
+                $(this).val(start);
+            });
+
+            $('#dend').datepicker().on('changeDate', function (ev) {
+                $('#ledgerend').change();
+            });
+
+            $('#ledgerend').change(function(){
+                thisend = new Date($(this).val());
+                if(thisend > endf)
+                $(this).val(end);
+            });
+
+        });
+        </script>
+
 </div>
 
 

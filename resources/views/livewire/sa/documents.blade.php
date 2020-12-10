@@ -81,7 +81,7 @@
                         @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
                         <td class="border px-4 py-1">
                         <div class="flex justify-between">
-                            <a href="{{url('voucher/'.Crypt::encrypt($doc->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white hover:no-underline">Voucher in PDF</a>
+                            <a href="{{url('voucher/'.Crypt::encrypt($doc->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white">Voucher in PDF</a>
                             @if(App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first()->closed == 0)
                                 <x-jet-button wire:click="edit({{ $doc->id }})" >Edit</x-jet-button>
                                 <x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>

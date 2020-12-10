@@ -60,7 +60,7 @@
                         <td class="border px-4 py-1">
                         <div class="flex justify-between">
                             <x-jet-button wire:click="edit({{ $group->id }})" >Edit</x-jet-button>
-                            @if(count($group->accounts)==0)<x-jet-danger-button wire:click="delete({{ $group->id }})" >Delete</x-jet-danger-button>@endif
+                            @if(count($group->accounts)==0)<x-jet-danger-button class="delbutton" wire:click="delete({{ $group->id }})" >Delete</x-jet-danger-button>@endif
                         </div>
                         </td>
                     </tr>

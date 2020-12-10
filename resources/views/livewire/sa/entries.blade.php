@@ -50,13 +50,13 @@
                 <div class="">
                       <label class="block text-white text-sm font-bold mb-2">Start date:</label>
                         <span class=" date" id="dstart">
-                          <input type="text" id="ledgerstart" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search2">
+                          <input type="text" id="ledgerstart" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo" wire:model="search2">
                         </span>
                 </div>
                 <div class="">
                       <label class="block text-white text-sm font-bold mb-2">End date:</label>
                         <span class=" date" id="dend">
-                          <input type="text" id="ledgerend" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="search3">
+                          <input type="text" id="ledgerend" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="search3">
                         </span>
                 </div>
                 <span class="flex-wrap ml-5">{{$entries->links()}}</span>
@@ -108,33 +108,25 @@
                     immediateUpdates: true,
                 }).datepicker();
 
-            $('#dstart').datepicker().on('change', function (ev) {
-                @this.set('search2', ev.target.value);
-                $('#ledgerstart').change();
+            $('#dstart').datepicker().on('change', function (e) {
+                @this.set('search2', e.target.value);
             });
 
-            $('#ledgerstart').change(function(){
+            $('#dend').datepicker().on('change', function (e) {
+                @this.set('search3', e.target.value);
+            });
+
+            $('#ledgerstart').on('change', function(){
                 thisstart = new Date($(this).val());
                 if(thisstart < startf)
                 $(this).val(start);
             });
 
-            $('#dend').datepicker().on('change', function (ev) {
-                @this.set('search3', ev.target.value);
-                $('#ledgerend').change();
-            });
-
-            $('#ledgerend').change(function(){
+            $('#ledgerend').on('change', function(){
                 thisend = new Date($(this).val());
                 if(thisend > endf)
                 $(this).val(end);
             });
-
-            $(".delbutton").on("click",function(){    
-                $(this).attr('disabled', true);
-                return true;
-            });
-
         });
 
     </script>

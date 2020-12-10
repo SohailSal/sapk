@@ -24,7 +24,9 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Date (YYYY-MM-DD):</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="date">
+                      <span class=" " id="dstart">
+                        <input type="text" id="ledgerstart" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="date">
+                      </span>
 
                   </div>
             </div>
@@ -196,4 +198,26 @@
         </div>
       </form>
     </div>
+
+    <script>
+            $(document).ready(function() {
+
+        <?php $year = \App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first(); ?>
+        var start = "<?php echo $year->begin; ?>";
+        var end = "<?php echo $year->end; ?>";
+        var startf = new Date(start);
+        var endf = new Date(end);
+
+            $('.datee').datepicker({
+                    autoclose: true,
+                    format: "yyyy-mm-dd",
+                    startDate: startf ,
+                    endDate: endf ,
+                    immediateUpdates: true,
+                }).datepicker();
+
+        });
+
+    </script>
+
 </div>
