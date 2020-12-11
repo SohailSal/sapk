@@ -24,8 +24,8 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Date (YYYY-MM-DD):</label>
-                      <span class=" " id="dstart">
-                        <input type="text" id="ledgerstart" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="date">
+                      <span class="datee " id="dstart">
+                        <input type="text" id="ledgerstart" onkeydown="return false" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="date">
                       </span>
 
                   </div>
@@ -215,6 +215,15 @@
                     endDate: endf ,
                     immediateUpdates: true,
                 }).datepicker();
+
+            $('#dstart').datepicker().on('changeDate', function (e) {
+                $('#ledgerstart').change(e);
+            });
+
+            $('#ledgerstart').change(function(e){
+                @this.set('date', e.target.value);
+            });
+
 
         });
 
