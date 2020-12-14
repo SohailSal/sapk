@@ -33,8 +33,9 @@
                 </div>
             @endif
             <div class="flex items-center justify-between">
+                <span class="flex">
                 @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
-                <button x-ref="go" class="flex-wrap mb-2 mr-2 px-2 py-1 border border-white rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:shadow-outline-indigo" wire:click="create()">New Entry</button>
+                <button x-ref="go" class="flex-wrap mb-2 mr-2 px-2 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" wire:click="create()">New Transaction</button>
                 @endcannot
                 @if($isOpen)
                     @if(App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first()->closed == 0)
@@ -43,22 +44,23 @@
                         <script> alert('Can\'t enter! This fiscal year is Closed.') </script>
                     @endif
                 @endif
-                <div class="flex">
-                      <input type="text" class="flex-1 shadow appearance-none rounded w-36 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:shadow-outline-indigo" placeholder="Search by Ref" wire:model.lazy="search1">
+                <div class="flex-1">
+                      <input type="text" class="shadow appearance-none rounded w-36 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" placeholder="Search by Ref" wire:model.lazy="search1">
                 </div>
-                <div class="flex">
-                      <input type="text" class="flex-1 shadow appearance-none rounded w-48 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:shadow-outline-indigo" placeholder="Search by Description" wire:model.lazy="search2">
+                <div class="flex-1">
+                      <input type="text" class="shadow appearance-none rounded w-48 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" placeholder="Search by Description" wire:model.lazy="search2">
                 </div>
                 <div class="flex-1">
                       <span class="date" id="dstart">
-                          <input type="text" id="istart" onkeydown="return allow(event)" class="shadow appearance-none rounded w-28 py-1 px-1 mb-2 bg-gray-600 text-white focus:shadow-outline-indigo" wire:model.lazy="search3">
+                          <input type="text" id="istart" onkeydown="return allow(event)" class="shadow appearance-none rounded w-28 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" wire:model.lazy="search3">
                       </span>
                 </div>
                 <div class="flex-1">
                       <span class="date" id="dend">
-                          <input type="text" id="iend" onkeydown="return allow(event)" class="shadow appearance-none rounded w-28 py-1 px-1 mb-2 bg-gray-600 text-white focus:shadow-outline-indigo" wire:model.lazy="search4">
+                          <input type="text" id="iend" onkeydown="return allow(event)" class="shadow appearance-none rounded w-28 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" wire:model.lazy="search4">
                       </span>
                 </div>
+                </span>
                 <span class="flex-wrap ml-5">{{$docss->links()}}</span>
             </div>
             <table class="table-auto w-full">

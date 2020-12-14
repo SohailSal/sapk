@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Account;
 use App\Models\AccountGroup;
+use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
 class Accounts extends Component
@@ -14,10 +15,19 @@ class Accounts extends Component
     public $groups, $name, $group_id, $ag_id;
     public $isOpen = 0;
     public $search = '';
+    public $search2 = '';
 
     public function render()
     {
-        return view('livewire.sa.accounts',['accounts'=>Account::where('company_id',session('company_id'))->where('name','like','%' . $this->search . '%')->paginate(10)]);
+        $accounts = DB::table('accounts')
+        ->join('account_groups', 'account_groups.id', '=', 'accounts.group_id')
+        ->where('account_groups.company_id',session('company_id'))
+        ->where('account_groups.name','like','%' . $this->search2 . '%')
+        ->select('accounts.id','accounts.number', 'accounts.name', 'account_groups.name as groupName')
+        ->where('accounts.name','like','%' . $this->search . '%')
+        ->paginate(10);
+
+        return view('livewire.sa.accounts',['accounts' => $accounts]);
     }
 
     public function create()

@@ -33,16 +33,20 @@
                 </div>
             @endif
             <div class="flex items-center justify-between">
-              @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
-              <x-jet-button class="flex-wrap mb-2 border" wire:click="create()">Create New Account</x-jet-button>
-              @endcannot
+                <span class="flex">
+                @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
+                <button class="flex-wrap mb-2 mr-2 px-2 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" wire:click="create()">New Account</button>
+                @endcannot
                 @if($isOpen)
                     @include('livewire.sa.accountcreate')
                 @endif
-                <div class="">
-                      <label class="block text-white text-sm font-bold mb-2">Account:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="search">
+                <div class="flex-1">
+                      <input type="text" class="shadow appearance-none rounded w-36 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" placeholder="Account Name" wire:model="search">
                 </div>
+                <div class="flex-1">
+                      <input type="text" class="shadow appearance-none rounded w-36 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" placeholder="Group Name" wire:model="search2">
+                </div>
+                </span>
                 <span class="flex-wrap ml-5">{{$accounts->links()}}</span>
             </div>
             <table class="table-auto w-full">
@@ -51,7 +55,7 @@
                         <th class="px-4 py-1">ID</th>
                         <th class="px-4 py-1">Name of Account</th>
                         <th class="px-4 py-1">Group of Account</th>
-                        <th class="px-4 py-1 text-center w-auto">Tasks</th>
+                        <th class="px-4 py-1 text-center w-2/6" colspan="3">Tasks</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,13 +63,15 @@
                     <tr class="text-white">
                         <td class="border px-4 py-1">{{ $account->id }}</td>
                         <td class="border px-4 py-1">{{ $account->name }}</td>
-                        <td class="border px-4 py-1">{{ $account->accountGroup->name }}</td>
-                        <td class="border px-4 py-1">
-                        <div class="flex justify-between">
-                            <a href="{{('ledger/'.Crypt::encrypt($account->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white hover:no-underline">Ledger in PDF</a>
-                            <x-jet-button wire:click="edit({{ $account->id }})" >Edit</x-jet-button>
-                            @if(count($account->entries)==0)<x-jet-danger-button class="delbutton" wire:click.prevent="delete({{ $account->id }})">Delete</x-jet-danger-button>@endif
-                        </div>
+                        <td class="border px-4 py-1">{{ $account->groupName }}</td>
+                        <td class="border-b px-4 text-center">
+                            <a href="{{('ledger/'.Crypt::encrypt($account->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Ledger in PDF</a>
+                        </td>
+                        <td class="border-b px-4 text-center">
+                            <button wire:click="edit({{ $account->id }})" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Edit</button>
+                        </td>
+                        <td class="border-b border-r px-4 text-center">
+                            @if(count(App\Models\Account::where('id',$account->id)->first()->entries)==0)<button class="delbutton bg-red-600 hover:bg-red-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline" wire:click.prevent="delete({{ $account->id }})" >Delete</button>@endif
                         </td>
                     </tr>
                     @endforeach
