@@ -26,6 +26,7 @@
             $fmt->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
             $fmt->setSymbol(NumberFormatter::CURRENCY_SYMBOL, '');
             $dt = \Carbon\Carbon::now(new DateTimeZone('Asia/Karachi'))->format('M d, Y - h:m a');
+            $year =  \App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first();
 
                 $id4= \App\Models\AccountType::where('name','Revenue')->first()->id;
                 $grps4 = \App\Models\AccountGroup::where('company_id',session('company_id'))->where('type_id',$id4)->get();
@@ -35,7 +36,21 @@
                     $balance = 0;
                     $lastbalance = 0;
                     foreach($group->accounts as $account){
-                        foreach ($account->entries as $entry){
+
+                        $entries = Illuminate\Support\Facades\DB::table('documents')
+                            ->join('entries', 'documents.id', '=', 'entries.document_id')
+                            ->whereDate('documents.date', '>=', $year->begin)
+                            ->whereDate('documents.date', '<=', $year->end)
+                            ->where('documents.company_id',session('company_id'))
+                            ->where('entries.account_id','=',$account->id)
+                            ->select('entries.debit', 'entries.credit')
+                            ->get();
+
+                        $cnt = count($entries);
+                        foreach ($entries as $entry){
+                            if((--$cnt <= 0) && ($year->closed)){
+                                break;
+                            }
                             $balance= $lastbalance + floatval($entry->debit) - floatval($entry->credit);
                             $lastbalance = $balance;
                         }
@@ -51,7 +66,21 @@
                     $balance = 0;
                     $lastbalance = 0;
                     foreach($group->accounts as $account){
-                        foreach ($account->entries as $entry){
+
+                        $entries = Illuminate\Support\Facades\DB::table('documents')
+                            ->join('entries', 'documents.id', '=', 'entries.document_id')
+                            ->whereDate('documents.date', '>=', $year->begin)
+                            ->whereDate('documents.date', '<=', $year->end)
+                            ->where('documents.company_id',session('company_id'))
+                            ->where('entries.account_id','=',$account->id)
+                            ->select('entries.debit', 'entries.credit')
+                            ->get();
+
+                        $cnt = count($entries);
+                        foreach ($entries as $entry){
+                            if((--$cnt <= 0) && ($year->closed)){
+                                break;
+                            }
                             $balance= $lastbalance + floatval($entry->debit) - floatval($entry->credit);
                             $lastbalance = $balance;
                         }

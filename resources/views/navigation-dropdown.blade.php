@@ -47,20 +47,20 @@
 
                     <x-slot name="content">
                         <!-- Account Management -->
-                        <div class="block px-4 py-2 text-xs text-gray-400">
+                        <div class="block px-4 py-2 text-xs text-gray-600">
                             {{ __('Manage Account') }}
                         </div>
 
                         <x-jet-dropdown-link href="/user/profile">
                             {{ __('Profile') }}
                         </x-jet-dropdown-link>
-
+<!--
                         @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                             <x-jet-dropdown-link href="/user/api-tokens">
                                 {{ __('API Tokens') }}
                             </x-jet-dropdown-link>
                         @endif
-
+-->
                         <div class="border-t border-gray-100"></div>
 
                         <!-- Team Management -->

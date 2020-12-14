@@ -22,7 +22,7 @@
       </div>
     </x-slot>
 
-<div class="py-6 bg-gray-600"">
+<div class="py-2 bg-gray-600"">
             @if (session()->has('message'))
                 <div class="bg-indigo-100 border-t-4 border-indigo-500 rounded-b text-indigo-900 px-4 shadow-md mx-4" role="alert">
                   <div class="flex-1 align-middle">
@@ -58,13 +58,13 @@
     $year = \App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first();
 ?>
                     <div class="inline-flex items-center">
-                        <span class=" date" id="dstart">
-                            <input type="text" id="ledgerstart" class=" bg-gray-600 rounded-lg mx-2" name="date_start" value="{{$year->begin}}"/>
+                        <span class="date" id="dstart">
+                            <input type="text" id="istart" onkeydown="return allow(event)" class=" bg-gray-600 rounded-lg mx-2" name="date_start" value="{{$year->begin}}"/>
                         </span>
                     </div>
                     <div class="inline-flex items-center">
-                        <span class=" date" id="dend">
-                            <input type="text" id="ledgerend" class=" bg-gray-600 rounded-lg mx-2" name="date_end" value="{{$year->end}}"/>
+                        <span class="date" id="dend">
+                            <input type="text" id="iend" onkeydown="return allow(event)" class=" bg-gray-600 rounded-lg mx-2" name="date_end" value="{{$year->end}}"/>
                         </span>
                     </div>
                     <div class="inline-flex items-center">
@@ -89,30 +89,37 @@
                     startDate: startf ,
                     endDate: endf ,
                     immediateUpdates: true,
-                }).datepicker();
+                });
 
-            $('#dstart').datepicker().on('changeDate', function (ev) {
-                $('#ledgerstart').change();
+            $('#dstart').datepicker().on('changeDate', function (e) {
+                $('#istart').change(e);
             });
 
-            $('#ledgerstart').change(function(){
+            $('#istart').change(function(e){
+                $('#dstart').datepicker('hide');
                 thisstart = new Date($(this).val());
-                if(thisstart < startf)
-                $(this).val(start);
             });
 
-            $('#dend').datepicker().on('changeDate', function (ev) {
-                $('#ledgerend').change();
+            $('#dend').datepicker().on('changeDate', function (e) {
+                $('#iend').change(e);
             });
 
-            $('#ledgerend').change(function(){
+            $('#iend').change(function(e){
+                $('#dend').datepicker('hide');
                 thisend = new Date($(this).val());
-                if(thisend > endf)
-                $(this).val(end);
             });
-
         });
-        </script>
+
+        function allow(e) {
+            if (event.keyCode == 9) {
+              // tab key allowed
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+    </script>
 
 </div>
 

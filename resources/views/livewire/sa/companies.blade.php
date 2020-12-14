@@ -20,7 +20,7 @@
         </div>
     </div>
 </x-slot>
-<div class=" bg-gray-600" x-data x-init="$refs.go.focus()">
+<div class="py-2 bg-gray-600" x-data x-init="$refs.go.focus()">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="overflow-hidden sm:rounded-lg bg-gray-800 shadow-lg px-3 py-3 mt-3">
             @if (session()->has('message'))

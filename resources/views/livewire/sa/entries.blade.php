@@ -20,7 +20,7 @@
         </div>
     </div>
 </x-slot>
-<div class=" bg-gray-600">
+<div class="py-2 bg-gray-600">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="overflow-hidden sm:rounded-lg bg-gray-800 shadow-lg px-3 py-3 mt-3">
             @if (session()->has('message'))
@@ -50,13 +50,13 @@
                 <div class="">
                       <label class="block text-white text-sm font-bold mb-2">Start date:</label>
                         <span class=" date" id="dstart">
-                          <input type="text" id="ledgerstart" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo" wire:model="search2">
+                          <input type="text" id="istart" onkeydown="return allow(event)" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo" wire:model="search2">
                         </span>
                 </div>
                 <div class="">
                       <label class="block text-white text-sm font-bold mb-2">End date:</label>
                         <span class=" date" id="dend">
-                          <input type="text" id="ledgerend" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="search3">
+                          <input type="text" id="iend" onkeydown="return allow(event)" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="search3">
                         </span>
                 </div>
                 <span class="flex-wrap ml-5">{{$entries->links()}}</span>
@@ -106,28 +106,34 @@
                     startDate: startf ,
                     endDate: endf ,
                     immediateUpdates: true,
-                }).datepicker();
+                });
 
             $('#dstart').datepicker().on('change', function (e) {
+                $('#istart').change(e);
+            });
+
+            $('#istart').change(function(e){
+                $('#dstart').datepicker('hide');
                 @this.set('search2', e.target.value);
             });
 
             $('#dend').datepicker().on('change', function (e) {
+                $('#iend').change(e);
+            });
+
+            $('#iend').change(function(e){
+                $('#dend').datepicker('hide');
                 @this.set('search3', e.target.value);
-            });
-
-            $('#ledgerstart').on('change', function(){
-                thisstart = new Date($(this).val());
-                if(thisstart < startf)
-                $(this).val(start);
-            });
-
-            $('#ledgerend').on('change', function(){
-                thisend = new Date($(this).val());
-                if(thisend > endf)
-                $(this).val(end);
             });
         });
 
+        function allow(e) {
+            if (event.keyCode == 9) {
+              // tab key allowed
+                return true;
+            } else {
+                return false;
+            }
+        }
     </script>
 </div>

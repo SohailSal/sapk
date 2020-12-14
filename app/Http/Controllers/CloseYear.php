@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use App\Models\AccountGroup;
+use App\Models\AccountType;
 use App\Models\Account;
 use App\Models\Entry;
 
@@ -24,11 +25,20 @@ class CloseYear extends Controller
             $year =  \App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first();
             $yearef = Carbon::parse($year->end);
             $claccount;
-            
+            $clgroup;
             if(! Account::where('company_id',session('company_id'))->where('name','Accumulated Profit')->first()){
+                if(! AccountGroup::where('company_id',session('company_id'))->where('name','Reserves')->first()){
+                    $clgroup = AccountGroup::create([
+                    'name' => 'Reserves',
+                    'type_id' => AccountType::where('name','Capital')->first()->id,
+                    'company_id' => session('company_id'),
+                    ]);
+                } else {
+                    $clgroup = AccountGroup::where('company_id',session('company_id'))->where('name','Reserves')->first();
+                }
                 $claccount = Account::create([
                 'name' => 'Accumulated Profit',
-                'group_id' => AccountGroup::where('company_id',session('company_id'))->first()->id,
+                'group_id' => $clgroup->id,
                 'company_id' => session('company_id'),
                 ]);
             } else {

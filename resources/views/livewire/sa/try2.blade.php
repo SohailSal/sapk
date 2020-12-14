@@ -24,8 +24,8 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Date (YYYY-MM-DD):</label>
-                      <span class="datee " id="dstart">
-                        <input type="text" id="ledgerstart" onkeydown="return false" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="date">
+                      <span class="date" id="ddoc">
+                        <input type="text" id="idoc" onkeydown="return allow(event)" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="date">
                       </span>
 
                   </div>
@@ -200,7 +200,8 @@
     </div>
 
     <script>
-            $(document).ready(function() {
+        
+        $(document).ready(function() {
 
         <?php $year = \App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first(); ?>
         var start = "<?php echo $year->begin; ?>";
@@ -208,25 +209,34 @@
         var startf = new Date(start);
         var endf = new Date(end);
 
-            $('.datee').datepicker({
+            $('.date').datepicker({
                     autoclose: true,
                     format: "yyyy-mm-dd",
                     startDate: startf ,
                     endDate: endf ,
                     immediateUpdates: true,
-                }).datepicker();
+                });
 
-            $('#dstart').datepicker().on('changeDate', function (e) {
-                $('#ledgerstart').change(e);
+            $('#ddoc').datepicker().on('change', function (e) {
+                $('#idoc').change(e);
             });
 
-            $('#ledgerstart').change(function(e){
+            $('#idoc').change(function(e){
+                $('#ddoc').datepicker('hide');
                 @this.set('date', e.target.value);
             });
 
 
         });
 
-    </script>
+        function allow(e) {
+            if (event.keyCode == 9) {
+              // tab key allowed
+                return true;
+            } else {
+                return false;
+            }
+        }
 
+    </script>
 </div>

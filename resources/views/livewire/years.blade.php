@@ -31,7 +31,10 @@
             <td>
                 <div class="flex justify-between">
                     <x-jet-button wire:click="edit({{ $year->id }})" >Edit</x-jet-button>
+
+                    @if(! \App\Models\Document::where('company_id',session('company_id'))->where('date','>=',$year->begin)->where('date','<=',$year->end)->first())
                     <x-jet-danger-button wire:click="delete({{ $year->id }})" >Delete</x-jet-danger-button>
+                    @endif
                 </div>
             </td>
         </tr>
