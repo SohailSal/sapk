@@ -46,9 +46,8 @@
             <div class="flex items-center justify-between">
                 <form method="get" action="{{ url('range') }}">
                 @csrf
-                    <div class="inline-flex items-center ml-2">
-                        <label for="account_id">Account:</label>
-                        <select class="bg-gray-600 rounded-lg mx-2 w-52" name="account_id">
+                    <div class="inline-flex items-center">
+                        <select class="bg-gray-600 rounded-lg mx-2  px-1 py-1 w-52" name="account_id">
                             @foreach (\App\Models\Account::where('company_id',session('company_id'))->get() as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
@@ -59,12 +58,12 @@
 ?>
                     <div class="inline-flex items-center">
                         <span class="date" id="dstart">
-                            <input type="text" id="istart" onkeydown="return allow(event)" class=" bg-gray-600 rounded-lg mx-2" name="date_start" value="{{$year->begin}}"/>
+                            <input type="text" id="istart" onkeydown="return allow(event)" class=" bg-gray-600 rounded-lg mx-2 px-1 py-1 w-28" name="date_start" value="{{$year->begin}}"/>
                         </span>
                     </div>
                     <div class="inline-flex items-center">
                         <span class="date" id="dend">
-                            <input type="text" id="iend" onkeydown="return allow(event)" class=" bg-gray-600 rounded-lg mx-2" name="date_end" value="{{$year->end}}"/>
+                            <input type="text" id="iend" onkeydown="return allow(event)" class=" bg-gray-600 rounded-lg mx-2 px-1 py-1 w-28" name="date_end" value="{{$year->end}}"/>
                         </span>
                     </div>
                     <div class="inline-flex items-center">
