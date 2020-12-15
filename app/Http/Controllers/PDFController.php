@@ -28,8 +28,28 @@ class PDFController extends Controller
     public function ledger($id)
     {
         $year = Year::where('company_id',session('company_id'))->where('enabled',1)->first();
-        $entries = Entry::where('account_id',Crypt::decrypt($id))->where('company_id',session('company_id'))->get();
-        $pdf = PDF::loadView('led', compact('entries'));
+        $first = Entry::where('company_id',session('company_id'))->where('account_id',Crypt::decrypt($id))->first();
+
+        $entries = DB::table('documents')
+            ->join('entries', 'documents.id', '=', 'entries.document_id')
+            ->whereDate('documents.date', '>=', $year->begin)
+            ->whereDate('documents.date', '<=', $year->end)
+            ->where('documents.company_id',session('company_id'))
+            ->select('entries.account_id', 'entries.debit', 'entries.credit', 'documents.ref', 'documents.date', 'documents.description')
+            ->where('entries.account_id','=', Crypt::decrypt($id))
+            ->get();
+
+        $previous = DB::table('documents')
+            ->join('entries', 'documents.id', '=', 'entries.document_id')
+            ->whereDate('documents.date', '<', $year->begin)
+            ->where('documents.company_id',session('company_id'))
+            ->select('entries.debit', 'entries.credit')
+            ->where('entries.account_id','=', Crypt::decrypt($id))
+            ->get();
+
+//        $entries = Entry::where('account_id',Crypt::decrypt($id))->where('company_id',session('company_id'))->get();
+        $period = "From ".strval($year->begin)." to ".strval($year->end);
+        $pdf = PDF::loadView('led', compact('entries','previous','year','first','period'));
         return $pdf->stream('ledger.pdf');
     }
     
@@ -58,7 +78,7 @@ class PDFController extends Controller
 
         $acc = Account::where('id','=',$account)->where('company_id',session('company_id'))->first();
         $period = "From ".strval($start)." to ".strval($end);
-        $pdf = PDF::loadView('range', compact('entries','previous','acc','period'));
+        $pdf = PDF::loadView('range', compact('entries','previous','acc','period','start'));
         return $pdf->stream('ledger.pdf');
     }
 

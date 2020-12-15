@@ -1,9 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-<?php
-    $first=$entries->first();
-?>
     <meta charset="UTF-8">
     <title>Ledger - {{$first->account->name}} - {{$first->account->accountGroup->name}}</title>
 
@@ -35,6 +32,14 @@
             $debits = 0;
             $credits = 0;
 
+            if ($previous->count()) { 
+                foreach ($previous as $value) {
+                $prebal= $lastbalance + floatval($value->debit) - floatval($value->credit);
+                $lastbalance = $prebal;
+                $ite++;
+                }
+            }
+   
             $balance = [];
             $ite = 0;
             foreach ($entries as $value) {
@@ -55,7 +60,7 @@
             <td align="center">
             </td>
             <td align="right" style="width: 40%;">
-                <h5><br>
+                <h5>{{$period}}<br>
                     Generated on: {{ $dt}}
                 </h5>
             </td>
@@ -94,17 +99,35 @@
             </thead>
             <tbody>
 
+        <tr>
+            <td style="width: 15%;">
+            </td>
+            <td style="width: 15%;">
+                {{$year->begin}}
+            </td>
+            <td style="width: 40%; border-right: 1pt solid black;">
+                <strong>Opening Balance</strong>
+            </td>
+            <td style="width: 10%; border-right: 1pt solid black;" align="right">
+            </td>
+            <td style="width: 10%; border-right: 1pt solid black;" align="right">
+            </td>
+            <td style="width: 10%" align="right">
+            <strong> {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($prebal,'Rs.'))}} </strong>
+            </td>
+        </tr>
+
         @foreach ($entries as $entry)
 
         <tr>
             <td style="width: 15%;">
-                {{$entry->document->ref}}
+                {{$entry->ref}}
             </td>
             <td style="width: 15%;">
-                {{$entry->document->date}}
+                {{$entry->date}}
             </td>
             <td style="width: 40%; border-right: 1pt solid black;">
-                {{$entry->document->description}}
+                {{$entry->description}}
 
             </td>
             <td style="width: 10%; border-right: 1pt solid black;" align="right">

@@ -88,4 +88,8 @@ class Accounts extends Component
         Account::where('id',$id)->where('company_id',session('company_id'))->first()->delete();
         session()->flash('message', 'Account Deleted Successfully.');
     }
+
+    function snum(){
+        
+    }
 }

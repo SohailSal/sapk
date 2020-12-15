@@ -104,6 +104,7 @@
             <td style="width: 15%;">
             </td>
             <td style="width: 15%;">
+                {{$start}}
             </td>
             <td style="width: 40%; border-right: 1pt solid black;">
                 <strong>Opening Balance</strong>
