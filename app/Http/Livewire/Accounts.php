@@ -16,6 +16,7 @@ class Accounts extends Component
     public $isOpen = 0;
     public $search = '';
     public $search2 = '';
+    public $number = null;
 
     public function render()
     {
@@ -51,6 +52,7 @@ class Accounts extends Component
         $this->name = '';
         $this->group_id = '';
         $this->ag_id = '';
+        $this->number = null;
     }
 
     public function store()
@@ -60,11 +62,18 @@ class Accounts extends Component
             'group_id' => 'required',
         ]);
 
-        Account::updateOrCreate(['id' => $this->ag_id], [
-            'name' => $this->name,
-            'group_id' => $this->group_id,
-            'company_id' => session('company_id'),
-        ]);
+        DB::transaction(function () {
+            $account = Account::updateOrCreate(['id' => $this->ag_id], [
+                'name' => $this->name,
+                'group_id' => $this->group_id,
+                'company_id' => session('company_id'),
+            ]);
+
+            if(! $this->ag_id){
+                $this->snum($account);
+                $account->update(['number' => $this->number]);
+            }
+        });
 
         session()->flash('message', 
             $this->ag_id ? 'Account Updated Successfully.' : 'Account Created Successfully.');
@@ -89,7 +98,18 @@ class Accounts extends Component
         session()->flash('message', 'Account Deleted Successfully.');
     }
 
-    function snum(){
+    function snum($account){
         
+        if(! Account::where('id',$account->id)->where('company_id',session('company_id'))->first()){
+            $this->number = $account->id . '/' .$account->group_id;
+        } else {
+            $this->number = $account->id . '-' .$account->group_id . '-' . $account->accountGroup->type_id . '-' . sprintf("%'.04d\n", ++$account->id);
+        }
+//        $num = 5;
+//        $location = 'tree';
+//        $format = 'There are %d monkeys in the %s';
+//        echo sprintf($format, $num, $location);
+//        sprintf("%'.09d\n", 123); // 000000123
+
     }
 }

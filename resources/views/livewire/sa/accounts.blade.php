@@ -52,7 +52,7 @@
             <table class="table-auto w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-1">ID</th>
+                        <th class="px-4 py-1">Number</th>
                         <th class="px-4 py-1">Name of Account</th>
                         <th class="px-4 py-1">Group of Account</th>
                         <th class="px-4 py-1 text-center w-2/6" colspan="3">Tasks</th>
@@ -61,7 +61,7 @@
                 <tbody>
                     @foreach($accounts as $account)
                     <tr class="text-white">
-                        <td class="border px-4 py-1">{{ $account->id }}</td>
+                        <td class="border px-4 py-1">{{ $account->number }}</td>
                         <td class="border px-4 py-1">{{ $account->name }}</td>
                         <td class="border px-4 py-1">{{ $account->groupName }}</td>
                         <td class="border-b px-4 text-center">
