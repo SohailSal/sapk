@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Account;
 use App\Models\AccountGroup;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 use Livewire\WithPagination;
 
 class Accounts extends Component
@@ -99,11 +101,29 @@ class Accounts extends Component
     }
 
     function snum($account){
-        
-        if(! Account::where('id',$account->id)->where('company_id',session('company_id'))->first()){
-            $this->number = $account->id . '/' .$account->group_id;
+        $ty = $account->accountGroup->accountType;
+        $grs = $ty->accountGroups->where('company_id',session('company_id'));
+        $grnum = count($grs);
+        $grindex = 1;
+        $grselindex = 0;
+        $grsel = null;
+        $grcol = new Collection();
+        foreach($grs as $gr){
+            $grcol->put($gr->name,$grindex);
+            if($gr->name == $account->accountGroup->name){
+                $grselindex = $grindex;
+                $grsel = $gr;
+            }
+            ++$grindex;
+        }
+//        dd(count($grsel->accounts));
+        if(count($grsel->accounts) == 1){
+            $this->number = $ty->id . sprintf("%'.03d\n", $grselindex) . sprintf("%'.03d\n", 1);
         } else {
-            $this->number = $account->id . '-' .$account->group_id . '-' . $account->accountGroup->type_id . '-' . sprintf("%'.04d\n", ++$account->id);
+            $lastac = Account::orderBy('id', 'desc')->where('company_id',session('company_id'))->where('group_id',$grsel->id)->skip(1)->first()->number;
+            $lastst = Str::substr($lastac, 5, 3);
+ //           dd($lastst);
+            $this->number = $ty->id . sprintf("%'.03d\n", $grselindex) . sprintf("%'.03d\n", ++$lastst);
         }
 //        $num = 5;
 //        $location = 'tree';
