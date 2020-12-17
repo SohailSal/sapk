@@ -74,6 +74,9 @@ class Accounts extends Component
             if(! $this->ag_id){
                 $this->snum($account);
                 $account->update(['number' => $this->number]);
+            } else {
+                $this->snume($account);
+                $account->update(['number' => $this->number]);
             }
         });
 
@@ -116,20 +119,37 @@ class Accounts extends Component
             }
             ++$grindex;
         }
-//        dd(count($grsel->accounts));
         if(count($grsel->accounts) == 1){
-            $this->number = $ty->id . sprintf("%'.03d\n", $grselindex) . sprintf("%'.03d\n", 1);
+            $this->number = $ty->id . sprintf("%'.03d", $grselindex) . sprintf("%'.03d", 1);
         } else {
             $lastac = Account::orderBy('id', 'desc')->where('company_id',session('company_id'))->where('group_id',$grsel->id)->skip(1)->first()->number;
-            $lastst = Str::substr($lastac, 5, 3);
- //           dd($lastst);
-            $this->number = $ty->id . sprintf("%'.03d\n", $grselindex) . sprintf("%'.03d\n", ++$lastst);
+            $lastst = Str::substr($lastac, 4, 3);
+            $this->number = $ty->id . sprintf("%'.03d", $grselindex) . sprintf("%'.03d", ++$lastst);
         }
-//        $num = 5;
-//        $location = 'tree';
-//        $format = 'There are %d monkeys in the %s';
-//        echo sprintf($format, $num, $location);
-//        sprintf("%'.09d\n", 123); // 000000123
 
     }
+
+    function snume($account){
+        $ty = $account->accountGroup->accountType;
+        $grs = $ty->accountGroups->where('company_id',session('company_id'));
+        $grindex = 1;
+        $grselindex = 0;
+        $grsel = null;
+        foreach($grs as $gr){
+            if($gr->name == $account->accountGroup->name){
+                $grselindex = $grindex;
+                $grsel = $gr;
+            }
+            ++$grindex;
+        }
+        if(count($grsel->accounts) == 1){
+            $this->number = $ty->id . sprintf("%'.03d", $grselindex) . sprintf("%'.03d", 1);
+        } else {
+            $lastac = Account::orderBy('id', 'desc')->where('company_id',session('company_id'))->where('group_id',$grsel->id)->skip(1)->first()->number;
+            $lastst = Str::substr($lastac, 4, 3);
+            $this->number = $ty->id . sprintf("%'.03d", $grselindex) . sprintf("%'.03d", ++$lastst);
+        }
+
+    }
+
 }

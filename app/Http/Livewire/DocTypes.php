@@ -11,8 +11,19 @@ class DocTypes extends Component
     public $ite=0;
     public $isOpen = 0;
 
+    public function mount(){
+        $this->name="";
+    }
+
     public function render()
     {
+        $this->prefix = "";
+        if(strlen($this->name)>1 && strpos($this->name," ")){
+            $words = explode(" ", $this->name);
+            foreach ($words as $w) {
+            $this->prefix .= $w[0];
+            }
+        }
         $this->types = DocumentType::where('company_id',session('company_id'))->get();
         return view('livewire.sa.doc-types');
     }
