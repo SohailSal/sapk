@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ledger - {{$first->account->name}} - {{$first->account->accountGroup->name}}</title>
+    <title>Ledger - {{$acc->name}} - {{$acc->accountGroup->name}}</title>
 
     <style type="text/css">
         @page {margin-right: 10px;margin-left:45px; margin-top:-10px;}
@@ -55,7 +55,7 @@
     <table width="100%">
         <tr>
             <td align="left" style="width: 40%;">
-                <h3>{{$first->account->name}} - {{$first->account->accountGroup->name}}</h3>
+                <h3>{{$acc->name}} - {{$acc->accountGroup->name}}</h3>
             </td>
             <td align="center">
             </td>

@@ -61,7 +61,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Debit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="debit.0">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.debounce.500ms="debit.0">
 
                   </div>
             </div>
@@ -70,7 +70,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Credit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="credit.0">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.debounce.500ms="credit.0">
 
                   </div>
             </div>
@@ -94,7 +94,7 @@
           <div class="bg-gray-800 px-4 pt-1 pb-1">
             <div class="">
                   <div class="mb-1">
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="debit.1">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.debounce.500ms="debit.1">
 
                   </div>
             </div>
@@ -102,7 +102,7 @@
           <div class="bg-gray-800 px-4 pt-1 pb-1">
             <div class="">
                   <div class="mb-1">
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="credit.1">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.debounce.500ms="credit.1">
 
                   </div>
             </div>
@@ -128,7 +128,7 @@
             <div class="">
                   <div class="mb-1">
 <!--                      <label>{{$key}}{{$value}}<br><?php print_r($debit); ?></label> -->
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="debit.{{$value}}">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.debounce.500ms="debit.{{$value}}">
 
                   </div>
             </div>
@@ -137,7 +137,7 @@
             <div class="">
                   <div class="mb-1">
 <!--                      <label>{{$key}}{{$value}}<br><?php print_r($credit); ?></label> -->
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="credit.{{$value}}">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.debounce.500ms="credit.{{$value}}">
 
                   </div>
             </div>

@@ -28,7 +28,7 @@ class PDFController extends Controller
     public function ledger($id)
     {
         $year = Year::where('company_id',session('company_id'))->where('enabled',1)->first();
-        $first = Entry::where('company_id',session('company_id'))->where('account_id',Crypt::decrypt($id))->first();
+        $acc = Account::where('company_id',session('company_id'))->where('id',Crypt::decrypt($id))->first();
 
         $entries = DB::table('documents')
             ->join('entries', 'documents.id', '=', 'entries.document_id')
@@ -49,7 +49,7 @@ class PDFController extends Controller
 
 //        $entries = Entry::where('account_id',Crypt::decrypt($id))->where('company_id',session('company_id'))->get();
         $period = "From ".strval($year->begin)." to ".strval($year->end);
-        $pdf = PDF::loadView('led', compact('entries','previous','year','first','period'));
+        $pdf = PDF::loadView('led', compact('entries','previous','year','period','acc'));
         return $pdf->stream('ledger.pdf');
     }
     

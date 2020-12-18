@@ -24,7 +24,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="overflow-hidden sm:rounded-lg bg-gray-800 shadow-lg px-3 py-3 mt-3">
             @if (session()->has('message'))
-                <div class="bg-indigo-100 border-t-4 border-indigo-500 rounded-b text-indigo-900 px-4 shadow-md " role="alert">
+                <div class="bg-indigo-100 border-t-4 border-indigo-500 mb-2 rounded-b text-indigo-900 px-4 shadow-md " role="alert">
                   <div class="flex-1 align-middle">
                     <div>
                       <p class="text-sm py-2">{{ session('message') }}</p>
@@ -45,10 +45,10 @@
                     @endif
                 @endif
                 <div class="flex-1">
-                      <input type="text" class="shadow appearance-none rounded w-36 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" placeholder="Search by Ref" wire:model.lazy="search1">
+                      <input type="text" class="shadow appearance-none rounded w-32 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" placeholder="Search by Ref" wire:model.lazy="search1">
                 </div>
                 <div class="flex-1">
-                      <input type="text" class="shadow appearance-none rounded w-48 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" placeholder="Search by Description" wire:model.lazy="search2">
+                      <input type="text" class="shadow appearance-none rounded w-44 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" placeholder="Search by Description" wire:model.lazy="search2">
                 </div>
                 <div class="flex-1">
                       <span class="date" id="dstart">
@@ -70,7 +70,7 @@
                         <th class="px-4 py-1">Type</th>
                         <th class="px-4 py-1">Date</th>
                         <th class="px-4 py-1">Description</th>
-                        @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())<th class="px-4 py-1 text-center w-auto">Tasks</th>@endcannot
+                        @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())<th class="px-4 py-1 text-center w-2/6" colspan="3">Tasks</th>@endcannot
                     </tr>
                 </thead>
                 <tbody>
@@ -81,15 +81,18 @@
                         <td class="border px-4 py-1">{{ $doc->date }}</td>
                         <td class="border px-4 py-1">{{ $doc->description }}</td>
                         @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
-                        <td class="border px-4 py-1">
-                        <div class="flex justify-between">
-                            <a href="{{url('voucher/'.Crypt::encrypt($doc->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white">Voucher in PDF</a>
-                            @if(App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first()->closed == 0)
-                                <x-jet-button wire:click="edit({{ $doc->id }})" >Edit</x-jet-button>
-                                <x-jet-danger-button wire:click="delete({{ $doc->id }})" >Delete</x-jet-danger-button>
-                            @endif
-                        </div>
+                        <td class="border-b px-4 text-center">
+                            <a href="{{url('voucher/'.Crypt::encrypt($doc->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline whitespace-no-wrap">Voucher in PDF</a>
                         </td>
+                            @if(App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first()->closed == 0)
+                        <td class="border-b px-4 text-center">
+                            <button wire:click="edit({{ $doc->id }})" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Edit</button>
+                        </td>
+                        <td class="border-b border-r px-4 text-center">
+                            <button wire:click="delete({{ $doc->id }})" class="delbutton bg-red-600 hover:bg-red-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Delete</button>
+                        </td>
+                            @endif
+
                         @endcannot
                     </tr>
                     @endforeach

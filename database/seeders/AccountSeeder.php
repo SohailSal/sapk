@@ -30,72 +30,81 @@ class AccountSeeder extends Seeder
                 $account->update(['number' => $this->snum($account)]);
             }
             $group_id = \App\Models\AccountGroup::where('name','Stock-in-Trade')->where('company_id',session('company_id'))->first()->id;
-            DB::table('accounts')->insert([
+            $account = Account::create([
             'name' => 'Stock 1',
             'group_id' => $group_id,
             'company_id' => session('company_id'),
             ]);
+            $account->update(['number' => $this->snum($account)]);
 
             $group_id = \App\Models\AccountGroup::where('name','Cash & Bank')->where('company_id',session('company_id'))->first()->id;
-            DB::table('accounts')->insert([
+            $account = Account::create([
             'name' => 'Cash at Bank',
             'group_id' => $group_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('accounts')->insert([
+            $account->update(['number' => $this->snum($account)]);
+            $account = Account::create([
             'name' => 'Cash in Hand',
             'group_id' => $group_id,
             'company_id' => session('company_id'),
             ]);
+            $account->update(['number' => $this->snum($account)]);
 
             $group_id = \App\Models\AccountGroup::where('name','Equity')->where('company_id',session('company_id'))->first()->id;
-            DB::table('accounts')->insert([
+            $account = Account::create([
             'name' => 'Share Capital',
             'group_id' => $group_id,
             'company_id' => session('company_id'),
             ]);
+            $account->update(['number' => $this->snum($account)]);
 
             $group_id = \App\Models\AccountGroup::where('name','Reserves')->where('company_id',session('company_id'))->first()->id;
-            DB::table('accounts')->insert([
+            $account = Account::create([
             'name' => 'Accumulated Profit',
             'group_id' => $group_id,
             'company_id' => session('company_id'),
             ]);
+            $account->update(['number' => $this->snum($account)]);
 
             $group_id = \App\Models\AccountGroup::where('name','Sales & Service')->where('company_id',session('company_id'))->first()->id;
-            DB::table('accounts')->insert([
+            $account = Account::create([
             'name' => 'Sales - Local',
             'group_id' => $group_id,
             'company_id' => session('company_id'),
             ]);
+            $account->update(['number' => $this->snum($account)]);
             
             $opexp = ["Stock 1 Consumed","Salaries & Wages", "Repair & Maintenance","Rent, Rates & Taxes","Utilities", "Depreciation Expense"];
             $group_id = \App\Models\AccountGroup::where('name','Operating Expenses')->where('company_id',session('company_id'))->first()->id;
             for($i=0;$i<count($opexp);$i++){
-                DB::table('accounts')->insert([
+                $account = Account::create([
                 'name' => $opexp[$i],
                 'group_id' => $group_id,
                 'company_id' => session('company_id'),
                 ]);
+                $account->update(['number' => $this->snum($account)]);
             }
 
             $adexp = ["Salaries & Wages", "Repair & Maintenance","Travelling & Conveyance","Rent, Rates & Taxes","Utilities","Printing & Stationery", "Advertisement", "Legal & Professional","Depreciation Expense"];
             $group_id = \App\Models\AccountGroup::where('name','Administrative Expenses')->where('company_id',session('company_id'))->first()->id;
             for($i=0;$i<count($adexp);$i++){
-                DB::table('accounts')->insert([
+                $account = Account::create([
                 'name' => $adexp[$i],
                 'group_id' => $group_id,
                 'company_id' => session('company_id'),
                 ]);
+                $account->update(['number' => $this->snum($account)]);
             }
 
             $group_id = \App\Models\AccountGroup::where('name','Taxes')->where('company_id',session('company_id'))->first()->id;
-            DB::table('accounts')->insert([
+            $account = Account::create([
             'name' => 'Income Tax',
             'group_id' => $group_id,
             'company_id' => session('company_id'),
             ]);
-//        });
+            $account->update(['number' => $this->snum($account)]);
+            //        });
     }
 
     function snum($account){

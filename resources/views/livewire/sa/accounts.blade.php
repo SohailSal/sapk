@@ -24,7 +24,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="overflow-hidden sm:rounded-lg bg-gray-800 shadow-lg px-3 py-3 mt-3">
             @if (session()->has('message'))
-                <div class="bg-indigo-100 border-t-4 border-indigo-500 rounded-b text-indigo-900 px-4 shadow-md " role="alert">
+                <div class="bg-indigo-100 border-t-4 border-indigo-500 mb-2 rounded-b text-indigo-900 px-4 shadow-md " role="alert">
                   <div class="flex-1 align-middle">
                     <div>
                       <p class="text-sm py-2">{{ session('message') }}</p>
@@ -65,7 +65,7 @@
                         <td class="border px-4 py-1">{{ $account->name }}</td>
                         <td class="border px-4 py-1">{{ $account->groupName }}</td>
                         <td class="border-b px-4 text-center">
-                            <a href="{{('ledger/'.Crypt::encrypt($account->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Ledger in PDF</a>
+                            <a href="{{('ledger/'.Crypt::encrypt($account->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline whitespace-no-wrap">Ledger in PDF</a>
                         </td>
                         <td class="border-b px-4 text-center">
                             <button wire:click="edit({{ $account->id }})" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Edit</button>

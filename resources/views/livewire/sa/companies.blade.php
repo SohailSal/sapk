@@ -24,7 +24,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="overflow-hidden sm:rounded-lg bg-gray-800 shadow-lg px-3 py-3 mt-3">
             @if (session()->has('message'))
-                <div class="bg-indigo-100 border-t-4 border-indigo-500 rounded-b text-indigo-900 px-4 shadow-md " role="alert">
+                <div class="bg-indigo-100 border-t-4 border-indigo-500 mb-2 rounded-b text-indigo-900 px-4 shadow-md " role="alert">
                   <div class="flex-1 align-middle">
                     <div>
                       <p class="text-sm py-2">{{ session('message') }}</p>
