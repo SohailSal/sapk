@@ -7,7 +7,7 @@
             <div class="flex-row">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Reference:</label>
-                      <select wire:model="type_id" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo" {{($at_id)? 'disabled' : ''}}>
+                      <select wire:model="type_id" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline" {{($at_id)? 'disabled' : ''}}>
                           @foreach($types as $type)
                               <option value={{ $type->id }}>{{ $type->name }}</option>
                           @endforeach
@@ -15,7 +15,7 @@
                       @error('type_id') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
                   <div class="mb-1">
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="ref" disabled>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="ref" disabled>
                       @error('ref') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
@@ -25,7 +25,7 @@
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Date (YYYY-MM-DD):</label>
                       <span class="date" id="ddoc">
-                        <input type="text" id="idoc" onkeydown="return allow(event)" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="date">
+                        <input type="text" id="idoc" onkeydown="return allow(event)" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="date">
                       </span>
 
                   </div>
@@ -35,7 +35,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Description:</label>
-                      <textarea row='2' class="shadow resize-none appearance-none rounded w-80 py-2 px-4 mr-1 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.lazy="description" x-ref="desc"></textarea>
+                      <textarea row='2' class="shadow resize-none appearance-none rounded w-80 py-2 px-4 mr-1 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.lazy="description" x-ref="desc"></textarea>
 
                   </div>
             </div>
@@ -47,7 +47,7 @@
             <div class="">
                 <div class="mb-1">
                     <label class="block text-white text-sm font-bold mb-2">Account:</label>
-                    <select wire:model="account_id.0" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo">
+                    <select wire:model="account_id.0" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
                         <option value=''>Choose an Account:</option>
                         @foreach($accounts as $account)
                             <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>
@@ -61,7 +61,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Debit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.debounce.500ms="debit.0">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.debounce.500ms="debit.0">
 
                   </div>
             </div>
@@ -70,7 +70,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Credit:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.debounce.500ms="credit.0">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.debounce.500ms="credit.0">
 
                   </div>
             </div>
@@ -81,7 +81,7 @@
           <div class="bg-gray-800 px-4 pt-1 pb-1">
             <div class="">
                   <div class="mb-1">
-                    <select wire:model="account_id.1" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo">
+                    <select wire:model="account_id.1" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
                         <option value=''>Choose an Account:</option>
                         @foreach($accounts as $account)
                             <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>
@@ -94,7 +94,7 @@
           <div class="bg-gray-800 px-4 pt-1 pb-1">
             <div class="">
                   <div class="mb-1">
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.debounce.500ms="debit.1">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.debounce.500ms="debit.1">
 
                   </div>
             </div>
@@ -102,7 +102,7 @@
           <div class="bg-gray-800 px-4 pt-1 pb-1">
             <div class="">
                   <div class="mb-1">
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.debounce.500ms="credit.1">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.debounce.500ms="credit.1">
 
                   </div>
             </div>
@@ -114,7 +114,7 @@
           <div class="bg-gray-800 px-4 pt-1 pb-1">
             <div class="">
                   <div class="mb-1">
-                    <select wire:model="account_id.{{$value}}" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo">
+                    <select wire:model="account_id.{{$value}}" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
                         <option value=''>Choose an Account:</option>
                         @foreach($accounts as $account)
                             <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>
@@ -128,7 +128,7 @@
             <div class="">
                   <div class="mb-1">
 <!--                      <label>{{$key}}{{$value}}<br><?php print_r($debit); ?></label> -->
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.debounce.500ms="debit.{{$value}}">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.debounce.500ms="debit.{{$value}}">
 
                   </div>
             </div>
@@ -137,13 +137,13 @@
             <div class="">
                   <div class="mb-1">
 <!--                      <label>{{$key}}{{$value}}<br><?php print_r($credit); ?></label> -->
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model.debounce.500ms="credit.{{$value}}">
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model.debounce.500ms="credit.{{$value}}">
 
                   </div>
             </div>
           </div>
           <div class="bg-gray-800 px-4 pt-1 pb-1">
-              <button class="bg-red-800 border border-gray-500 rounded-lg text-white hover:bg-red-900 px-3" wire:click.prevent="remove({{$key}})">Remove</button>
+              <button class="bg-red-800 border border-gray-500 rounded-lg text-white hover:bg-red-900 px-3 focus:outline-none focus:shadow-outline" wire:click.prevent="remove({{$key}})">Remove</button>
           </div>
         </div>
         @endforeach
@@ -153,7 +153,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Difference:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="diff" disabled>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="diff" disabled>
 
                   </div>
             </div>
@@ -162,7 +162,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Debit Total:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="dtotal" disabled>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="dtotal" disabled>
                       @error('dtotal') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
@@ -171,7 +171,7 @@
             <div class="">
                   <div class="mb-1">
                       <label class="block text-white text-sm font-bold mb-2">Credit Total:</label>
-                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="ctotal" disabled>
+                      <input type="text" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:outline-none focus:shadow-outline" wire:model="ctotal" disabled>
                       @error('ctotal') <span class="text-red-500">{{ $message }}</span>@enderror
                   </div>
             </div>
@@ -180,17 +180,17 @@
 
         <div class="bg-gray-400 px-4 py-2 sm:px-6 sm:flex sm:flex-row rounded-b-lg">
           <div class="mt-1 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <button wire:click.prevent="{{ ($at_id) ? 'storee()' : 'store()' }}" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-green-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-600 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+            <button wire:click.prevent="{{ ($at_id) ? 'storee()' : 'store()' }}" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-green-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-600 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
               Save
             </button>
           </div>
           <div class="mt-1 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <button wire:click="closeModal()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+            <button wire:click="closeModal()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5">
               Cancel
             </button>
           </div>
           <div class="mt-1 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <button wire:click.prevent="add({{$i}})" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 mx-3 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+            <button wire:click.prevent="add({{$i}})" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 mx-3 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5">
               Add row
             </button>
           </div>

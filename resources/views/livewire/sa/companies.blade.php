@@ -7,15 +7,17 @@
             <form method="GET" action="{{ url('company') }}">
             @csrf
                 <div class="inline-flex">
-                    <select name="company" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                    <select name="company" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline" onchange="this.form.submit()">
                         @foreach(\Auth::user()->companies as $company)
                             <option value='{{ $company->id }}' {{ ($company->id == session('company_id')) ? 'selected' : '' }}>{{ $company->name }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="inline-flex">
-                    <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Go</button>
-                </div>
+<!--                  <div class="inline-flex">
+                      <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Go</button>
+                  </div>
+-->
+
             </form>
         </div>
     </div>

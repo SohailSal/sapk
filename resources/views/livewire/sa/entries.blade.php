@@ -7,15 +7,17 @@
             <form method="GET" action="{{ url('entry') }}">
             @csrf
                 <div class="inline-flex">
-                    <select name="company" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                    <select name="company" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline" onchange="this.form.submit()">
                         @foreach(\Auth::user()->companies as $company)
                             <option value='{{ $company->id }}' {{ ($company->id == session('company_id')) ? 'selected' : '' }}>{{ $company->name }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="inline-flex">
-                    <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Go</button>
-                </div>
+<!--                  <div class="inline-flex">
+                      <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Go</button>
+                  </div>
+-->
+
             </form>
         </div>
     </div>
@@ -40,7 +42,7 @@
 -->
                 <span class="flex">
                     <div class="flex-1">
-                        <select wire:model="search1" class="shadow appearance-none rounded w-48 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline">
+                        <select wire:model="search1" class="shadow rounded w-48 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline">
                             <option value=''>Choose an Account:</option>
                             @foreach(\App\Models\Account::where('company_id',session('company_id'))->get() as $account)
                                 <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>

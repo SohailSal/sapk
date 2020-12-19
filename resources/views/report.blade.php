@@ -8,15 +8,16 @@
               <form method="GET" action="{{ url('report') }}">
               @csrf
                   <div class="inline-flex">
-                      <select name="company" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                      <select name="company" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline" onchange="this.form.submit()">
                           @foreach(\Auth::user()->companies as $company)
                               <option value='{{ $company->id }}' {{ ($company->id == session('company_id')) ? 'selected' : '' }}>{{ $company->name }}</option>
                           @endforeach
                       </select>
                   </div>
-                  <div class="inline-flex">
+<!--                  <div class="inline-flex">
                       <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Go</button>
                   </div>
+-->
               </form>
           </div>
       </div>
@@ -34,10 +35,10 @@
             @endif
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="overflow-auto sm:rounded-lg  bg-gray-800 shadow-lg px-4 py-4 ">
-            <div class="flex items-center justify-between">
-                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center " href="{{url('tb')}}">Trial Balance</a>
-                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center " href="{{url('bs')}}">Balance Sheet</a>
-                <a class="flex-1 border rounded-lg bg-gray-600 p-1 m-2 text-white hover:bg-gray-800 text-center " href="{{url('pl')}}">Profit or Loss A/c</a>
+            <div class="flex items-center justify-start">
+                <a class="flex-wrap mb-1 mr-4 px-4 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" href="{{url('tb')}}">Trial Balance</a>
+                <a class="flex-wrap mb-1 mr-4 px-4 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" href="{{url('bs')}}">Balance Sheet</a>
+                <a class="flex-wrap mb-1 mr-4 px-4 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" href="{{url('pl')}}">Profit or Loss A/c</a>
             </div>
         </div>
 
@@ -47,7 +48,7 @@
                 <form method="get" action="{{ url('range') }}">
                 @csrf
                     <div class="inline-flex items-center">
-                        <select class="bg-gray-600 rounded-lg mx-2  px-1 py-1 w-52" name="account_id">
+                        <select class="bg-gray-600 rounded-lg mx-2  px-1 py-1 w-52 focus:outline-none focus:shadow-outline" name="account_id">
                             @foreach (\App\Models\Account::where('company_id',session('company_id'))->get() as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
@@ -58,16 +59,16 @@
 ?>
                     <div class="inline-flex items-center">
                         <span class="date" id="dstart">
-                            <input type="text" id="istart" onkeydown="return allow(event)" class=" bg-gray-600 rounded-lg mx-2 px-1 py-1 w-28" name="date_start" value="{{$year->begin}}"/>
+                            <input type="text" id="istart" onkeydown="return allow(event)" class=" bg-gray-600 rounded-lg mx-2 px-1 py-1 w-28 focus:outline-none focus:shadow-outline" name="date_start" value="{{$year->begin}}"/>
                         </span>
                     </div>
                     <div class="inline-flex items-center">
                         <span class="date" id="dend">
-                            <input type="text" id="iend" onkeydown="return allow(event)" class=" bg-gray-600 rounded-lg mx-2 px-1 py-1 w-28" name="date_end" value="{{$year->end}}"/>
+                            <input type="text" id="iend" onkeydown="return allow(event)" class=" bg-gray-600 rounded-lg mx-2 px-1 py-1 w-28 focus:outline-none focus:shadow-outline" name="date_end" value="{{$year->end}}"/>
                         </span>
                     </div>
                     <div class="inline-flex items-center">
-                        <button type="submit" class="mx-2 px-3 py-1 rounded-lg border bg-gray-600 hover:bg-gray-800" name="submit">Get Ledger</button>
+                        <button type="submit" class="flex-wrap mb-1 mr-4 px-4 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" name="submit">Get Ledger</button>
                     </div>
                 </form>
             </div>

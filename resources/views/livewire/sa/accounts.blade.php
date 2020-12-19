@@ -7,20 +7,21 @@
             <form method="GET" action="{{ url('account') }}">
             @csrf
                 <div class="inline-flex">
-                    <select name="company" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                    <select name="company" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline" onchange="this.form.submit()">
                         @foreach(\Auth::user()->companies as $company)
                             <option value='{{ $company->id }}' {{ ($company->id == session('company_id')) ? 'selected' : '' }}>{{ $company->name }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="inline-flex">
-                    <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Go</button>
-                </div>
+<!--                  <div class="inline-flex">
+                      <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Go</button>
+                  </div>
+-->
             </form>
         </div>
     </div>
 </x-slot>
-<div class="py-2 bg-gray-600">
+<div class="py-2 bg-gray-600" x-data x-init="$refs.go.focus()">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="overflow-hidden sm:rounded-lg bg-gray-800 shadow-lg px-3 py-3 mt-3">
             @if (session()->has('message'))
@@ -35,7 +36,7 @@
             <div class="flex items-center justify-between">
                 <span class="flex">
                     @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
-                    <button class="flex-wrap mb-2 mr-2 px-2 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" wire:click="create()">New Account</button>
+                    <button x-ref="go" class="flex-wrap mb-2 mr-2 px-2 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" wire:click="create()">New Account</button>
                     @endcannot
                     @if($isOpen)
                         @include('livewire.sa.accountcreate')

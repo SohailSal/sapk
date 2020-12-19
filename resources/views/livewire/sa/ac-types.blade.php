@@ -3,7 +3,7 @@
         SA Accounting
     </h2>
 </x-slot>
-<div class=" bg-gray-600">
+<div class=" bg-gray-600" x-data x-init="$refs.go.focus()">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="overflow-hidden sm:rounded-lg bg-gray-800 shadow-lg px-3 py-3 mt-3">
             @if (session()->has('message'))
@@ -15,7 +15,7 @@
                   </div>
                 </div>
             @endif
-            <x-jet-button class="mb-2 border" wire:click="create()">Create New Type</x-jet-button>
+            <x-jet-button x-ref="go" class="mb-2 border" wire:click="create()">Create New Type</x-jet-button>
             @if($isOpen)
                 @include('livewire.sa.typecreate')
             @endif
