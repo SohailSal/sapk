@@ -34,18 +34,18 @@
             @endif
             <div class="flex items-center justify-between">
                 <span class="flex">
-                @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
-                <button class="flex-wrap mb-2 mr-2 px-2 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" wire:click="create()">New Account</button>
-                @endcannot
-                @if($isOpen)
-                    @include('livewire.sa.accountcreate')
-                @endif
-                <div class="flex-1">
-                      <input type="text" class="shadow appearance-none rounded w-36 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" placeholder="Account Name" wire:model="search">
-                </div>
-                <div class="flex-1">
-                      <input type="text" class="shadow appearance-none rounded w-36 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" placeholder="Group Name" wire:model="search2">
-                </div>
+                    @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
+                    <button class="flex-wrap mb-2 mr-2 px-2 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" wire:click="create()">New Account</button>
+                    @endcannot
+                    @if($isOpen)
+                        @include('livewire.sa.accountcreate')
+                    @endif
+                    <div class="flex-1">
+                        <input type="text" class="shadow appearance-none rounded w-36 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" placeholder="Account Name" wire:model="search">
+                    </div>
+                    <div class="flex-1">
+                        <input type="text" class="shadow appearance-none rounded w-36 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" placeholder="Group Name" wire:model="search2">
+                    </div>
                 </span>
                 <span class="flex-wrap ml-5">{{$accounts->links()}}</span>
             </div>

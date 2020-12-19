@@ -33,7 +33,7 @@
                 </div>
             @endif
             @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
-            <x-jet-button class="mb-2 border" wire:click="create()">Create Voucher Type</x-jet-button> 
+            <button class="flex-wrap mb-2 mr-2 px-2 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" wire:click="create()">Create Voucher Type</button> 
             @endcannot
             @if($isOpen)
                 @include('livewire.sa.doctypecreate')
@@ -44,7 +44,7 @@
                         <th class="px-4 py-1">No.</th>
                         <th class="px-4 py-1">Voucher Name</th>
                         <th class="px-4 py-1">Prefix</th>
-                        <th class="px-4 py-1 text-center w-auto">Tasks</th>
+                        <th class="px-4 py-1 text-center w-2/6" colspan="2">Tasks</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,11 +53,11 @@
                         <td class="border px-4 py-1">{{ ++$ite }}</td>
                         <td class="border px-4 py-1">{{ $type->name }}</td>
                         <td class="border px-4 py-1">{{ $type->prefix }}</td>
-                        <td class="border px-4 py-1">
-                        <div class="flex justify-between">
-                            <x-jet-button wire:click="edit({{ $type->id }})" >Edit</x-jet-button>
-                            @if(count($type->documents)==0)<x-jet-danger-button wire:click="delete({{ $type->id }})" >Delete</x-jet-danger-button>@endif
-                        </div>
+                        <td class="border-b px-4 text-center">
+                            <button wire:click="edit({{ $type->id }})" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Edit</button>
+                        </td>
+                        <td class="border-b border-r px-4 text-center">
+                            @if(count($type->documents)==0)<button wire:click="delete({{ $type->id }})" class="delbutton bg-red-600 hover:bg-red-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Delete</button>@endif
                         </td>
                     </tr>
                     @endforeach

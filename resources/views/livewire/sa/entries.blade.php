@@ -38,27 +38,26 @@
                     @include('livewire.sa.entrycreate')
                 @endif
 -->
-                <div class="">
-                    <label class="block text-white text-sm font-bold mb-2">Account:</label>
-                    <select wire:model="search1" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo">
-                        <option value=''>Choose an Account:</option>
-                        @foreach(\App\Models\Account::where('company_id',session('company_id'))->get() as $account)
-                            <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="">
-                      <label class="block text-white text-sm font-bold mb-2">Start date:</label>
-                        <span class=" date" id="dstart">
-                          <input type="text" id="istart" onkeydown="return allow(event)" class="shadow w-52 py-1 px-3 bg-gray-600 text-white rounded leading-tight focus:shadow-outline-indigo" wire:model="search2">
-                        </span>
-                </div>
-                <div class="">
-                      <label class="block text-white text-sm font-bold mb-2">End date:</label>
-                        <span class=" date" id="dend">
-                          <input type="text" id="iend" onkeydown="return allow(event)" class="shadow appearance-none rounded w-52 py-1 px-3 bg-gray-600 text-white leading-tight focus:shadow-outline-indigo" wire:model="search3">
-                        </span>
-                </div>
+                <span class="flex">
+                    <div class="flex-1">
+                        <select wire:model="search1" class="shadow appearance-none rounded w-48 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline">
+                            <option value=''>Choose an Account:</option>
+                            @foreach(\App\Models\Account::where('company_id',session('company_id'))->get() as $account)
+                                <option value={{ $account->id }}>{{ $account->name }} - {{ $account->accountGroup->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="flex-1">
+                            <span class=" date" id="dstart">
+                            <input type="text" id="istart" onkeydown="return allow(event)" class="shadow appearance-none rounded w-28 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" wire:model="search2">
+                            </span>
+                    </div>
+                    <div class="flex-1">
+                            <span class=" date" id="dend">
+                            <input type="text" id="iend" onkeydown="return allow(event)" class="shadow appearance-none rounded w-28 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline" wire:model="search3">
+                            </span>
+                    </div>
+                </span>    
                 <span class="flex-wrap ml-5">{{$entries->links()}}</span>
             </div>
             <table class="table-auto w-full">

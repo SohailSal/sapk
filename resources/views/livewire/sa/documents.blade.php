@@ -84,15 +84,14 @@
                         <td class="border-b px-4 text-center">
                             <a href="{{url('voucher/'.Crypt::encrypt($doc->id))}}" target="_blank" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline whitespace-no-wrap">Voucher in PDF</a>
                         </td>
-                            @if(App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first()->closed == 0)
                         <td class="border-b px-4 text-center">
+                            @if(App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first()->closed == 0)
                             <button wire:click="edit({{ $doc->id }})" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Edit</button>
                         </td>
                         <td class="border-b border-r px-4 text-center">
                             <button wire:click="delete({{ $doc->id }})" class="delbutton bg-red-600 hover:bg-red-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Delete</button>
-                        </td>
                             @endif
-
+                        </td>
                         @endcannot
                     </tr>
                     @endforeach
