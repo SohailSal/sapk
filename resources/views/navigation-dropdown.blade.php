@@ -19,7 +19,7 @@
                         {{ __('Accounts') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/entry" :active="request()->routeIs('entry')">
-                        {{ __('Entries') }}
+                        {{ __('Ledger') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="/group" :active="request()->routeIs('group')">
                         {{ __('Groups') }}

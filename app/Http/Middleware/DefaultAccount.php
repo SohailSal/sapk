@@ -18,7 +18,7 @@ class DefaultAccount
     public function handle(Request $request, Closure $next)
     {
         $exitCode = Artisan::call('db:seed', [
-            '--class' => 'GroupSeeder'
+            '--class' => 'TypeSeeder'
         ]);
         return $next($request);
     }

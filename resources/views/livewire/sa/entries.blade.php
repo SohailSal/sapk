@@ -1,7 +1,7 @@
 <x-slot name="header">
 <div class="flex mx-auto items-center justify-between">
         <div class="inline-flex font-semibold text-xl text-white leading-tight">
-            Entries
+            Ledger
         </div>
         <div class="inline-flex  bg-gray-600 rounded-lg">
             <form method="GET" action="{{ url('entry') }}">
@@ -70,6 +70,7 @@
                         <th class="px-4 py-1">Description</th>
                         <th class="px-4 py-1">Debit</th>
                         <th class="px-4 py-1">Credit</th>
+                        <th class="px-4 py-1">Balance</th>
 <!--                        <th class="px-4 py-1">Action</th>   -->
                     </tr>
                 </thead>
@@ -81,6 +82,7 @@
                         <td class="border px-4 py-1">{{ $entry->description }}</td>
                         <td class="border px-4 py-1">{{ $entry->debit }}</td>
                         <td class="border px-4 py-1">{{ $entry->credit }}</td>
+                        <td class="border px-4 py-1">{{ $entry->debit - $entry->credit }}</td>
 <!--                        <td class="border px-4 py-1">
                         <x-jet-button wire:click="edit({{ $entry->id }})" >Edit</x-jet-button>
                         <x-jet-danger-button wire:click="delete({{ $entry->id }})" >Delete</x-jet-danger-button>

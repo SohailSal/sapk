@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\AccountGroup;
 use App\Models\AccountType;
+use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
 class AcGroups extends Component
@@ -49,11 +50,31 @@ class AcGroups extends Component
             'type_id' => 'required',
         ]);
 
-        AccountGroup::updateOrCreate(['id' => $this->ag_id], [
-            'name' => $this->name,
-            'type_id' => $this->type_id,
-            'company_id' => session('company_id'),
-        ]);
+        DB::transaction(function () {
+            if(! DB::table('account_types')->get()){
+                    DB::table('account_types')->insert([
+                    'name' => 'Assets',
+                    ]);
+                    DB::table('account_types')->insert([
+                    'name' => 'Liabilities',
+                    ]);
+                    DB::table('account_types')->insert([
+                    'name' => 'Capital',
+                    ]);
+                    DB::table('account_types')->insert([
+                    'name' => 'Revenue',
+                    ]);
+                    DB::table('account_types')->insert([
+                    'name' => 'Expenses',
+                    ]);
+            }
+
+            AccountGroup::updateOrCreate(['id' => $this->ag_id], [
+                'name' => $this->name,
+                'type_id' => $this->type_id,
+                'company_id' => session('company_id'),
+            ]);
+        });
 
         session()->flash('message', 
             $this->ag_id ? 'Account Group Updated Successfully.' : 'Account Group Created Successfully.');

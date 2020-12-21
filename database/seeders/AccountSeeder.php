@@ -17,7 +17,7 @@ class AccountSeeder extends Seeder
 
     public function run()
     {
-//        DB::transaction(function () {
+        DB::transaction(function () {
 
             $fa = ["Land","Building", "Plant & Machinery","Furniture & Fixtures","Office Equipment", "Vehicles", "Allowance for Depreciation - Building", "Allowance for Depreciation - Plant & Machinery","Allowance for Depreciation - Furniture & Fixtures","Allowance for Depreciation - Office Equipment", "Allowance for Depreciation - Vehicles"];
             $group_id = \App\Models\AccountGroup::where('name','Fixed Assets')->where('company_id',session('company_id'))->first()->id;
@@ -104,7 +104,7 @@ class AccountSeeder extends Seeder
             'company_id' => session('company_id'),
             ]);
             $account->update(['number' => $this->snum($account)]);
-            //        });
+        });
     }
 
     function snum($account){
