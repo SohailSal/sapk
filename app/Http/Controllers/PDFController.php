@@ -50,7 +50,7 @@ class PDFController extends Controller
 //        $entries = Entry::where('account_id',Crypt::decrypt($id))->where('company_id',session('company_id'))->get();
         $period = "From ".strval($year->begin)." to ".strval($year->end);
         $pdf = PDF::loadView('led', compact('entries','previous','year','period','acc'));
-        return $pdf->stream('ledger.pdf');
+        return $pdf->stream($acc->name.' - '.$acc->accountGroup->name.'.pdf');
     }
     
     public function rangeLedger(Request $request)
@@ -79,7 +79,7 @@ class PDFController extends Controller
         $acc = Account::where('id','=',$account)->where('company_id',session('company_id'))->first();
         $period = "From ".strval($start)." to ".strval($end);
         $pdf = PDF::loadView('range', compact('entries','previous','acc','period','start'));
-        return $pdf->stream('ledger.pdf');
+        return $pdf->stream($acc->name.' - '.$acc->accountGroup->name.'.pdf');
     }
 
     public function tb()

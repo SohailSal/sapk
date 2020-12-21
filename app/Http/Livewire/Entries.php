@@ -43,7 +43,15 @@ class Entries extends Component
         ->where('entries.account_id','=',$this->search1)
         ->paginate(10);
 
-        return view('livewire.sa.entries',['entries' => $entries]);
+        $previous = DB::table('documents')
+        ->join('entries', 'documents.id', '=', 'entries.document_id')
+        ->whereDate('documents.date', '<', $this->search2)
+        ->where('documents.company_id',session('company_id'))
+        ->select('entries.debit', 'entries.credit')
+        ->where('entries.account_id','=',$this->search1)
+        ->get();
+
+        return view('livewire.sa.entries',['entries' => $entries, 'previous' => $previous]);
 //        return view('livewire.sa.entries',['entries'=>Entry::where('company_id',session('company_id'))->where('id',$this->search1)->where('date','>=',$this->search2)->where('date','<=',$this->search3)->paginate(10)]);
     }
 

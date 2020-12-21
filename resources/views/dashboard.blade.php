@@ -66,6 +66,7 @@
                 </ul>
             </div>
 
+            @if(session('company_id'))
             <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
                 <form method="GET" action="{{ route('dashboard') }}">
                     @csrf
@@ -73,7 +74,7 @@
                         <h3>Assign usage rights to another user</h3>
                     </div>
                     <div class="flex-col m-2">
-                        <input name="email" type="text" class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" placeholder="Enter Email of User">
+                        <input name="email" type="text" class="bg-gray-600 text-white rounded focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" placeholder="Enter Email of User">
                     </div>
                     <div class="flex-col m-2">
                         <select name="comp" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
@@ -93,26 +94,27 @@
                         </select>
                     </div>
                     <div class="flex-col m-2">
-                        <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Assign</button>
+                        <button class="flex-wrap mb-2 mr-2 px-2 py-1 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" type="submit">Assign</button>
                     </div>
                 </form>
             </div>
-
+            @endif
         </div>
 
 
         <div class="flex mx-auto">
-
+            @if(session('company_id'))
             <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
             <livewire:years/>
             </div>
+            @endif
 
             <?php
             $fmt = new NumberFormatter( 'en_GB', NumberFormatter::CURRENCY );
             $amt = new NumberFormatter( 'en_GB', NumberFormatter::SPELLOUT );
             $fmt->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
             $fmt->setSymbol(NumberFormatter::CURRENCY_SYMBOL, '');
-
+            if(session('company_id') && App\Models\Document::where('company_id',session('company_id'))->first()){
                 $id= \App\Models\AccountType::where('name','Revenue')->first()->id;
                 $grps = \App\Models\AccountGroup::where('company_id',session('company_id'))->where('type_id',$id)->get();
                 $gbalance = [];
@@ -128,7 +130,9 @@
                     }
                     $gbalance[$gite++] = $balance;
                 }
+            }
             ?>
+            @if(session('company_id') && App\Models\Document::where('company_id',session('company_id'))->first())
             <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
                 <table style="border-collapse: collapse;">
                         <thead>
@@ -158,7 +162,7 @@
                     </tbody>
                 </table>
             </div>
-
+            @endif
         </div>
 
     <!--    <div class="flex mx-auto">

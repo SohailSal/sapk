@@ -7,7 +7,7 @@
     <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
     <div class="inline-block align-middle bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
       <form>
-        <div class="bg-gray-800 px-4 py-1 sm:p-6 sm:pb-4">
+        <div class="bg-gray-800 px-4 pt-2">
           <div class="">
                 <div class="mb-0">
                     <label class="block text-white text-sm font-bold mb-2">Name:</label>
@@ -15,7 +15,7 @@
                 </div>
           </div>
         </div>
-        <div class="bg-gray-800 px-4 py-1 sm:p-6 sm:pb-4">
+        <div class="bg-gray-800 px-4 pb-2 pt-2">
           <div class="">
                 <div class="mb-2">
                     <label class="block text-white text-sm font-bold mb-2">Group:</label>

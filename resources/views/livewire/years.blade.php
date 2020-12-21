@@ -18,12 +18,12 @@
             </div>
         </div>
     </form>
-    <table class="border-gray-400 border rounded-lg px-2 table-auto w-full">
+    <table class="border-gray-400 border rounded-lg px-2">
         <tr class="border-gray-400 border px-2">
             <th class="border-gray-400 border px-2">Year Begin</th>
             <th class="border-gray-400 border px-2">Year End</th>
             <th class="border-gray-400 border px-2">Active</th>
-            <th class="border-gray-400 border px-2 text-center w-2/6" colspan='2'>Tasks</th>
+            <th class="border-gray-400 border px-2 text-center" colspan='2'>Tasks</th>
         </tr>
         @foreach($years as $year)
         <tr class="border-gray-400 border rounded-lg px-2">

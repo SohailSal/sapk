@@ -110,9 +110,9 @@ class Accounts extends Component
         $grindex = 1;
         $grselindex = 0;
         $grsel = null;
-        $grcol = new Collection();
+//        $grcol = new Collection();
         foreach($grs as $gr){
-            $grcol->put($gr->name,$grindex);
+//            $grcol->put($gr->name,$grindex);
             if($gr->name == $account->accountGroup->name){
                 $grselindex = $grindex;
                 $grsel = $gr;

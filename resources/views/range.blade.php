@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ledger </title>
+    <title>Ledger - {{$acc->name}} - {{$acc->accountGroup->name}}</title>
 
     <style type="text/css">
         @page {margin-right: 10px;margin-left:45px; margin-top:-10px;}

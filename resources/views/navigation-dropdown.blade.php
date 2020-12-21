@@ -12,6 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @if(session('company_id'))
                     <x-jet-nav-link href="/doc" :active="request()->routeIs('doc')">
                         {{ __('Transactions') }}
                     </x-jet-nav-link>
@@ -27,12 +28,15 @@
                     <x-jet-nav-link href="/doctype" :active="request()->routeIs('doctype')">
                         {{ __('Vouchers') }}
                     </x-jet-nav-link>
+                    @endif
                     <x-jet-nav-link href="/company" :active="request()->routeIs('company')">
                         {{ __('Companies') }}
                     </x-jet-nav-link>
+                    @if(session('company_id'))
                     <x-jet-nav-link href="/report" :active="request()->routeIs('report')">
                         {{ __('Reports') }}
                     </x-jet-nav-link>
+                    @endif
                 </div>
             </div>
 

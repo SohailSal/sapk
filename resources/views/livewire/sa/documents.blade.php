@@ -68,9 +68,8 @@
             <table class="table-auto w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-1">Reference</th>
-                        <th class="px-4 py-1">Type</th>
-                        <th class="px-4 py-1">Date</th>
+                        <th class="px-4 py-1 text-center w-1/6">Reference</th>
+                        <th class="px-4 py-1 text-center w-1/6">Date</th>
                         <th class="px-4 py-1">Description</th>
                         @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())<th class="px-4 py-1 text-center w-2/6" colspan="3">Tasks</th>@endcannot
                     </tr>
@@ -79,7 +78,6 @@
                     @foreach($docss as $doc)
                     <tr class="text-white">
                         <td class="border px-4 py-1">{{ $doc->ref }}</td>
-                        <td class="border px-4 py-1">{{ $doc->documentType->name }}</td>
                         <td class="border px-4 py-1">{{ $doc->date }}</td>
                         <td class="border px-4 py-1">{{ $doc->description }}</td>
                         @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())

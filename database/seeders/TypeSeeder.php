@@ -14,7 +14,7 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        if(! DB::table('account_types')->get()){
+        if(count(DB::table('account_types')->get()) == 0){
             DB::transaction(function () {
                 DB::table('account_types')->insert([
                 'name' => 'Assets',

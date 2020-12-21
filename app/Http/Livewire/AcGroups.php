@@ -51,7 +51,7 @@ class AcGroups extends Component
         ]);
 
         DB::transaction(function () {
-            if(! DB::table('account_types')->get()){
+            if(count(DB::table('account_types')->get()) == 0){
                     DB::table('account_types')->insert([
                     'name' => 'Assets',
                     ]);

@@ -53,7 +53,7 @@
             <table class="table-auto w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-1">Number</th>
+                        <th class="px-4 py-1 text-center w-1/6">Number</th>
                         <th class="px-4 py-1">Name of Account</th>
                         <th class="px-4 py-1">Group of Account</th>
                         <th class="px-4 py-1 text-center w-2/6" colspan="3">Tasks</th>

@@ -3,6 +3,36 @@
         <div class="inline-flex font-semibold text-xl text-white leading-tight">
             Ledger
         </div>
+
+<?php
+        $fmt = new NumberFormatter( 'en_GB', NumberFormatter::CURRENCY );
+        $amt = new NumberFormatter( 'en_GB', NumberFormatter::SPELLOUT );
+        $fmt->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
+        $fmt->setSymbol(NumberFormatter::CURRENCY_SYMBOL, '');
+
+        $prebal = 0;
+        $lastbalance = 0;
+        $ite = 0;
+        $debits = 0;
+        $credits = 0;
+
+        if ($previous->count()) { 
+            foreach ($previous as $value) {
+            $prebal= $lastbalance + floatval($value->debit) - floatval($value->credit);
+            $lastbalance = $prebal;
+            $ite++;
+            }
+        }
+
+        $balance = [];
+        $ite = 0;
+        foreach ($entries as $value) {
+        $balance[$ite]= $lastbalance + floatval($value->debit) - floatval($value->credit);
+            $lastbalance = $balance[$ite];
+        $ite++;
+        }
+?>
+
         <div class="inline-flex  bg-gray-600 rounded-lg">
             <form method="GET" action="{{ url('entry') }}">
             @csrf
@@ -65,31 +95,64 @@
             <table class="table-auto w-full">
                 <thead>
                     <tr class="bg-gray-100">
-                        <th class="px-4 py-1">Voucher</th>
-                        <th class="px-4 py-1">Date</th>
-                        <th class="px-4 py-1">Description</th>
-                        <th class="px-4 py-1">Debit</th>
-                        <th class="px-4 py-1">Credit</th>
-                        <th class="px-4 py-1">Balance</th>
+                        <th class="px-4 py-1 text-center">Reference</th>
+                        <th class="px-4 py-1 text-center">Date</th>
+                        <th class="px-4 py-1 text-center w-2/6">Description</th>
+                        <th class="px-4 py-1 text-center">Debit</th>
+                        <th class="px-4 py-1 text-center">Credit</th>
+                        <th class="px-4 py-1 text-center">Balance</th>
 <!--                        <th class="px-4 py-1">Action</th>   -->
                     </tr>
                 </thead>
                 <tbody>
+                @if($search1)
+                    <tr class="text-white">
+                        <td class="border px-4 py-1"></td>
+                        <td class="border px-4 py-1">{{$year->begin}}</td>
+                        <td class="border px-4 py-1"><strong>Opening Balance</strong></td>
+                        <td class="border px-4 py-1"></td>
+                        <td class="border px-4 py-1"></td>
+                        <td class="border px-4 py-1" align="right">
+                        <strong> {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($prebal,'Rs.'))}} </strong>
+                        </td>
+                    </tr>
+                @endif
+
                     @foreach($entries as $entry)
                     <tr class="text-white">
                         <td class="border px-4 py-1">{{ $entry->ref }}</td>
                         <td class="border px-4 py-1">{{ $entry->date }}</td>
                         <td class="border px-4 py-1">{{ $entry->description }}</td>
-                        <td class="border px-4 py-1">{{ $entry->debit }}</td>
-                        <td class="border px-4 py-1">{{ $entry->credit }}</td>
-                        <td class="border px-4 py-1">{{ $entry->debit - $entry->credit }}</td>
+                        <td class="border px-4 py-1" align="right">{{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($entry->debit,'Rs.'))}}</td>
+                        <td class="border px-4 py-1" align="right">{{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($entry->credit,'Rs.'))}}</td>
+                        <td class="border px-4 py-1" align="right">{{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($balance[$loop->index],'Rs.'))}}</td>
 <!--                        <td class="border px-4 py-1">
                         <x-jet-button wire:click="edit({{ $entry->id }})" >Edit</x-jet-button>
                         <x-jet-danger-button wire:click="delete({{ $entry->id }})" >Delete</x-jet-danger-button>
                         </td>
 -->
                     </tr>
+<?php
+        $debits = $debits + $entry->debit;
+        $credits = $credits + $entry->credit;
+?>
                     @endforeach
+
+                    @if($search1)
+                    <tr class="text-white">
+                        <td class="border px-4 py-1"></td>
+                        <td class="border px-4 py-1"></td>
+                        <td class="border px-4 py-1"><strong>Totals</strong></td>
+                        <td class="border px-4 py-1" align="right">
+                            <strong>{{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($debits,'Rs.'))}}</strong>
+                        </td>
+                        <td class="border px-4 py-1" align="right">
+                            <strong>{{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($credits,'Rs.'))}}</strong>
+                        </td>
+                        <td class="border px-4 py-1"></td>
+                    </tr>
+                    @endif
+
                 </tbody>
             </table>
         </div>
