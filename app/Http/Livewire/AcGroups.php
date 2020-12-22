@@ -50,31 +50,11 @@ class AcGroups extends Component
             'type_id' => 'required',
         ]);
 
-        DB::transaction(function () {
-            if(count(DB::table('account_types')->get()) == 0){
-                    DB::table('account_types')->insert([
-                    'name' => 'Assets',
-                    ]);
-                    DB::table('account_types')->insert([
-                    'name' => 'Liabilities',
-                    ]);
-                    DB::table('account_types')->insert([
-                    'name' => 'Capital',
-                    ]);
-                    DB::table('account_types')->insert([
-                    'name' => 'Revenue',
-                    ]);
-                    DB::table('account_types')->insert([
-                    'name' => 'Expenses',
-                    ]);
-            }
-
-            AccountGroup::updateOrCreate(['id' => $this->ag_id], [
-                'name' => $this->name,
-                'type_id' => $this->type_id,
-                'company_id' => session('company_id'),
-            ]);
-        });
+        AccountGroup::updateOrCreate(['id' => $this->ag_id], [
+            'name' => $this->name,
+            'type_id' => $this->type_id,
+            'company_id' => session('company_id'),
+        ]);
 
         session()->flash('message', 
             $this->ag_id ? 'Account Group Updated Successfully.' : 'Account Group Created Successfully.');

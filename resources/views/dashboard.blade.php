@@ -15,10 +15,6 @@
                             @endforeach
                         </select>
                     </div>
-<!--                  <div class="inline-flex">
-                      <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Go</button>
-                  </div>
--->
                 </form>
             </div>
         </div>
@@ -43,10 +39,10 @@
                         <tr>
                             <td  class="border-gray-600 border-2" width="40%">
                             <li>
-                                Second, <a class="text-gray-400 hover:text-blue-200 " href="{{url('group')}}">create Account Groups</a>.
+                                Second, create Account Groups.
                             </li>
                             <li>
-                                Then <a class="text-gray-400 hover:text-blue-200 " href="{{url('account')}}">create some accounts</a>.
+                                Then create some accounts.
                             </li>
                             </td>
                             <td class="px-4">
@@ -58,10 +54,10 @@
                         </tr>
                     </table>
                     <li>
-                        Third, <a class="text-gray-400 hover:text-blue-200 " href="{{url('doctype')}}">create Voucher Types</a> as you desire.
+                        Third, create Voucher Types as you desire.
                     </li>
                     <li>
-                        Now, <a class="text-gray-400 hover:text-blue-200 " href="{{url('doc')}}">start entering Transactions</a>.
+                        Now, start entering Transactions.
                     </li>
                 </ul>
             </div>

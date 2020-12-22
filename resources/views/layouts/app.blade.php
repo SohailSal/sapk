@@ -57,6 +57,17 @@
             });
 
         });
+
+        
+        function allow(e) {
+            if (event.keyCode == 9) {
+              // tab key allowed
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
         </script>
     </body>
 </html>

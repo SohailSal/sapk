@@ -14,10 +14,6 @@
                           @endforeach
                       </select>
                   </div>
-<!--                  <div class="inline-flex">
-                      <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Go</button>
-                  </div>
--->
               </form>
           </div>
       </div>
@@ -109,15 +105,6 @@
                 thisend = new Date($(this).val());
             });
         });
-
-        function allow(e) {
-            if (event.keyCode == 9) {
-              // tab key allowed
-                return true;
-            } else {
-                return false;
-            }
-        }
 
     </script>
 

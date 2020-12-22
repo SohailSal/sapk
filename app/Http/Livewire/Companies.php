@@ -83,14 +83,6 @@ class Companies extends Component
                 Setting::create(['company_id' => $company->id, 'key' => 'role' , 'value' => 'admin', 'user_id' => auth()->user()->id]);
                 session(['company_id' => $company->id ]);
 
-/*                $endMonth = Carbon::parse($this->fiscal)->month;
-                $startMonth = Carbon::parse($this->fiscal)->month+1;
-                if($startMonth == 13) {$startMonth = 1;}
-                $month = Carbon::create()->month($endMonth);
-                $end = Carbon::today()->year+1 . '-' . $endMonth . '-' . $month->daysInMonth;
-                $begin = Carbon::parse($end)->subDays(364);
-                Year::create(['begin' => $begin, 'end' => $end, 'company_id' => session('company_id')]);
-*/
                 $endMonth = Carbon::parse($this->fiscal)->month;
                 $startMonth = Carbon::parse($this->fiscal)->month+1;
                 if($startMonth == 13) {$startMonth = 1;}
@@ -111,6 +103,26 @@ class Companies extends Component
                 Year::create(['begin' => $startDate, 'end' => $endDate, 'company_id' => session('company_id')]);
 
             }
+
+
+            if(count(DB::table('account_types')->get()) == 0){
+                    DB::table('account_types')->insert([
+                    'name' => 'Assets',
+                    ]);
+                    DB::table('account_types')->insert([
+                    'name' => 'Liabilities',
+                    ]);
+                    DB::table('account_types')->insert([
+                    'name' => 'Capital',
+                    ]);
+                    DB::table('account_types')->insert([
+                    'name' => 'Revenue',
+                    ]);
+                    DB::table('account_types')->insert([
+                    'name' => 'Expenses',
+                    ]);
+            }
+
         });
 
         session()->flash('message', 
@@ -147,7 +159,7 @@ class Companies extends Component
             }
             $co->users()->detach();
             $co->delete();
-            if(auth()->user()->companies()){
+            if(count(auth()->user()->companies()->get()) > 0){
                 $newid = auth()->user()->companies()->latest()->first()->id;
                 session(['company_id' => $newid ]);
                 $newset = \App\Models\Setting::where('company_id',$newid)->where('user_id', auth()->user()->id)->where('key','active')->first();

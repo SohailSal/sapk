@@ -17,12 +17,7 @@ class PDFController extends Controller
 {
     public function index()
     {
-        $data = [
-            'title' => 'Welcome to sa.pk',
-            'date' => date('m/d/Y')
-        ];
-        $pdf = PDF::loadView('testPDF', $data);
-        return $pdf->stream('make.pdf');
+
     }
 
     public function ledger($id)

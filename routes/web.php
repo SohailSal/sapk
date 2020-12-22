@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Posts;
 use App\Http\Livewire\AcTypes;
 use App\Http\Livewire\AcGroups;
 use App\Http\Livewire\Accounts;
@@ -33,8 +32,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('ch');
 
-Route::get('post', Posts::class);
-Route::view('customers','livewire.home');
 Route::get('type', AcTypes::class);
 Route::get('group', AcGroups::class)->middleware('ch');
 Route::get('account', Accounts::class)->middleware('ch','gr');

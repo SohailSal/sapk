@@ -13,11 +13,6 @@
                         @endforeach
                     </select>
                 </div>
-<!--                  <div class="inline-flex">
-                      <button class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" type="submit">Go</button>
-                  </div>
--->
-
             </form>
         </div>
     </div>
@@ -36,7 +31,7 @@
             @endif
             <div class="flex place-items-auto justify-between">
             @if (!\App\Models\AccountGroup::where('company_id',session('company_id'))->count())
-            <a class="px-4 py-2 flex-wrap mb-2 border bg-gray-600 text-white rounded-lg" href="{{url('generate')}}">Auto Generate</a>
+            <a class="flex-wrap mb-2 mr-2 px-2 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" href="{{url('generate')}}">Auto Generate</a>
             @endif
             @cannot('isUser', App\Models\Company::where('id',session('company_id'))->first())
             <button x-ref="go" class="flex-wrap mb-2 mr-2 px-2 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" wire:click="create()">Create New Group</button>
