@@ -155,7 +155,7 @@
                     $gbalance5[$gite5++] = $balance;
                 }
             
-            $profit = abs(array_sum($gbalance4)) - array_sum($gbalance5);
+            $profit = (array_sum($gbalance4) * -1) - array_sum($gbalance5);
             $equity = abs(array_sum($gbalance2)) + abs(array_sum($gbalance3)) + $profit;
 
 ?>

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\AccountGroup;
 use Illuminate\Support\Facades\DB;
 
 class GroupSeeder extends Seeder
@@ -17,95 +18,95 @@ class GroupSeeder extends Seeder
         DB::transaction(function () {
 
             $type_id = \App\Models\AccountType::where('name','Assets')->first()->id;
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Fixed Assets',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Stock-in-Trade',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Accounts Receivables',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Loans & Advances',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Deposits, Prepayments & Other Receivables',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Cash & Bank',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
 
             $type_id = \App\Models\AccountType::where('name','Capital')->first()->id;
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Equity',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Reserves',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
 
             $type_id = \App\Models\AccountType::where('name','Liabilities')->first()->id;
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Long Term Liabilities',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Short Term Loans',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Advances, Deposits & Other Liabilities',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Accounts Payables',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
 
             $type_id = \App\Models\AccountType::where('name','Revenue')->first()->id;
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Sales & Service',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Other Income',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
 
             $type_id = \App\Models\AccountType::where('name','Expenses')->first()->id;
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Operating Expenses',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Administrative Expenses',
             'type_id' => $type_id,
             'company_id' => session('company_id'),
             ]);
-            DB::table('account_groups')->insert([
+            AccountGroup::create([
             'name' => 'Taxes',
             'type_id' => $type_id,
             'company_id' => session('company_id'),

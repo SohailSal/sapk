@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\AccountType;
 use Illuminate\Support\Facades\DB;
 
 class TypeSeeder extends Seeder
@@ -14,25 +15,25 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        if(count(DB::table('account_types')->get()) == 0){
-            DB::transaction(function () {
-                DB::table('account_types')->insert([
+        DB::transaction(function () {
+                if(count(AccountType::all()) == 0){
+                AccountType::create([
                 'name' => 'Assets',
                 ]);
-                DB::table('account_types')->insert([
+                AccountType::create([
                 'name' => 'Liabilities',
                 ]);
-                DB::table('account_types')->insert([
+                AccountType::create([
                 'name' => 'Capital',
                 ]);
-                DB::table('account_types')->insert([
+                AccountType::create([
                 'name' => 'Revenue',
                 ]);
-                DB::table('account_types')->insert([
+                AccountType::create([
                 'name' => 'Expenses',
                 ]);
-            });
-        }
+            }
+        });
 
         $this->call([
             GroupSeeder::class,

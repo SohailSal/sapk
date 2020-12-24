@@ -88,7 +88,7 @@
                     $gbalance5[$gite5++] = $balance;
                 }
 
-                $profit = abs(array_sum($gbalance4)) - array_sum($gbalance5);
+                $profit = (array_sum($gbalance4) * -1) - array_sum($gbalance5);
 
 ?>
 
@@ -127,7 +127,7 @@
                     {{$group->name}}
                 </td>
                 <td style="width: 10%; " align="right">
-                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency(abs($gbalance4[$loop->index]),'Rs.'))}}
+                    {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency(($gbalance4[$loop->index] * -1),'Rs.'))}}
                 </td>
             </tr>
             @endforeach

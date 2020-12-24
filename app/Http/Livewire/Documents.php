@@ -122,7 +122,7 @@ class Documents extends Component
         $this->total();
         if(($this->search3 < $this->year->begin) || ($this->search3 > $this->year->end)){$this->search3 = $this->year->begin;}
         if(($this->search4 < $this->year->begin) || ($this->search4 > $this->year->end)){$this->search4 = $this->year->end;}
-        return view('livewire.sa.documents',['docss'=>Document::where('company_id',session('company_id'))->where('ref','like','%' . $this->search1 . '%')->where('description','like','%' . $this->search2 . '%')->where('date','>=',$this->search3)->where('date','<=',$this->search4)->paginate(10)]);
+        return view('livewire.sa.documents',['docss'=>Document::where('company_id',session('company_id'))->where('ref','like','%' . $this->search1 . '%')->where('description','like','%' . $this->search2 . '%')->where('date','>=',$this->search3)->where('date','<=',$this->search4)->orderBy('date')->orderBy('ref')->paginate(10)]);
     }
 
 /*

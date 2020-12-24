@@ -151,7 +151,7 @@
                             {{$group->name}}
                         </td>
                         <td  align="right">
-                            {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency($gbalance[$loop->index],'Rs.'))}}
+                            {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency(($gbalance[$loop->index] * -1),'Rs.'))}}
                         </td>
                     </tr>
                     @endforeach
@@ -161,14 +161,6 @@
             @endif
         </div>
 
-    <!--    <div class="flex mx-auto">
-            <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
-                <div class="inline-flex">
-                    <a class="bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline px-4 hover:text-blue-200 " href="{{url('close')}}">Close Current Fiscal Year</a>
-                </div>
-            </div>
-        </div>
-    -->
     </div>
 
 </x-app-layout>

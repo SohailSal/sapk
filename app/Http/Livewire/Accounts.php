@@ -28,6 +28,7 @@ class Accounts extends Component
         ->where('account_groups.name','like','%' . $this->search2 . '%')
         ->select('accounts.id','accounts.number', 'accounts.name', 'account_groups.name as groupName')
         ->where('accounts.name','like','%' . $this->search . '%')
+        ->orderBy('accounts.number')
         ->paginate(10);
 
         return view('livewire.sa.accounts',['accounts' => $accounts]);

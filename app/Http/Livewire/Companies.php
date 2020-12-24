@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Company;
 use App\Models\Setting;
+use App\Models\AccountType;
 use App\Models\Year;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -104,25 +105,23 @@ class Companies extends Component
 
             }
 
-
-            if(count(DB::table('account_types')->get()) == 0){
-                    DB::table('account_types')->insert([
-                    'name' => 'Assets',
-                    ]);
-                    DB::table('account_types')->insert([
-                    'name' => 'Liabilities',
-                    ]);
-                    DB::table('account_types')->insert([
-                    'name' => 'Capital',
-                    ]);
-                    DB::table('account_types')->insert([
-                    'name' => 'Revenue',
-                    ]);
-                    DB::table('account_types')->insert([
-                    'name' => 'Expenses',
-                    ]);
+            if(count(AccountType::all()) == 0){
+                AccountType::create([
+                'name' => 'Assets',
+                ]);
+                AccountType::create([
+                'name' => 'Liabilities',
+                ]);
+                AccountType::create([
+                'name' => 'Capital',
+                ]);
+                AccountType::create([
+                'name' => 'Revenue',
+                ]);
+                AccountType::create([
+                'name' => 'Expenses',
+                ]);
             }
-
         });
 
         session()->flash('message', 
