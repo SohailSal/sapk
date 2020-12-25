@@ -13,9 +13,14 @@
             <div class="inline-flex">
                 <button type="button" wire:click.prevent="store()" class="flex-wrap mb-2 mr-2 px-2 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline">Add Fiscal Year</button>
             </div>
+            <?php
+            $yearsel = \App\Models\Year::where('company_id',session('company_id'))->where('enabled','=','1')->first();
+            ?>
+            @if( $yearsel->closed == 0)
             <div class="inline-flex">
                 <a class="flex-wrap mb-2 mr-2 px-2 py-1 border border-indigo-600 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" href="{{url('close')}}">Close Fiscal Year</a>
             </div>
+            @endif
         </div>
     </form>
     <table class="border-gray-400 border rounded-lg px-2">

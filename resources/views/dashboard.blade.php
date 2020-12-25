@@ -63,6 +63,7 @@
             </div>
 
             @if(session('company_id'))
+            @can('isAdmin', App\Models\Company::where('id',session('company_id'))->first())
             <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
                 <form method="GET" action="{{ route('dashboard') }}">
                     @csrf
@@ -94,15 +95,18 @@
                     </div>
                 </form>
             </div>
+            @endcan
             @endif
         </div>
 
 
         <div class="flex mx-auto">
             @if(session('company_id'))
+            @can('isAdmin', App\Models\Company::where('id',session('company_id'))->first())
             <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
             <livewire:years/>
             </div>
+            @endcan
             @endif
 
             <?php
