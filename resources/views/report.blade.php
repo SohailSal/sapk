@@ -46,7 +46,7 @@
                     <div class="inline-flex items-center">
                         <select class="bg-gray-600 rounded-lg mx-2  px-1 py-1 w-52 focus:outline-none focus:shadow-outline" name="account_id">
                             @foreach (\App\Models\Account::where('company_id',session('company_id'))->get() as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            <option value="{{$item->id}}">{{$item->number}} - {{$item->name}}</option>
                             @endforeach
                         </select>
                     </div>

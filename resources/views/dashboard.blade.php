@@ -71,10 +71,12 @@
                         <h3>Assign usage rights to another user</h3>
                     </div>
                     <div class="flex-col m-2">
-                        <input name="email" type="text" class="bg-gray-600 text-white rounded focus:outline-none focus:shadow-outline px-4 hover:text-blue-200" placeholder="Enter Email of User">
+                        <label class="inline-flex text-white mb-2 w-20">Email:</label>
+                        <input name="email" type="text" class="bg-gray-600 text-white rounded focus:outline-none focus:shadow-outline px-4 hover:text-blue-200 w-52" placeholder="Enter Email of User">
                     </div>
                     <div class="flex-col m-2">
-                        <select name="comp" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
+                        <label class="inline-flex text-white mb-2 w-20">Company:</label>
+                        <select name="comp" class=" w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
                             @foreach(\Auth::user()->companies as $company)
                                 @foreach($company->settings as $setting)
                                     @if(($setting->key == 'role') && ($setting->value == 'admin')&& ($setting->user_id == Auth::user()->id))
@@ -85,13 +87,14 @@
                         </select>
                     </div>
                     <div class="flex-col m-2">
+                        <label class="inline-flex text-white mb-2 w-20">Role:</label>
                         <select name="role" class="w-52 bg-gray-600 text-white rounded leading-tight focus:outline-none focus:shadow-outline">
                             <option value='manager'>Manager</option>
                             <option value='user'>Read Only</option>
                         </select>
                     </div>
                     <div class="flex-col m-2">
-                        <button class="flex-wrap mb-2 mr-2 px-2 py-1 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" type="submit">Assign</button>
+                        <button class="flex-wrap mb-2 ml-20 px-2 py-1 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" type="submit">Assign</button>
                     </div>
                 </form>
             </div>
@@ -135,7 +138,7 @@
             @if(session('company_id') && App\Models\Document::where('company_id',session('company_id'))->first())
             <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
                 <table style="border-collapse: collapse;">
-                        <thead>
+                    <thead>
                         <tr>
                             <th style="border-bottom:2pt solid white;">
                                 <strong></strong>
@@ -144,20 +147,20 @@
                                 <strong>Rupees</strong>
                             </th>
                         </tr>
-                        </thead>
-                        <tbody>
+                    </thead>
+                    <tbody>
                     @foreach ($grps as $group)
-                            @if($gbalance[$loop->index]==0)
-                            @continue
-                            @endif
-                    <tr>
-                        <td >
-                            {{$group->name}}
-                        </td>
-                        <td  align="right">
-                            {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency(($gbalance[$loop->index] * -1),'Rs.'))}}
-                        </td>
-                    </tr>
+                        @if($gbalance[$loop->index]==0)
+                        @continue
+                        @endif
+                        <tr>
+                            <td >
+                                {{$group->name}}
+                            </td>
+                            <td  align="right">
+                                {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency(($gbalance[$loop->index] * -1),'Rs.'))}}
+                            </td>
+                        </tr>
                     @endforeach
                     </tbody>
                 </table>
