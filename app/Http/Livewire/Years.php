@@ -115,5 +115,7 @@ class Years extends Component
             $current = Year::where('company_id',session('company_id'))->where('id',$id)->first();
             $current->update(['enabled' => 1]);
         });
+        session()->flash('message', 'Active Year changed!');
+        return redirect()->to('dashboard');
     }
 }

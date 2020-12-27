@@ -1,6 +1,6 @@
-<nav x-data="{ open: false }" class="bg-gray-600 border-b border-gray-200">
+<nav x-data="{ open: false }" class=" border-b border-gray-200">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div class="flex justify-between max-h-10">
             <div class="flex">
                 <!-- Logo -->
@@ -127,15 +127,31 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            @if(session('company_id'))
+            <x-jet-responsive-nav-link class="bg-white hover:bg-gray-200" href="/doc" :active="request()->routeIs('doc')">
+                {{ __('Transactions') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-jet-responsive-nav-link class="bg-white hover:bg-gray-200" href="/account" :active="request()->routeIs('account')">
+                {{ __('Accounts') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-jet-responsive-nav-link class="bg-white hover:bg-gray-200" href="/entry" :active="request()->routeIs('entry')">
+                {{ __('Ledger') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link class="bg-white hover:bg-gray-200" href="/group" :active="request()->routeIs('group')">
+                {{ __('Groups') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link class="bg-white hover:bg-gray-200" href="/doctype" :active="request()->routeIs('doctype')">
+                {{ __('Vouchers') }}
+            </x-jet-responsive-nav-link>
+            @endif
+            <x-jet-responsive-nav-link class="bg-white hover:bg-gray-200" href="/company" :active="request()->routeIs('company')">
+                {{ __('Companies') }}
+            </x-jet-responsive-nav-link>
+            @if(session('company_id'))
+            <x-jet-responsive-nav-link class="bg-white hover:bg-gray-200" href="/report" :active="request()->routeIs('report')">
+                {{ __('Reports') }}
+            </x-jet-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
@@ -146,28 +162,28 @@
                 </div>
 
                 <div class="ml-3">
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                    <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm text-white">{{ Auth::user()->email }}</div>
                 </div>
             </div>
 
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
-                <x-jet-responsive-nav-link href="/user/profile" :active="request()->routeIs('profile.show')">
+                <x-jet-responsive-nav-link class="bg-white hover:bg-gray-200" href="/user/profile" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
                 </x-jet-responsive-nav-link>
-
+<!--
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="/user/api-tokens" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
                     </x-jet-responsive-nav-link>
                 @endif
-
+-->
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-jet-responsive-nav-link href="{{ route('logout') }}"
+                    <x-jet-responsive-nav-link class="bg-white hover:bg-gray-200" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                         {{ __('Logout') }}

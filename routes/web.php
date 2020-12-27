@@ -32,32 +32,32 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('ch');
 
-Route::get('type', AcTypes::class);
-Route::get('group', AcGroups::class)->middleware('ch');
-Route::get('account', Accounts::class)->middleware('ch','gr');
-Route::get('doctype', DocTypes::class)->middleware('ch');
-Route::get('doc', Documents::class)->middleware('ch','ck');
-Route::get('entry', Entries::class)->middleware('ch');
-Route::get('company', Companies::class)->middleware('ch');
+Route::get('type', AcTypes::class)->middleware('auth');
+Route::get('group', AcGroups::class)->middleware('auth','ch');
+Route::get('account', Accounts::class)->middleware('auth','ch','gr');
+Route::get('doctype', DocTypes::class)->middleware('auth','ch');
+Route::get('doc', Documents::class)->middleware('auth','ch','ck');
+Route::get('entry', Entries::class)->middleware('auth','ch');
+Route::get('company', Companies::class)->middleware('auth','ch');
 
-Route::get('create-pdf-file', [PDFController::class, 'index']);
-Route::get('ledger/{id}', [PDFController::class, 'ledger']);
-Route::get('voucher/{id}', [PDFController::class, 'voucher']);
-Route::get('tb', [PDFController::class, 'tb']);
-Route::get('bs', [PDFController::class, 'bs']);
-Route::get('pl', [PDFController::class, 'pl']);
-Route::get('first-chart', [ChartController::class, 'index']);
-Route::get('excel', [ExcelController::class, 'export']);
+Route::get('create-pdf-file', [PDFController::class, 'index'])->middleware('auth');
+Route::get('ledger/{id}', [PDFController::class, 'ledger'])->middleware('auth');
+Route::get('voucher/{id}', [PDFController::class, 'voucher'])->middleware('auth');
+Route::get('tb', [PDFController::class, 'tb'])->middleware('auth');
+Route::get('bs', [PDFController::class, 'bs'])->middleware('auth');
+Route::get('pl', [PDFController::class, 'pl'])->middleware('auth');
+Route::get('first-chart', [ChartController::class, 'index'])->middleware('auth');
+Route::get('excel', [ExcelController::class, 'export'])->middleware('auth');
 
 Route::get('choose', function () {
     return view('choose');
-})->middleware('co');
+})->middleware('auth','co');
 
 Route::get('/report', function () {
     return view('report');
-})->middleware('ch');
+})->middleware('auth','ch');
 
-Route::get('generate', AcGroups::class)->middleware('df');
-Route::get('range', [PDFController::class, 'rangeLedger']);
+Route::get('generate', AcGroups::class)->middleware('auth','df');
+Route::get('range', [PDFController::class, 'rangeLedger'])->middleware('auth');
 
-Route::get('close', CloseYear::class);
+Route::get('close', CloseYear::class)->middleware('auth');

@@ -72,7 +72,7 @@
                     </div>
                     <div class="flex-col m-2">
                         <label class="inline-flex text-white mb-2 w-20">Email:</label>
-                        <input name="email" type="text" class="bg-gray-600 text-white rounded focus:outline-none focus:shadow-outline px-4 hover:text-blue-200 w-52" placeholder="Enter Email of User">
+                        <input name="email" type="text" class="bg-gray-600 text-white rounded focus:outline-none focus:shadow-outline px-1 hover:text-blue-200 w-52" placeholder="Enter Email of User">
                     </div>
                     <div class="flex-col m-2">
                         <label class="inline-flex text-white mb-2 w-20">Company:</label>
@@ -94,7 +94,7 @@
                         </select>
                     </div>
                     <div class="flex-col m-2">
-                        <button class="flex-wrap mb-2 ml-20 px-2 py-1 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" type="submit">Assign</button>
+                        <button class="flex-wrap mb-2 ml-20 px-4 py-1 rounded-lg bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:shadow-outline" type="submit">Assign</button>
                     </div>
                 </form>
             </div>
@@ -118,7 +118,40 @@
             $fmt->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
             $fmt->setSymbol(NumberFormatter::CURRENCY_SYMBOL, '');
             if(session('company_id') && App\Models\Document::where('company_id',session('company_id'))->first()){
-                $id= \App\Models\AccountType::where('name','Revenue')->first()->id;
+
+                $year =  \App\Models\Year::where('company_id',session('company_id'))->where('enabled',1)->first();
+                $id4= \App\Models\AccountType::where('name','Revenue')->first()->id;
+                $grps4 = \App\Models\AccountGroup::where('company_id',session('company_id'))->where('type_id',$id4)->get();
+                $gbalance4 = [];
+                $gite4 = 0;
+                foreach($grps4 as $group){
+                    $balance = 0;
+                    $lastbalance = 0;
+                    foreach($group->accounts as $account){
+
+                        $entries = Illuminate\Support\Facades\DB::table('documents')
+                            ->join('entries', 'documents.id', '=', 'entries.document_id')
+                            ->whereDate('documents.date', '>=', $year->begin)
+                            ->whereDate('documents.date', '<=', $year->end)
+                            ->where('documents.company_id',session('company_id'))
+                            ->where('entries.account_id','=',$account->id)
+                            ->select('entries.debit', 'entries.credit')
+                            ->get();
+
+                        $cnt = count($entries);
+                        foreach ($entries as $entry){
+                            if((--$cnt <= 0) && ($year->closed)){
+                                break;
+                            }
+                            $balance= $lastbalance + floatval($entry->debit) - floatval($entry->credit);
+                            $lastbalance = $balance;
+                        }
+                    }
+                    $gbalance4[$gite4++] = $balance;
+                }
+
+
+/*                $id= \App\Models\AccountType::where('name','Revenue')->first()->id;
                 $grps = \App\Models\AccountGroup::where('company_id',session('company_id'))->where('type_id',$id)->get();
                 $gbalance = [];
                 $gite = 0;
@@ -133,6 +166,9 @@
                     }
                     $gbalance[$gite++] = $balance;
                 }
+*/
+
+
             }
             ?>
             @if(session('company_id') && App\Models\Document::where('company_id',session('company_id'))->first())
@@ -149,8 +185,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($grps as $group)
-                        @if($gbalance[$loop->index]==0)
+                    @foreach ($grps4 as $group)
+                        @if($gbalance4[$loop->index]==0)
                         @continue
                         @endif
                         <tr>
@@ -158,7 +194,7 @@
                                 {{$group->name}}
                             </td>
                             <td  align="right">
-                                {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency(($gbalance[$loop->index] * -1),'Rs.'))}}
+                                {{str_replace(['Rs.','.00'],'',$fmt->formatCurrency(($gbalance4[$loop->index] * -1),'Rs.'))}}
                             </td>
                         </tr>
                     @endforeach
