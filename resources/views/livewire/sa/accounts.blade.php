@@ -50,9 +50,9 @@
                 </span>
                 <span class="flex-wrap ml-5">{{$accounts->links()}}</span>
             </div>
-            <table class="table-auto w-full">
+            <table class="w-full flex flex-row flex-no-wrap">
                 <thead>
-                    <tr class="bg-gray-100" >
+                    <tr class="bg-gray-100 flex flex-col flex-no-wrap sm:table-row" >
                         <th class="px-4 py-1 text-center w-1/6" >Number</th>
                         <th class="px-4 py-1">Name of Account</th>
                         <th class="px-4 py-1">Group of Account</th>
@@ -61,7 +61,7 @@
                 </thead>
                 <tbody>
                     @foreach($accounts as $account)
-                    <tr class="text-white"  >
+                    <tr class="text-white flex flex-col flex-no-wrap sm:table-row"  >
                         <td class="border px-4 py-1" >{{ $account->number }}</td>
                         <td class="border px-4 py-1" >{{ $account->name }}</td>
                         <td class="border px-4 py-1">{{ $account->groupName }}</td>
