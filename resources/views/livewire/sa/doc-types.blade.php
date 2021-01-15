@@ -35,31 +35,33 @@
             @if($isOpen)
                 @include('livewire.sa.doctypecreate')
             @endif
-            <table class="table-auto w-full">
-                <thead>
-                    <tr class="bg-gray-100">
-                        <th class="px-4 py-1">No.</th>
-                        <th class="px-4 py-1">Voucher Name</th>
-                        <th class="px-4 py-1">Prefix</th>
-                        <th class="px-4 py-1 text-center w-2/6" colspan="2">Tasks</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($types as $type)
-                    <tr class="text-white">
-                        <td class="border px-4 py-1">{{ ++$ite }}</td>
-                        <td class="border px-4 py-1">{{ $type->name }}</td>
-                        <td class="border px-4 py-1">{{ $type->prefix }}</td>
-                        <td class="border-b px-4 text-center">
-                            <button wire:click="edit({{ $type->id }})" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Edit</button>
-                        </td>
-                        <td class="border-b border-r px-4 text-center">
-                            @if(count($type->documents)==0)<button wire:click="delete({{ $type->id }})" class="delbutton bg-red-600 hover:bg-red-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Delete</button>@endif
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="overflow-auto">
+                <table class="table-auto w-full">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="px-4 py-1">No.</th>
+                            <th class="px-4 py-1">Voucher Name</th>
+                            <th class="px-4 py-1">Prefix</th>
+                            <th class="px-4 py-1 text-center w-2/6" colspan="2">Tasks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($types as $type)
+                        <tr class="text-white">
+                            <td class="border px-4 py-1">{{ ++$ite }}</td>
+                            <td class="border px-4 py-1">{{ $type->name }}</td>
+                            <td class="border px-4 py-1">{{ $type->prefix }}</td>
+                            <td class="border-b px-4 text-center">
+                                <button wire:click="edit({{ $type->id }})" class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Edit</button>
+                            </td>
+                            <td class="border-b border-r px-4 text-center">
+                                @if(count($type->documents)==0)<button wire:click="delete({{ $type->id }})" class="delbutton bg-red-600 hover:bg-red-700 rounded-lg px-4 py-1 text-white focus:outline-none focus:shadow-outline">Delete</button>@endif
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

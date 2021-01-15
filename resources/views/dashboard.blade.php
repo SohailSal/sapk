@@ -30,7 +30,7 @@
 
         <div class="flex mx-auto">
 
-            <div class="inline-flex py-2 px-4 bg-gray-800 m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
+            <div class="inline-flex py-2 px-4 bg-gray-800 m-4 rounded-lg shadow-lg overflow-auto md:w-1/2 w-full">
                 <ul class="list-disc ml-1 text-white ">
                     <li>
                         First, <a class="text-gray-400 hover:text-blue-200 " href="{{url('company')}}">create a Company</a>.
@@ -64,7 +64,7 @@
 
             @if(session('company_id'))
             @can('isAdmin', App\Models\Company::where('id',session('company_id'))->first())
-            <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
+            <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-auto md:w-1/2 w-full">
                 <form method="GET" action="{{ route('dashboard') }}">
                     @csrf
                     <div class="flex-col m-2">
@@ -106,7 +106,7 @@
         <div class="flex mx-auto">
             @if(session('company_id'))
             @can('isAdmin', App\Models\Company::where('id',session('company_id'))->first())
-            <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
+            <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-auto md:w-1/2 w-full">
             <livewire:years/>
             </div>
             @endcan
@@ -172,7 +172,7 @@
             }
             ?>
             @if(session('company_id') && App\Models\Document::where('company_id',session('company_id'))->first())
-            <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-hidden md:w-1/2 w-full">
+            <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-auto md:w-1/2 w-full">
                 <table style="border-collapse: collapse;">
                     <thead>
                         <tr>

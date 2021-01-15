@@ -19,31 +19,33 @@
             @if($isOpen)
                 @include('livewire.sa.typecreate')
             @endif
-            <table class="table-auto w-full">
-                <thead>
-                    <tr class="bg-gray-100">
-                        <th class="px-4 py-1 w-20">No.</th>
-                        <th class="px-4 py-1">DB ID</th>
-                        <th class="px-4 py-1">Name</th>
-                        <th class="px-4 py-1">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($types as $type)
-                    <tr class="text-white">
-                        <td class="border px-4 py-1">{{ ++$ite }}</td>
-                        <td class="border px-4 py-1">{{ $type->id }}</td>
-                        <td class="border px-4 py-1">{{ $type->name }}
-                        {{$type->accountGroups->isEmpty()?"yes":"no"}}
-                        </td>
-                        <td class="border px-4 py-1">
-                        <x-jet-button wire:click="edit({{ $type->id }})" >Edit</x-jet-button>
-                        <x-jet-danger-button wire:click="delete({{ $type->id }})" >Delete</x-jet-danger-button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="overflow-auto">
+                <table class="table-auto w-full">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="px-4 py-1 w-20">No.</th>
+                            <th class="px-4 py-1">DB ID</th>
+                            <th class="px-4 py-1">Name</th>
+                            <th class="px-4 py-1">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($types as $type)
+                        <tr class="text-white">
+                            <td class="border px-4 py-1">{{ ++$ite }}</td>
+                            <td class="border px-4 py-1">{{ $type->id }}</td>
+                            <td class="border px-4 py-1">{{ $type->name }}
+                            {{$type->accountGroups->isEmpty()?"yes":"no"}}
+                            </td>
+                            <td class="border px-4 py-1">
+                            <x-jet-button wire:click="edit({{ $type->id }})" >Edit</x-jet-button>
+                            <x-jet-danger-button wire:click="delete({{ $type->id }})" >Delete</x-jet-danger-button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
