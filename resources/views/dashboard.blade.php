@@ -28,7 +28,7 @@
             <div class="text-white px-8 py-2">First <a href="{{url('company')}}">create a Company</a></div>
         @endif
 
-        <div class="flex mx-auto">
+        <div class="flex mx-auto flex-col md:flex-row">
 
             <div class="inline-flex py-2 px-4 bg-gray-800 m-4 rounded-lg shadow-lg overflow-auto md:w-1/2 w-full">
                 <ul class="list-disc ml-1 text-white ">
@@ -103,7 +103,7 @@
         </div>
 
 
-        <div class="flex mx-auto">
+        <div class="flex mx-auto flex-col md:flex-row">
             @if(session('company_id'))
             @can('isAdmin', App\Models\Company::where('id',session('company_id'))->first())
             <div class="inline-flex py-2 px-4 bg-gray-800 text-white m-4 rounded-lg shadow-lg overflow-auto md:w-1/2 w-full">
