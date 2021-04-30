@@ -75,7 +75,7 @@
                         <select wire:model="search1" class="shadow rounded w-48 py-1 px-1 mb-2 mr-2 bg-gray-600 text-white focus:outline-none focus:shadow-outline">
                             <option value=''>Choose an Account:</option>
                             @foreach(\App\Models\Account::where('company_id',session('company_id'))->get() as $account)
-                                <option value={{ $account->id }}>{{ $account->number }} - {{ $account->name }}</option>
+                                <option value={{ $account->id }}>{{ $account->name }} - {{ $account->number }}</option>
                             @endforeach
                         </select>
                     </div>
